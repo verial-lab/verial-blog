@@ -13,9 +13,9 @@ export default async function NotePage(props: {
     const pages = noteSource.getPages().filter(p => p.slugs.length > 0);
     return (
       <div className="min-h-screen">
-        <div className="max-w-3xl mx-auto px-6 py-16">
-          <header className="mb-12">
-            <h1 className="font-serif text-3xl font-bold mb-3">Notes</h1>
+        <div className="max-w-3xl mx-auto px-6 pt-24 pb-16">
+          <header className="mb-16">
+            <h1 className="font-serif text-4xl font-bold mb-4">Notes</h1>
             <p className="text-muted-foreground leading-relaxed">
               Build logs, technical discoveries, and engineering reflections. Raw and unfiltered.
             </p>
