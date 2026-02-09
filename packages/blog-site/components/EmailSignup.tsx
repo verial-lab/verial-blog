@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 
 export function EmailSignup() {
   const [email, setEmail] = useState('');
@@ -20,13 +19,9 @@ export function EmailSignup() {
   };
 
   return (
-    <motion.section
+    <section
       id="subscribe"
       className="bg-muted/20 border border-border rounded-2xl p-8 md:p-12"
-      initial={{ opacity: 1, y: 0 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
     >
       <div className="max-w-2xl mx-auto text-center">
         <h3 className="text-2xl font-serif font-bold mb-4">
@@ -39,18 +34,14 @@ export function EmailSignup() {
         </p>
 
         {isSubmitted ? (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="bg-primary/10 border border-primary/20 rounded-lg p-6"
-          >
+          <div className="bg-primary/10 border border-primary/20 rounded-lg p-6">
             <div className="flex items-center justify-center gap-2 text-primary">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
               <span className="font-medium">Thanks! Check your email to confirm.</span>
             </div>
-          </motion.div>
+          </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="flex flex-col sm:flex-row gap-3">
@@ -62,12 +53,10 @@ export function EmailSignup() {
                 required
                 className="flex-1 px-4 py-3 bg-background/50 border border-border/50 rounded-lg focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/20 transition-all text-[15px]"
               />
-              <motion.button
+              <button
                 type="submit"
                 disabled={isSubmitting || !email}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="button-primary disabled:opacity-50 disabled:cursor-not-allowed min-w-[120px]"
+                className="button-primary disabled:opacity-50 disabled:cursor-not-allowed min-w-[120px] hover:scale-[1.02] active:scale-[0.98] transition-transform"
               >
                 {isSubmitting ? (
                   <span className="flex items-center gap-2 justify-center">
@@ -77,7 +66,7 @@ export function EmailSignup() {
                 ) : (
                   'Subscribe'
                 )}
-              </motion.button>
+              </button>
             </div>
             
             <label className="flex items-center gap-2 justify-center text-sm cursor-pointer">
@@ -98,6 +87,6 @@ export function EmailSignup() {
           </form>
         )}
       </div>
-    </motion.section>
+    </section>
   );
 }
