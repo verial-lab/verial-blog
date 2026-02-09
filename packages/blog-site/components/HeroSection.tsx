@@ -29,7 +29,7 @@ export function HeroSection() {
           className="space-y-8"
         >
           <motion.h1 
-            className="text-5xl md:text-7xl font-serif font-bold leading-[1.1] tracking-tight"
+            className="text-5xl md:text-7xl font-serif font-normal leading-[1.2] tracking-normal"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}

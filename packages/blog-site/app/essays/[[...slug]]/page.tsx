@@ -15,7 +15,7 @@ export default async function EssayPage(props: {
       <div className="min-h-screen">
         <div className="max-w-3xl mx-auto px-6 pt-24 pb-16">
           <header className="mb-16">
-            <h1 className="font-serif text-4xl font-bold mb-4">Essays</h1>
+            <h1 className="font-serif text-4xl font-normal mb-4 tracking-normal">Essays</h1>
             <p className="text-muted-foreground leading-relaxed">
               Polished, timeless, high-density explorations of systems thinking and architecture principles. New essays are sent by email.
             </p>
@@ -27,7 +27,7 @@ export default async function EssayPage(props: {
                 href={page.url}
                 className="block group border border-border/40 rounded-xl p-6 hover:border-primary/20 hover:bg-muted/10 transition-all duration-300"
               >
-                <h2 className="font-serif text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
+                <h2 className="font-serif text-lg font-normal mb-2 group-hover:text-primary transition-colors">
                   {page.data.title}
                 </h2>
                 {page.data.description && (
@@ -65,7 +65,7 @@ export default async function EssayPage(props: {
         </div>
 
         <header className="mb-16">
-          <h1 className="font-serif text-4xl md:text-5xl font-bold leading-[1.15] tracking-tight mb-6">
+          <h1 className="font-serif text-4xl md:text-5xl font-normal leading-[1.25] tracking-normal mb-6">
             {page.data.title}
           </h1>
           {page.data.description && (

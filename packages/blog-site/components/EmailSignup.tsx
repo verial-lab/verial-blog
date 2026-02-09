@@ -24,7 +24,7 @@ export function EmailSignup() {
       className="bg-muted/20 border border-border rounded-2xl p-8 md:p-12"
     >
       <div className="max-w-2xl mx-auto text-center">
-        <h3 className="text-2xl font-serif font-bold mb-4">
+        <h3 className="text-2xl font-serif font-normal mb-4 tracking-normal">
           Get new essays by email
         </h3>
         

@@ -15,7 +15,7 @@ export default async function FrameworkPage(props: {
       <div className="min-h-screen">
         <div className="max-w-3xl mx-auto px-6 py-16">
           <header className="mb-12">
-            <h1 className="font-serif text-3xl font-bold mb-3">Framework</h1>
+            <h1 className="font-serif text-3xl font-normal mb-3 tracking-normal">Framework</h1>
             <p className="text-muted-foreground leading-relaxed">
               Living documentation — evolving models, principles, and design patterns.
             </p>
@@ -27,7 +27,7 @@ export default async function FrameworkPage(props: {
                 href={page.url}
                 className="block group border border-border/40 rounded-xl p-6 hover:border-primary/20 hover:bg-muted/10 transition-all duration-300"
               >
-                <h2 className="font-serif text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
+                <h2 className="font-serif text-lg font-normal mb-2 group-hover:text-primary transition-colors">
                   {page.data.title}
                 </h2>
                 {page.data.description && (
@@ -65,7 +65,7 @@ export default async function FrameworkPage(props: {
         </div>
 
         <header className="mb-16">
-          <h1 className="font-serif text-4xl md:text-5xl font-bold leading-[1.15] tracking-tight mb-6">
+          <h1 className="font-serif text-4xl md:text-5xl font-normal leading-[1.25] tracking-normal mb-6">
             {page.data.title}
           </h1>
           {page.data.description && (

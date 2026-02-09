@@ -20,7 +20,7 @@ export function ContentPreview({ title, description, href, badge }: ContentPrevi
       <Link href={href}>
         <div className="border border-border/50 rounded-xl p-6 h-full hover:border-primary/20 transition-all duration-300 bg-muted/5 hover:bg-muted/15 hover:shadow-lg hover:shadow-primary/[0.03]">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-xl font-serif font-semibold group-hover:text-primary transition-colors">
+            <h3 className="text-xl font-serif font-normal group-hover:text-primary transition-colors">
               {title}
             </h3>
             {badge && (
