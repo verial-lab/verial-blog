@@ -7,7 +7,7 @@ https://verial-blog-9ct2.vercel.app/
 
 ### `/` — Landing Page
 - [x] Loads without errors
-- [ ] Hero section has visual impact (Resend-level)
+- [x] Hero section has visual impact (Resend-level) ✅ Fixed — gradient text, radial glow, eyebrow label, better CTAs
 - [ ] "Read Essays →" links to `/essays` ✅
 - [ ] "Get Updates" scrolls to email signup
 - [ ] Content cards (Essays, Notes, Framework) link correctly ✅
@@ -57,9 +57,9 @@ https://verial-blog-9ct2.vercel.app/
 6. ~~**Headers on essays/notes need more padding**~~ ✅ Fixed — increased top padding to pt-24, larger header text, more bottom margin
 
 ### P1 — Should Fix
-7. **Landing page lacks Resend-level polish** — needs: subtle gradient/glow effects, better card hover states, tighter spacing
+7. ~~**Landing page lacks Resend-level polish**~~ ✅ Fixed — radial glow, gradient text, card glow hover states, tighter spacing, Verial philosophy section
 8. ~~**No footer** — add minimal footer with links~~ ✅ Fixed — added Footer component with brand, nav links, copyright
-9. **Hero could use more visual interest** — consider subtle background effects, gradient text, or animated element
+9. ~~**Hero could use more visual interest**~~ ✅ Fixed — radial glow, gradient text on "Applied.", eyebrow label, vertical accent line
 10. **Navigation** — could benefit from scroll-aware background blur/opacity change
 
 ### P2 — Nice to Have
