@@ -1,0 +1,10 @@
+{
+  "name": "@verial/design",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Interactive components — Spline, Three.js, animated MDX",
+  "main": "index.ts",
+  "scripts": {
+    "build": "echo 'placeholder — no build yet'"
+  }
+}
