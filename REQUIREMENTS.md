@@ -60,7 +60,7 @@ https://verial-blog-9ct2.vercel.app/
 7. ~~**Landing page lacks Resend-level polish**~~ ✅ Fixed — radial glow, gradient text, card glow hover states, tighter spacing, Verial philosophy section
 8. ~~**No footer** — add minimal footer with links~~ ✅ Fixed — added Footer component with brand, nav links, copyright
 9. ~~**Hero could use more visual interest**~~ ✅ Fixed — radial glow, gradient text on "Applied.", eyebrow label, vertical accent line
-10. **Navigation** — could benefit from scroll-aware background blur/opacity change
+10. ~~**Navigation** — could benefit from scroll-aware background blur/opacity change~~ ✅ Fixed — transparent at top, blur+border on scroll with smooth transition
 
 ### P2 — Nice to Have
 9. **Framer Motion animations** — entrance animations on content cards, staggered reveals

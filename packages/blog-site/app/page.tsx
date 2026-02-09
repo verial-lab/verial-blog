@@ -55,7 +55,7 @@ export default function HomePage() {
               </Link>
             </div>
             <div className="space-y-3">
-              <article className="group border border-border/30 rounded-xl p-5 hover:border-primary/15 hover:bg-muted/[0.04] transition-all duration-300 hover:shadow-[0_0_20px_-5px] hover:shadow-primary/[0.04]">
+              <article className="group border border-border/30 rounded-xl p-5 hover:border-border/50 hover:bg-muted/[0.04] transition-all duration-300">
                 <Link href="/essays/containment-systems-design">
                   <div className="flex items-start justify-between gap-4">
                     <div>

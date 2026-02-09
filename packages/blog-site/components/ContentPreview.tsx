@@ -18,9 +18,7 @@ export function ContentPreview({ title, description, href, badge }: ContentPrevi
       className="group"
     >
       <Link href={href}>
-        <div className="relative border border-border/40 rounded-xl p-6 h-full transition-all duration-300 bg-muted/[0.03] hover:bg-muted/[0.08] hover:border-primary/20 hover:shadow-[0_0_30px_-5px] hover:shadow-primary/[0.06]">
-          {/* Top accent line on hover */}
-          <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-primary/0 group-hover:via-primary/30 to-transparent transition-all duration-500" />
+        <div className="relative border border-border/40 rounded-xl p-6 h-full transition-all duration-300 hover:bg-muted/[0.06] hover:border-border/60">
           
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-lg font-serif font-normal group-hover:text-primary transition-colors">
