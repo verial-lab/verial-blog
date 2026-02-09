@@ -42,14 +42,14 @@ https://verial-blog-9ct2.vercel.app/
 
 ### `/framework` — Framework Section
 - [x] Loads without errors
-- [ ] **BUG: FumaDocs theme toggle icons (☀️🌙📱) bleeding through** — visible in top-left overlapping the title
-- [ ] Should use same clean layout as essays/notes (no FumaDocs DocsLayout chrome)
+- [x] **BUG: FumaDocs theme toggle icons (☀️🌙📱) bleeding through** — visible in top-left overlapping the title ✅
+- [x] Should use same clean layout as essays/notes (no FumaDocs DocsLayout chrome) ✅
 - [ ] Mobile responsive
 
 ## Design Issues (Priority Order)
 
 ### P0 — Must Fix
-1. **Framework page has FumaDocs UI chrome bleeding through** — theme toggle icons overlapping title text
+1. ~~**Framework page has FumaDocs UI chrome bleeding through**~~ ✅ Fixed — replaced DocsLayout with clean editorial layout
 2. **Excessive dead space on landing page** — huge gap between content cards and "Latest Essays" section  
 3. **Email signup section missing or invisible** — should be prominently placed
 4. **"Get Updates" button** — verify it actually scrolls to signup anchor
