@@ -58,7 +58,7 @@ https://verial-blog-9ct2.vercel.app/
 
 ### P1 — Should Fix
 7. **Landing page lacks Resend-level polish** — needs: subtle gradient/glow effects, better card hover states, tighter spacing
-8. **No footer** — add minimal footer with links
+8. ~~**No footer** — add minimal footer with links~~ ✅ Fixed — added Footer component with brand, nav links, copyright
 9. **Hero could use more visual interest** — consider subtle background effects, gradient text, or animated element
 10. **Navigation** — could benefit from scroll-aware background blur/opacity change
 
