@@ -52,13 +52,9 @@ https://verial-blog-9ct2.vercel.app/
 1. ~~**Framework page has FumaDocs UI chrome bleeding through**~~ ✅ Fixed
 2. ~~**Excessive dead space on landing page**~~ ✅ Fixed — reduced hero to 75vh, tightened margins
 3. ~~**Email signup section missing or invisible**~~ ✅ Fixed — framer-motion was preventing SSR render, replaced with plain HTML
-4. **"Get Updates" button** — verify it actually scrolls to signup anchor
-5. **Typography needs major upgrade** — Current Newsreader/Inter feel generic. Need fonts with more character:
-   - **Titles:** Try Playfair Display, Cormorant Garamond, Fraunces, or Instrument Serif — something with elegance and personality
-   - **Body:** Try Satoshi, General Sans, Cabinet Grotesk, or Plus Jakarta Sans — modern, warm, readable
-   - Fonts must be available on Google Fonts or self-hostable
-   - User likes RtSilverFrost (handwriting-style with natural movement) — the spirit is: warmth + personality + sophistication, NOT corporate/generic
-6. **Headers on essays/notes need more padding** — titles feel cramped, need generous top/bottom spacing
+4. ~~**"Get Updates" button** — verify it actually scrolls to signup anchor~~ ✅ Verified — href="#subscribe" links to EmailSignup id="subscribe"
+5. ~~**Typography needs major upgrade**~~ ✅ Fixed — Instrument Serif (titles) + Plus Jakarta Sans (body) + JetBrains Mono (code)
+6. ~~**Headers on essays/notes need more padding**~~ ✅ Fixed — increased top padding to pt-24, larger header text, more bottom margin
 
 ### P1 — Should Fix
 7. **Landing page lacks Resend-level polish** — needs: subtle gradient/glow effects, better card hover states, tighter spacing
