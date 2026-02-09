@@ -5,11 +5,8 @@ import { motion } from 'framer-motion';
 export function HeroSection() {
   return (
     <section className="relative min-h-[75vh] flex items-center justify-center overflow-hidden">
-      {/* Radial glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-primary/[0.04] rounded-full blur-[120px] pointer-events-none" />
-      
-      {/* Secondary accent glow */}
-      <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-blue-500/[0.02] rounded-full blur-[100px] pointer-events-none" />
+      {/* Subtle radial glow — barely visible */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[700px] bg-white/[0.015] rounded-full blur-[150px] pointer-events-none" />
 
       {/* Geometric dot pattern */}
       <div className="absolute inset-0 opacity-[0.025]">
@@ -22,9 +19,6 @@ export function HeroSection() {
           <rect width="100%" height="100%" fill="url(#dots)" />
         </svg>
       </div>
-
-      {/* Gradient line accents */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-b from-transparent via-primary/20 to-transparent" />
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
@@ -41,9 +35,9 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground/60 font-medium"
           >
-            <span className="w-8 h-px bg-primary/30" />
+            <span className="w-8 h-px bg-muted-foreground/20" />
             Essays &middot; Philosophy &middot; Systems
-            <span className="w-8 h-px bg-primary/30" />
+            <span className="w-8 h-px bg-muted-foreground/20" />
           </motion.div>
 
           <motion.h1 
@@ -53,7 +47,7 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             Truth-seeking.{' '}
-            <span className="bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent bg-[length:200%_100%]">
+            <span className="text-foreground/70">
               Applied.
             </span>
           </motion.h1>
@@ -76,7 +70,7 @@ export function HeroSection() {
           >
             <motion.a
               href="/essays"
-              className="group relative inline-flex items-center gap-2 text-base font-medium bg-foreground text-background px-7 py-3.5 rounded-lg overflow-hidden transition-all hover:shadow-lg hover:shadow-primary/10"
+              className="group relative inline-flex items-center gap-2 text-base font-medium bg-foreground text-background px-7 py-3.5 rounded-lg overflow-hidden transition-all hover:opacity-90"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
