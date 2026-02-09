@@ -49,16 +49,22 @@ https://verial-blog-9ct2.vercel.app/
 ## Design Issues (Priority Order)
 
 ### P0 — Must Fix
-1. ~~**Framework page has FumaDocs UI chrome bleeding through**~~ ✅ Fixed — replaced DocsLayout with clean editorial layout
+1. ~~**Framework page has FumaDocs UI chrome bleeding through**~~ ✅ Fixed
 2. **Excessive dead space on landing page** — huge gap between content cards and "Latest Essays" section  
 3. **Email signup section missing or invisible** — should be prominently placed
 4. **"Get Updates" button** — verify it actually scrolls to signup anchor
+5. **Typography needs major upgrade** — Current Newsreader/Inter feel generic. Need fonts with more character:
+   - **Titles:** Try Playfair Display, Cormorant Garamond, Fraunces, or Instrument Serif — something with elegance and personality
+   - **Body:** Try Satoshi, General Sans, Cabinet Grotesk, or Plus Jakarta Sans — modern, warm, readable
+   - Fonts must be available on Google Fonts or self-hostable
+   - User likes RtSilverFrost (handwriting-style with natural movement) — the spirit is: warmth + personality + sophistication, NOT corporate/generic
+6. **Headers on essays/notes need more padding** — titles feel cramped, need generous top/bottom spacing
 
 ### P1 — Should Fix
-5. **Landing page lacks Resend-level polish** — needs: subtle gradient/glow effects, better card hover states, tighter spacing
-6. **No footer** — add minimal footer with links
-7. **Hero could use more visual interest** — consider subtle background effects, gradient text, or animated element
-8. **Navigation** — could benefit from scroll-aware background blur/opacity change
+7. **Landing page lacks Resend-level polish** — needs: subtle gradient/glow effects, better card hover states, tighter spacing
+8. **No footer** — add minimal footer with links
+9. **Hero could use more visual interest** — consider subtle background effects, gradient text, or animated element
+10. **Navigation** — could benefit from scroll-aware background blur/opacity change
 
 ### P2 — Nice to Have
 9. **Framer Motion animations** — entrance animations on content cards, staggered reveals
