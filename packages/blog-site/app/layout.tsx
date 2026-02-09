@@ -11,10 +11,18 @@ const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mon
 export const metadata: Metadata = {
   title: {
     template: '%s | Verial',
-    default: 'Verial — Essays on Systems & Architecture',
+    default: 'Verial — Truth. Applied.',
   },
-  description: 'High-density essays on systems design, architecture, and engineering philosophy.',
+  description: 'Essays on philosophy, systems thinking, innovation, and practical wisdom for the exponential age.',
   metadataBase: new URL('https://verial.xyz'),
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
 };
 
 export default function RootLayout({
