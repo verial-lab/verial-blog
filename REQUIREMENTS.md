@@ -11,11 +11,11 @@ https://verial-blog-9ct2.vercel.app/
 - [ ] "Read Essays →" links to `/essays` ✅
 - [ ] "Get Updates" scrolls to email signup
 - [ ] Content cards (Essays, Notes, Framework) link correctly ✅
-- [ ] Email signup form present and styled
+- [x] Email signup form present and styled ✅
 - [ ] Latest Essays section shows essay cards that link correctly
 - [ ] Framer Motion entrance animations on scroll
 - [ ] Mobile responsive
-- [ ] No excessive whitespace/dead space between sections
+- [x] No excessive whitespace/dead space between sections ✅
 
 ### `/essays` — Essay Index
 - [x] Loads without errors
@@ -50,8 +50,8 @@ https://verial-blog-9ct2.vercel.app/
 
 ### P0 — Must Fix
 1. ~~**Framework page has FumaDocs UI chrome bleeding through**~~ ✅ Fixed
-2. **Excessive dead space on landing page** — huge gap between content cards and "Latest Essays" section  
-3. **Email signup section missing or invisible** — should be prominently placed
+2. ~~**Excessive dead space on landing page**~~ ✅ Fixed — reduced hero to 75vh, tightened margins
+3. ~~**Email signup section missing or invisible**~~ ✅ Fixed — framer-motion was preventing SSR render, replaced with plain HTML
 4. **"Get Updates" button** — verify it actually scrolls to signup anchor
 5. **Typography needs major upgrade** — Current Newsreader/Inter feel generic. Need fonts with more character:
    - **Titles:** Try Playfair Display, Cormorant Garamond, Fraunces, or Instrument Serif — something with elegance and personality
