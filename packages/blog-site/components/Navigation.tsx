@@ -17,7 +17,7 @@ export function Navigation() {
     <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
       <div className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="text-xl font-serif font-bold hover:text-primary transition-colors">
+          <Link href="/" className="text-xl font-serif font-normal hover:text-primary transition-colors">
             Verial
           </Link>
 

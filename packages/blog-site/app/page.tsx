@@ -12,7 +12,7 @@ export default function HomePage() {
       <section className="py-16 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-serif font-bold mb-4">
+            <h2 className="text-3xl font-serif font-normal mb-4 tracking-normal">
               A controlled knowledge surface
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -45,7 +45,7 @@ export default function HomePage() {
           {/* Latest Essays */}
           <div className="mt-16">
             <div className="flex items-center justify-between mb-8">
-              <h3 className="text-2xl font-serif font-semibold">Latest Essays</h3>
+              <h3 className="text-2xl font-serif font-normal tracking-normal">Latest Essays</h3>
               <Link 
                 href="/essays" 
                 className="text-sm text-primary hover:text-primary/80 font-medium transition-colors"
@@ -56,7 +56,7 @@ export default function HomePage() {
             <div className="space-y-4">
               <article className="group border border-border/50 rounded-xl p-6 hover:border-primary/20 hover:bg-muted/10 transition-all duration-300">
                 <Link href="/essays/containment-systems-design">
-                  <h4 className="text-lg font-serif font-semibold mb-2 group-hover:text-primary transition-colors">
+                  <h4 className="text-lg font-serif font-normal mb-2 group-hover:text-primary transition-colors">
                     Containment as a Systems Design Principle
                   </h4>
                   <p className="text-muted-foreground text-[15px] mb-3 leading-relaxed">

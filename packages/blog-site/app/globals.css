@@ -17,7 +17,9 @@ body {
 ::-webkit-scrollbar-thumb { @apply bg-border/50 rounded-full; }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 { @apply font-serif; }
+h1, h2, h3, h4, h5, h6 { @apply font-serif tracking-normal; }
+h1, h2 { letter-spacing: 0.01em; }
+h3, h4, h5, h6 { letter-spacing: 0.005em; }
 
 /* Code */
 pre {
@@ -27,8 +29,8 @@ code { @apply font-mono text-sm; }
 
 /* Prose — editorial essay styling */
 .prose { @apply max-w-none text-foreground/90; }
-.prose h2 { @apply text-2xl font-serif font-semibold mt-14 mb-5 text-foreground; }
-.prose h3 { @apply text-xl font-serif font-medium mt-10 mb-4 text-foreground; }
+.prose h2 { @apply text-2xl font-serif font-normal mt-14 mb-5 text-foreground tracking-normal; }
+.prose h3 { @apply text-xl font-serif font-normal mt-10 mb-4 text-foreground tracking-normal; }
 .prose p { @apply text-[16.5px] leading-[1.8] mb-6; }
 .prose blockquote {
   @apply border-l-2 border-primary/30 pl-6 italic text-muted-foreground my-8;

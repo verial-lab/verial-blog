@@ -15,7 +15,7 @@ export default async function NotePage(props: {
       <div className="min-h-screen">
         <div className="max-w-3xl mx-auto px-6 pt-24 pb-16">
           <header className="mb-16">
-            <h1 className="font-serif text-4xl font-bold mb-4">Notes</h1>
+            <h1 className="font-serif text-4xl font-normal mb-4 tracking-normal">Notes</h1>
             <p className="text-muted-foreground leading-relaxed">
               Build logs, technical discoveries, and engineering reflections. Raw and unfiltered.
             </p>
@@ -27,7 +27,7 @@ export default async function NotePage(props: {
                 href={page.url}
                 className="block group border border-border/40 rounded-lg p-5 hover:border-primary/20 hover:bg-muted/10 transition-all duration-300"
               >
-                <h2 className="font-serif text-lg font-semibold group-hover:text-primary transition-colors">
+                <h2 className="font-serif text-lg font-normal group-hover:text-primary transition-colors">
                   {page.data.title}
                 </h2>
                 {page.data.description && (
@@ -65,7 +65,7 @@ export default async function NotePage(props: {
         </div>
 
         <header className="mb-12">
-          <h1 className="font-serif text-3xl md:text-4xl font-bold leading-tight mb-4">
+          <h1 className="font-serif text-3xl md:text-4xl font-normal leading-snug tracking-normal mb-4">
             {page.data.title}
           </h1>
           {page.data.description && (
