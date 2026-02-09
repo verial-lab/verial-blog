@@ -11,32 +11,46 @@ body {
   min-height: 100vh;
 }
 
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  @apply bg-transparent;
-}
-::-webkit-scrollbar-thumb {
-  @apply bg-border rounded-full;
-}
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { @apply bg-transparent; }
+::-webkit-scrollbar-thumb { @apply bg-border/50 rounded-full; }
 
-h1, h2, h3, h4, h5, h6 {
-  @apply font-serif;
-}
+/* Typography */
+h1, h2, h3, h4, h5, h6 { @apply font-serif; }
 
+/* Code */
 pre {
-  @apply bg-muted/50 border border-border rounded-lg p-4 overflow-x-auto;
+  @apply bg-muted/30 border border-border/50 rounded-xl p-5 overflow-x-auto my-8;
 }
+code { @apply font-mono text-sm; }
 
-code {
-  @apply font-mono text-sm;
+/* Prose — editorial essay styling */
+.prose { @apply max-w-none text-foreground/90; }
+.prose h2 { @apply text-2xl font-serif font-semibold mt-14 mb-5 text-foreground; }
+.prose h3 { @apply text-xl font-serif font-medium mt-10 mb-4 text-foreground; }
+.prose p { @apply text-[16.5px] leading-[1.8] mb-6; }
+.prose blockquote {
+  @apply border-l-2 border-primary/30 pl-6 italic text-muted-foreground my-8;
 }
+.prose ul, .prose ol { @apply mb-6 space-y-2; }
+.prose li { @apply text-[16.5px] leading-[1.8]; }
+.prose strong { @apply font-semibold text-foreground; }
+.prose em { @apply italic; }
+.prose hr { @apply border-border/30 my-12; }
+.prose a { @apply text-primary hover:text-primary/80 transition-colors underline underline-offset-2; }
 
+/* Buttons */
 .button-primary {
-  @apply bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors border border-primary/20;
+  @apply bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium 
+         hover:bg-primary/90 transition-all border border-primary/20;
+}
+.button-secondary {
+  @apply bg-muted/30 text-foreground px-6 py-3 rounded-lg font-medium 
+         hover:bg-muted/50 transition-all border border-border/50;
 }
 
-.button-secondary {
-  @apply bg-muted text-foreground px-6 py-3 rounded-lg font-medium hover:bg-muted/80 transition-colors border border-border;
+/* Selection */
+::selection {
+  @apply bg-primary/20 text-foreground;
 }
