@@ -3,6 +3,7 @@ import { RootProvider } from 'fumadocs-ui/provider';
 import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans, Instrument_Serif, JetBrains_Mono } from 'next/font/google';
 import { Navigation } from '@/components/Navigation';
+import { Footer } from '@/components/Footer';
 
 const plusJakarta = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-sans' });
 const instrumentSerif = Instrument_Serif({ weight: '400', subsets: ['latin'], variable: '--font-serif' });
@@ -36,6 +37,7 @@ export default function RootLayout({
         <RootProvider>
           <Navigation />
           {children}
+          <Footer />
         </RootProvider>
       </body>
     </html>
