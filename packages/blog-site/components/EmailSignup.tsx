@@ -22,7 +22,7 @@ export function EmailSignup() {
   return (
     <motion.section
       id="subscribe"
-      className="bg-muted/10 border border-border/50 rounded-2xl p-8 md:p-12"
+      className="bg-muted/20 border border-border rounded-2xl p-8 md:p-12"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
