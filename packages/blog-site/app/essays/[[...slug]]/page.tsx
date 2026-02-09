@@ -6,7 +6,48 @@ export default async function EssayPage(props: {
   params: Promise<{ slug?: string[] }>;
 }) {
   const params = await props.params;
-  const page = essaySource.getPage(params.slug);
+  const slug = params.slug;
+
+  // Index page — list all essays
+  if (!slug || slug.length === 0) {
+    const pages = essaySource.getPages().filter(p => p.slugs.length > 0);
+    return (
+      <div className="min-h-screen">
+        <div className="max-w-3xl mx-auto px-6 py-16">
+          <header className="mb-12">
+            <h1 className="font-serif text-3xl font-bold mb-3">Essays</h1>
+            <p className="text-muted-foreground leading-relaxed">
+              Polished, timeless, high-density explorations of systems thinking and architecture principles. New essays are sent by email.
+            </p>
+          </header>
+          <div className="space-y-4">
+            {pages.map((page) => (
+              <Link
+                key={page.url}
+                href={page.url}
+                className="block group border border-border/40 rounded-xl p-6 hover:border-primary/20 hover:bg-muted/10 transition-all duration-300"
+              >
+                <h2 className="font-serif text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
+                  {page.data.title}
+                </h2>
+                {page.data.description && (
+                  <p className="text-[15px] text-muted-foreground leading-relaxed">
+                    {page.data.description}
+                  </p>
+                )}
+              </Link>
+            ))}
+            {pages.length === 0 && (
+              <p className="text-muted-foreground/60 italic">No essays yet.</p>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Individual essay page
+  const page = essaySource.getPage(slug);
   if (!page) notFound();
 
   const MDX = page.data.body;
@@ -14,17 +55,15 @@ export default async function EssayPage(props: {
   return (
     <div className="min-h-screen">
       <article className="max-w-3xl mx-auto px-6 py-16">
-        {/* Back link */}
         <div className="mb-12">
-          <Link 
-            href="/essays" 
+          <Link
+            href="/essays"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1"
           >
             ← Essays
           </Link>
         </div>
 
-        {/* Header */}
         <header className="mb-16">
           <h1 className="font-serif text-4xl md:text-5xl font-bold leading-[1.15] tracking-tight mb-6">
             {page.data.title}
@@ -36,17 +75,15 @@ export default async function EssayPage(props: {
           )}
         </header>
 
-        {/* Body */}
         <div className="prose">
           <MDX />
         </div>
       </article>
 
-      {/* Footer */}
       <footer className="border-t border-border/30 px-6 py-8">
         <div className="max-w-3xl mx-auto text-center">
-          <Link 
-            href="/essays" 
+          <Link
+            href="/essays"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             ← Back to Essays
@@ -65,7 +102,11 @@ export async function generateMetadata(props: {
   params: Promise<{ slug?: string[] }>;
 }) {
   const params = await props.params;
-  const page = essaySource.getPage(params.slug);
+  const slug = params.slug;
+  if (!slug || slug.length === 0) {
+    return { title: 'Essays | Verial', description: 'Essays on systems design, architecture, and engineering philosophy.' };
+  }
+  const page = essaySource.getPage(slug);
   if (!page) notFound();
   return { title: page.data.title, description: page.data.description };
 }
