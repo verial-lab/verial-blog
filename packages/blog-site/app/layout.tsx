@@ -2,6 +2,7 @@ import './globals.css';
 import { RootProvider } from 'fumadocs-ui/provider';
 import type { Metadata } from 'next';
 import { Inter, Newsreader, JetBrains_Mono } from 'next/font/google';
+import { Navigation } from '@/components/Navigation';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 const newsreader = Newsreader({ subsets: ['latin'], variable: '--font-serif' });
@@ -23,8 +24,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`dark ${inter.variable} ${newsreader.variable} ${jetbrainsMono.variable}`}>
-      <body className="min-h-screen bg-background font-sans">
+      <body className="min-h-screen bg-background font-sans antialiased">
         <RootProvider>
+          <Navigation />
           {children}
         </RootProvider>
       </body>

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const navItems = [
   { href: '/essays', label: 'Essays' },
@@ -13,7 +14,7 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-sm border-b border-border">
+    <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
       <div className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="text-xl font-serif font-bold hover:text-primary transition-colors">
@@ -25,7 +26,7 @@ export function Navigation() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-muted-foreground hover:text-foreground transition-colors font-medium"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
               >
                 {item.label}
               </Link>
@@ -33,28 +34,52 @@ export function Navigation() {
           </div>
 
           <button
-            className="md:hidden text-foreground"
+            className="md:hidden relative w-6 h-5 flex flex-col justify-between"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
-            {isOpen ? '✕' : '☰'}
+            <motion.span
+              className="block w-full h-px bg-foreground origin-center"
+              animate={{ rotate: isOpen ? 45 : 0, y: isOpen ? 8 : 0 }}
+              transition={{ duration: 0.2 }}
+            />
+            <motion.span
+              className="block w-full h-px bg-foreground"
+              animate={{ opacity: isOpen ? 0 : 1 }}
+              transition={{ duration: 0.2 }}
+            />
+            <motion.span
+              className="block w-full h-px bg-foreground origin-center"
+              animate={{ rotate: isOpen ? -45 : 0, y: isOpen ? -8 : 0 }}
+              transition={{ duration: 0.2 }}
+            />
           </button>
         </div>
 
-        {isOpen && (
-          <div className="md:hidden pt-4 pb-2 space-y-4">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="block text-muted-foreground hover:text-foreground transition-colors font-medium"
-                onClick={() => setIsOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        )}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              className="md:hidden overflow-hidden"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="pt-4 pb-2 space-y-3">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="block text-muted-foreground hover:text-foreground transition-colors font-medium py-1"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </nav>
   );
