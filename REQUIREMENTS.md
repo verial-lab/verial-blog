@@ -72,10 +72,29 @@ https://verial-blog-9ct2.vercel.app/
 11. **Code block styling** — ensure dark theme with syntax highlighting
 12. **og:image / meta tags** — for social sharing
 
+## Brand & Voice
+
+**Verial** = veritas (truth) + aerial (limitless sky). The pursuit of understanding + belief that possibilities are endless.
+
+**Author identity:** Innovation technologist. Not just software — philosophy, systems thinking, innovation, wisdom, life principles. Essays are accessible to general public, not developer-only.
+
+**Content scope (broader than just tech):**
+- Philosophy & life principles (Covey's 7 Habits, wisdom traditions)
+- Systems thinking (from a philosophical angle, applicable to life + orgs + tech)
+- Innovation & technology
+- Strategic/organizational thinking
+- Engineering as a lens for understanding the world
+
+**Hero tagline should NOT be** "Systems. Architecture. Clarity." — too narrow, too dev-focused.
+**Should evoke:** truth-seeking, limitless potential, practical wisdom, engineering principles applied broadly.
+
+**Existing landing page copy to preserve:** The Verial Philosophy paragraph from verial.xyz — explains the name's etymology and the author's approach.
+
 ## Design Reference
 - **North Star:** https://resend.com — dark bg, sophisticated, engineering-forward
 - **Key principles:** Black bg `hsl(0,0%,3%)`, soft white `hsl(0,0%,92%)`, subtle borders, serif titles, generous whitespace
 - **Full spec:** `/PARA/Projects/verial-blog/SPEC.md` in workspace
+- **Existing site:** https://verial.xyz — has Verial symbolism and philosophy copy worth preserving
 
 ## Validation Process
 After each change:
