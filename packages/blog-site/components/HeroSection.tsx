@@ -5,20 +5,26 @@ import { motion } from 'framer-motion';
 export function HeroSection() {
   return (
     <section className="relative min-h-[75vh] flex items-center justify-center overflow-hidden">
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/[0.03] via-transparent to-transparent" />
+      {/* Radial glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-primary/[0.04] rounded-full blur-[120px] pointer-events-none" />
       
+      {/* Secondary accent glow */}
+      <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-blue-500/[0.02] rounded-full blur-[100px] pointer-events-none" />
+
       {/* Geometric dot pattern */}
-      <div className="absolute inset-0 opacity-[0.03]">
+      <div className="absolute inset-0 opacity-[0.025]">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="dots" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
-              <circle cx="1" cy="1" r="1" fill="currentColor" />
+              <circle cx="1" cy="1" r="0.8" fill="currentColor" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#dots)" />
         </svg>
       </div>
+
+      {/* Gradient line accents */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-b from-transparent via-primary/20 to-transparent" />
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
@@ -28,22 +34,28 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="space-y-8"
         >
+          {/* Eyebrow */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground/60 font-medium"
+          >
+            <span className="w-8 h-px bg-primary/30" />
+            Essays &middot; Philosophy &middot; Systems
+            <span className="w-8 h-px bg-primary/30" />
+          </motion.div>
+
           <motion.h1 
-            className="text-5xl md:text-7xl font-serif font-normal leading-[1.2] tracking-normal"
+            className="text-5xl md:text-7xl font-serif font-normal leading-[1.15] tracking-normal"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Systems.{' '}
-            <motion.span 
-              className="text-primary"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-            >
-              Architecture.
-            </motion.span>
-            {' '}Clarity.
+            Truth-seeking.{' '}
+            <span className="bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent bg-[length:200%_100%]">
+              Applied.
+            </span>
           </motion.h1>
           
           <motion.p 
@@ -52,33 +64,33 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            Low frequency, high density essays on the principles that govern 
-            complex systems—from software to governance to personal discipline.
+            Low frequency, high density essays on philosophy, systems thinking, 
+            and practical wisdom for building in the exponential age.
           </motion.p>
           
           <motion.div 
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
             <motion.a
               href="/essays"
-              className="button-primary inline-flex items-center gap-2 text-lg"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
+              className="group relative inline-flex items-center gap-2 text-base font-medium bg-foreground text-background px-7 py-3.5 rounded-lg overflow-hidden transition-all hover:shadow-lg hover:shadow-primary/10"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
-              Read Essays
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span className="relative z-10">Read Essays</span>
+              <svg className="relative z-10 w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </motion.a>
             
             <motion.a
               href="#subscribe"
-              className="button-secondary inline-flex items-center gap-2 text-lg"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center gap-2 text-base font-medium text-muted-foreground hover:text-foreground px-7 py-3.5 rounded-lg border border-border/50 hover:border-border transition-all hover:bg-muted/10"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               Get Updates
             </motion.a>
@@ -90,7 +102,7 @@ export function HeroSection() {
       <motion.div 
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.5 }}
+        animate={{ opacity: 0.4 }}
         transition={{ duration: 0.8, delay: 1.2 }}
       >
         <motion.div 
