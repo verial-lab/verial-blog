@@ -5,7 +5,11 @@ import { motion } from 'framer-motion';
 export function HeroSection() {
   return (
     <section className="relative min-h-[75vh] flex items-center justify-center overflow-hidden">
-      {/* Clean black background — ready for Spline 3D object */}
+      {/* Subtle depth gradient — barely visible, adds premium feel */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_40%,rgba(30,40,80,0.04),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_60%_at_60%_50%,rgba(50,30,70,0.03),transparent_60%)]" />
+      </div>
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
@@ -78,22 +82,6 @@ export function HeroSection() {
           </motion.div>
         </motion.div>
       </div>
-      
-      {/* Scroll indicator */}
-      <motion.div 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.4 }}
-        transition={{ duration: 0.8, delay: 1.2 }}
-      >
-        <motion.div 
-          className="w-5 h-8 border border-muted-foreground/20 rounded-full flex justify-center"
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <motion.div className="w-0.5 h-2 bg-muted-foreground/30 rounded-full mt-1.5" />
-        </motion.div>
-      </motion.div>
     </section>
   );
 }
