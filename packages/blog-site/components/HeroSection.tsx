@@ -5,20 +5,7 @@ import { motion } from 'framer-motion';
 export function HeroSection() {
   return (
     <section className="relative min-h-[75vh] flex items-center justify-center overflow-hidden">
-      {/* Subtle radial glow — barely visible */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[700px] bg-white/[0.015] rounded-full blur-[150px] pointer-events-none" />
-
-      {/* Geometric dot pattern */}
-      <div className="absolute inset-0 opacity-[0.025]">
-        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="dots" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
-              <circle cx="1" cy="1" r="0.8" fill="currentColor" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#dots)" />
-        </svg>
-      </div>
+      {/* Clean black background — ready for Spline 3D object */}
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
