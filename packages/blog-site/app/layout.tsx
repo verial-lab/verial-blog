@@ -11,7 +11,7 @@ const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mon
 export const metadata: Metadata = {
   title: {
     template: '%s | Verial',
-    default: 'Verial — Truth. Applied.',
+    default: 'Verial — Truth-seeking. Applied.',
   },
   description: 'Essays on philosophy, systems thinking, innovation, and practical wisdom for the exponential age.',
   metadataBase: new URL('https://verial.xyz'),

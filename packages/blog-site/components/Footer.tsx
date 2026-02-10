@@ -9,7 +9,7 @@ export function Footer() {
           <div className="flex items-center gap-2">
             <span className="font-serif text-lg">Verial</span>
             <span className="text-muted-foreground/40">·</span>
-            <span className="text-sm text-muted-foreground">Truth. Applied.</span>
+            <span className="text-sm text-muted-foreground">Truth-seeking. Applied.</span>
           </div>
 
           {/* Nav links */}
