@@ -7,7 +7,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Brand */}
           <div className="flex items-center gap-2">
-            <span className="font-serif text-lg tracking-tight">Verial</span>
+            <span className="font-serif text-lg">Verial</span>
             <span className="text-muted-foreground/40">·</span>
             <span className="text-sm text-muted-foreground/60">Truth. Applied.</span>
           </div>

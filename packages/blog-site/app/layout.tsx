@@ -1,12 +1,12 @@
 import './globals.css';
 import { RootProvider } from 'fumadocs-ui/provider';
 import type { Metadata } from 'next';
-import { Plus_Jakarta_Sans, Instrument_Serif, JetBrains_Mono } from 'next/font/google';
+import { Plus_Jakarta_Sans, Newsreader, JetBrains_Mono } from 'next/font/google';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 
 const plusJakarta = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-sans' });
-const instrumentSerif = Instrument_Serif({ weight: '400', subsets: ['latin'], variable: '--font-serif' });
+const newsreader = Newsreader({ subsets: ['latin'], variable: '--font-serif', weight: ['400', '600'] });
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
 
 export const metadata: Metadata = {
@@ -32,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`dark ${plusJakarta.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`dark ${plusJakarta.variable} ${newsreader.variable} ${jetbrainsMono.variable}`}>
       <body className="min-h-screen bg-background font-sans antialiased">
         <RootProvider>
           <Navigation />
