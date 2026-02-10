@@ -49,7 +49,6 @@ export function IconSection({
           height={280}
           poster={poster}
           className="w-[200px] h-[200px] md:w-[280px] md:h-[280px]"
-          style={{ mixBlendMode: 'lighten' }}
         >
           <source src={videoSrc} type="video/webm" />
           {videoFallback && <source src={videoFallback} type="video/mp4" />}
