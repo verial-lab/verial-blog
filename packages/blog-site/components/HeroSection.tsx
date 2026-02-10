@@ -5,10 +5,18 @@ import { motion } from 'framer-motion';
 export function HeroSection() {
   return (
     <section className="relative min-h-[75vh] flex items-center justify-center overflow-hidden">
-      {/* Subtle depth gradient — barely visible, adds premium feel */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_40%,rgba(30,40,80,0.04),transparent_70%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_60%_at_60%_50%,rgba(50,30,70,0.03),transparent_60%)]" />
+      {/* 3D Hero Video Background */}
+      <div className="absolute inset-0 z-0 flex items-center justify-center">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-[min(80vw,600px)] h-[min(80vw,600px)] object-contain opacity-40"
+          src="/hero-3d.mp4"
+        />
+        {/* Radial fade so edges blend into black bg */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_45%,transparent_30%,black_75%)]" />
       </div>
 
       {/* Content */}
