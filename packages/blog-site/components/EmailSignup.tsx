@@ -28,7 +28,7 @@ export function EmailSignup() {
           Get new essays by email
         </h3>
         
-        <p className="text-muted-foreground mb-8 leading-relaxed text-[15px]">
+        <p className="text-muted-foreground mb-8 leading-relaxed text-lg">
           No weekly obligation. No algorithm chasing. Just high-density essays 
           on systems thinking when they&apos;re ready.
         </p>
@@ -51,7 +51,7 @@ export function EmailSignup() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your@email.com"
                 required
-                className="flex-1 px-4 py-3 bg-background/50 border border-border/50 rounded-lg focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/20 transition-all text-[15px]"
+                className="flex-1 px-4 py-3 bg-background/50 border border-border/50 rounded-lg focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/20 transition-all text-base"
               />
               <button
                 type="submit"
@@ -69,7 +69,7 @@ export function EmailSignup() {
               </button>
             </div>
             
-            <label className="flex items-center gap-2 justify-center text-sm cursor-pointer">
+            <label className="flex items-center gap-2 justify-center text-base cursor-pointer">
               <input
                 type="checkbox"
                 checked={includeNotes}
@@ -81,7 +81,7 @@ export function EmailSignup() {
               </span>
             </label>
             
-            <p className="text-xs text-muted-foreground/60">
+            <p className="text-sm text-muted-foreground/60">
               Powered by Buttondown. No spam, unsubscribe anytime.
             </p>
           </form>

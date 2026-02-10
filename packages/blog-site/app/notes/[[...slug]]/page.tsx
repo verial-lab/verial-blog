@@ -31,7 +31,7 @@ export default async function NotePage(props: {
                   {page.data.title}
                 </h2>
                 {page.data.description && (
-                  <p className="text-sm text-muted-foreground mt-1.5 leading-relaxed">
+                  <p className="text-base text-muted-foreground mt-1.5 leading-relaxed">
                     {page.data.description}
                   </p>
                 )}

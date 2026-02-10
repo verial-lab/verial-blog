@@ -1,12 +1,11 @@
 import './globals.css';
 import { RootProvider } from 'fumadocs-ui/provider';
 import type { Metadata } from 'next';
-import { Plus_Jakarta_Sans, Instrument_Serif, JetBrains_Mono } from 'next/font/google';
+import { Source_Serif_4, JetBrains_Mono } from 'next/font/google';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 
-const plusJakarta = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-sans' });
-const instrumentSerif = Instrument_Serif({ weight: '400', subsets: ['latin'], variable: '--font-serif' });
+const sourceSerif = Source_Serif_4({ weight: ['400', '600', '700'], subsets: ['latin'], variable: '--font-serif' });
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
 
 export const metadata: Metadata = {
@@ -32,8 +31,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`dark ${plusJakarta.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}>
-      <body className="min-h-screen bg-background font-sans antialiased">
+    <html lang="en" className={`dark ${sourceSerif.variable} ${jetbrainsMono.variable}`}>
+      <body className="min-h-screen bg-background font-sans antialiased text-[18px] leading-[1.65]">
         <RootProvider>
           <Navigation />
           {children}

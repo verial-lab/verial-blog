@@ -21,7 +21,7 @@ export function ContentPreview({ title, description, href, badge }: ContentPrevi
         <div className="relative border border-border/40 rounded-xl p-6 h-full transition-all duration-300 hover:bg-muted/[0.06] hover:border-border/60">
           
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-lg font-serif font-normal group-hover:text-primary transition-colors">
+            <h3 className="text-xl font-serif font-normal group-hover:text-primary transition-colors">
               {title}
             </h3>
             {badge && (
@@ -31,11 +31,11 @@ export function ContentPreview({ title, description, href, badge }: ContentPrevi
             )}
           </div>
           
-          <p className="text-muted-foreground/80 leading-relaxed mb-4 text-[14px]">
+          <p className="text-muted-foreground leading-relaxed mb-4 text-base">
             {description}
           </p>
           
-          <div className="flex items-center text-sm text-muted-foreground/50 group-hover:text-primary/80 transition-colors font-medium">
+          <div className="flex items-center text-sm text-muted-foreground/60 group-hover:text-primary/80 transition-colors font-medium">
             <span>Explore</span>
             <svg 
               className="w-3.5 h-3.5 ml-1 transform group-hover:translate-x-1 transition-transform" 
