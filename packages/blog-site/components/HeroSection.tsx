@@ -10,7 +10,7 @@ export function HeroSection() {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: 'easeOut' }}
-        className="relative w-full max-w-[720px] aspect-video mb-10"
+        className="relative w-[min(70vw,480px)] h-[min(70vw,480px)] mb-10"
       >
         <video
           autoPlay
@@ -20,8 +20,6 @@ export function HeroSection() {
           className="w-full h-full object-contain"
           src="/hero-3d.mp4"
         />
-        {/* Edge vignette — blends into black bg */}
-        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_70%_70%_at_50%_50%,transparent_40%,black_85%)]" />
       </motion.div>
 
       {/* Content below the video */}
@@ -37,7 +35,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground/60 font-medium"
+            className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-muted-foreground/70 font-medium"
           >
             <span className="w-8 h-px bg-muted-foreground/20" />
             Essays &middot; Philosophy &middot; Systems
@@ -45,7 +43,7 @@ export function HeroSection() {
           </motion.div>
 
           <motion.h1 
-            className="text-5xl md:text-7xl font-serif font-normal leading-[1.15] tracking-wide"
+            className="text-5xl md:text-7xl font-serif font-normal leading-[1.15]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
