@@ -10,7 +10,7 @@ export function HeroSection() {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: 'easeOut' }}
-        className="relative w-[min(70vw,480px)] h-[min(70vw,480px)] mb-10"
+        className="relative w-full max-w-[720px] aspect-video mb-10"
       >
         <video
           autoPlay
@@ -20,6 +20,8 @@ export function HeroSection() {
           className="w-full h-full object-contain"
           src="/hero-3d.mp4"
         />
+        {/* Edge vignette — blends into black bg */}
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_70%_70%_at_50%_50%,transparent_40%,black_85%)]" />
       </motion.div>
 
       {/* Content below the video */}
