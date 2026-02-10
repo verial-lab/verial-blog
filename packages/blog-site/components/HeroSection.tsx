@@ -4,34 +4,37 @@ import { motion } from 'framer-motion';
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[75vh] flex items-center justify-center overflow-hidden">
-      {/* 3D Hero Video Background */}
-      <div className="absolute inset-0 z-0 flex items-center justify-center">
+    <section className="relative flex flex-col items-center justify-center overflow-hidden pt-16 pb-8">
+      {/* 3D Hero Video — standalone, prominent */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.2, ease: 'easeOut' }}
+        className="relative w-[min(70vw,480px)] h-[min(70vw,480px)] mb-10"
+      >
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="w-[min(80vw,600px)] h-[min(80vw,600px)] object-contain opacity-40"
+          className="w-full h-full object-contain"
           src="/hero-3d.mp4"
         />
-        {/* Radial fade so edges blend into black bg */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_45%,transparent_30%,black_75%)]" />
-      </div>
+      </motion.div>
 
-      {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+      {/* Content below the video */}
+      <div className="relative max-w-4xl mx-auto px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
           className="space-y-8"
         >
           {/* Eyebrow */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
             className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground/60 font-medium"
           >
             <span className="w-8 h-px bg-muted-foreground/20" />
@@ -43,7 +46,7 @@ export function HeroSection() {
             className="text-5xl md:text-7xl font-serif font-normal leading-[1.15] tracking-wide"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
           >
             Truth-seeking.{' '}
             <span className="text-foreground/70">
@@ -55,7 +58,7 @@ export function HeroSection() {
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
           >
             Low frequency, high density essays on philosophy, systems thinking, 
             and practical wisdom for building in the exponential age.
@@ -65,7 +68,7 @@ export function HeroSection() {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            transition={{ duration: 0.8, delay: 1.0 }}
           >
             <motion.a
               href="/essays"
