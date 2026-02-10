@@ -1,6 +1,6 @@
 import { HeroSection } from '@/components/HeroSection';
 import { EmailSignup } from '@/components/EmailSignup';
-import { ContentPreview } from '@/components/ContentPreview';
+import { IconSection } from '@/components/IconSection';
 import Link from 'next/link';
 
 export default function HomePage() {
@@ -8,11 +8,11 @@ export default function HomePage() {
     <main className="min-h-screen">
       <HeroSection />
 
-      {/* Content Overview */}
-      <section className="py-14 px-6">
-        <div className="max-w-4xl mx-auto">
+      {/* Content Sections with Obsidian Glow Icons */}
+      <section className="py-20 px-6">
+        <div className="max-w-5xl mx-auto">
           {/* Verial Philosophy */}
-          <div className="text-center mb-14">
+          <div className="text-center mb-20">
             <p className="text-sm uppercase tracking-[0.15em] text-muted-foreground/40 mb-4 font-medium">
               The Verial Philosophy
             </p>
@@ -22,41 +22,41 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-5 mb-14">
-            <ContentPreview
+          {/* Icon Section Dividers */}
+          <div className="space-y-24 mb-20">
+            <IconSection
               title="Essays"
-              description="Polished explorations of philosophy, systems thinking, and principles for the exponential age."
+              description="Polished explorations of philosophy, systems thinking, and principles for the exponential age. Low frequency, high density."
+              videoSrc="/static/icons/quill_amber_1080.webm"
+              videoFallback="/static/icons/quill_amber_512.mp4"
+              poster="/static/icons/quill_amber_1080.png"
               href="/essays"
-              badge="Email alerts"
-              icon={{
-                video: "/static/icons/quill_amber_512.mp4",
-                poster: "/static/icons/quill_amber_512.png",
-              }}
             />
-            <ContentPreview
+
+            <IconSection
               title="Notes"
-              description="Build logs, technical discoveries, and reflections. Raw and unfiltered."
+              description="Build logs, technical discoveries, and reflections. Raw and unfiltered thinking from the frontier."
+              videoSrc="/static/icons/signal_purple_1080.webm"
+              videoFallback="/static/icons/signal_purple_512.mp4"
+              poster="/static/icons/signal_purple_1080.png"
               href="/notes"
-              icon={{
-                video: "/static/icons/signal_purple_512.mp4",
-                poster: "/static/icons/signal_purple_512.png",
-              }}
+              reverse
             />
-            <ContentPreview
+
+            <IconSection
               title="Framework"
-              description="Living documentation for evaluation methodologies and systems design patterns."
+              description="Living documentation for evaluation methodologies and systems design patterns. Truth-seeking, applied."
+              videoSrc="/static/icons/prism_cyan_1080.webm"
+              videoFallback="/static/icons/prism_cyan_512.mp4"
+              poster="/static/icons/prism_cyan_1080.png"
               href="/framework"
-              icon={{
-                video: "/static/icons/prism_cyan_512.mp4",
-                poster: "/static/icons/prism_cyan_512.png",
-              }}
             />
           </div>
 
           <EmailSignup />
 
           {/* Latest Essays */}
-          <div className="mt-14">
+          <div className="mt-20">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-serif font-normal tracking-normal text-muted-foreground/80">Latest Essays</h3>
               <Link 
