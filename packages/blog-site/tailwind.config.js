@@ -10,7 +10,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: 'hsl(0, 0%, 4%)',
+        background: 'hsl(0, 0%, 0%)',
         foreground: 'hsl(0, 0%, 93%)',
         border: 'hsla(0, 0%, 100%, 0.08)',
         muted: 'hsl(0, 0%, 12%)',
