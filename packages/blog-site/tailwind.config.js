@@ -10,14 +10,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: 'hsl(0, 0%, 4%)',
+        background: 'hsl(0, 0%, 2%)',
         foreground: 'hsl(0, 0%, 93%)',
         border: 'hsla(0, 0%, 100%, 0.08)',
-        muted: 'hsl(0, 0%, 12%)',
+        muted: 'hsl(0, 0%, 8%)',
         'muted-foreground': 'hsl(0, 0%, 60%)',
-        accent: 'hsl(210, 15%, 20%)',
-        'accent-foreground': 'hsl(210, 15%, 85%)',
-        primary: 'hsl(215, 30%, 60%)',
+        accent: 'hsl(0, 0%, 14%)',
+        'accent-foreground': 'hsl(0, 0%, 85%)',
+        primary: 'hsl(0, 0%, 75%)',
         'primary-foreground': 'hsl(0, 0%, 100%)',
       },
       fontFamily: {

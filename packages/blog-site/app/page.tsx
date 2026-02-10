@@ -49,7 +49,7 @@ export default function HomePage() {
               <h3 className="text-xl font-serif font-normal tracking-normal text-muted-foreground/80">Latest Essays</h3>
               <Link 
                 href="/essays" 
-                className="text-xs text-muted-foreground/40 hover:text-primary font-medium transition-colors uppercase tracking-wider"
+                className="text-xs text-muted-foreground/40 hover:text-foreground font-medium transition-colors uppercase tracking-wider"
               >
                 View all →
               </Link>
@@ -59,7 +59,7 @@ export default function HomePage() {
                 <Link href="/essays/containment-systems-design">
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <h4 className="text-base font-serif font-normal mb-1.5 group-hover:text-primary transition-colors">
+                      <h4 className="text-base font-serif font-normal mb-1.5 group-hover:text-foreground transition-colors">
                         Containment as a Systems Design Principle
                       </h4>
                       <p className="text-muted-foreground/60 text-sm leading-relaxed">

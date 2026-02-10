@@ -25,7 +25,7 @@ export function Navigation() {
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-background/80 backdrop-blur-md border-b border-border/50' : 'bg-transparent border-b border-transparent'}`}>
       <div className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="text-xl font-serif font-normal hover:text-primary transition-colors">
+          <Link href="/" className="text-xl font-serif font-normal tracking-wide hover:text-foreground/80 transition-colors">
             Verial
           </Link>
 
@@ -34,7 +34,7 @@ export function Navigation() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
+                className="text-sm tracking-wide text-muted-foreground hover:text-foreground transition-colors font-medium"
               >
                 {item.label}
               </Link>

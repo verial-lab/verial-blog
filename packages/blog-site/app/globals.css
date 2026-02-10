@@ -33,14 +33,14 @@ code { @apply font-mono text-sm; }
 .prose h3 { @apply text-xl font-serif font-normal mt-10 mb-4 text-foreground tracking-normal; }
 .prose p { @apply text-[16.5px] leading-[1.8] mb-6; }
 .prose blockquote {
-  @apply border-l-2 border-primary/30 pl-6 italic text-muted-foreground my-8;
+  @apply border-l-2 border-foreground/20 pl-6 italic text-muted-foreground my-8;
 }
 .prose ul, .prose ol { @apply mb-6 space-y-2; }
 .prose li { @apply text-[16.5px] leading-[1.8]; }
 .prose strong { @apply font-semibold text-foreground; }
 .prose em { @apply italic; }
 .prose hr { @apply border-border/30 my-12; }
-.prose a { @apply text-primary hover:text-primary/80 transition-colors underline underline-offset-2; }
+.prose a { @apply text-foreground/80 hover:text-foreground transition-colors underline underline-offset-4 decoration-muted-foreground/30 hover:decoration-foreground/50; }
 
 /* Buttons */
 .button-primary {
@@ -54,5 +54,5 @@ code { @apply font-mono text-sm; }
 
 /* Selection */
 ::selection {
-  @apply bg-primary/20 text-foreground;
+  @apply bg-foreground/15 text-foreground;
 }
