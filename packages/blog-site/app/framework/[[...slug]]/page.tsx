@@ -31,7 +31,7 @@ export default async function FrameworkPage(props: {
                   {page.data.title}
                 </h2>
                 {page.data.description && (
-                  <p className="text-[15px] text-muted-foreground leading-relaxed">
+                  <p className="text-base text-muted-foreground leading-relaxed">
                     {page.data.description}
                   </p>
                 )}

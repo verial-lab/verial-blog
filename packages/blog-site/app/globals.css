@@ -9,6 +9,8 @@ html {
 body {
   @apply bg-background text-foreground font-sans antialiased;
   min-height: 100vh;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* Scrollbar */
@@ -27,17 +29,19 @@ pre {
 }
 code { @apply font-mono text-sm; }
 
-/* Prose — editorial essay styling */
+/* Prose — editorial essay styling
+ * Font sizes centralized in lib/typography.ts — keep in sync.
+ * Target: 19px body, 1.8 line-height (matches Dario-tier readability) */
 .prose { @apply max-w-none text-foreground/90; }
-.prose h2 { @apply text-2xl font-serif font-normal mt-14 mb-5 text-foreground tracking-normal; }
-.prose h3 { @apply text-xl font-serif font-normal mt-10 mb-4 text-foreground tracking-normal; }
-.prose p { @apply text-[16.5px] leading-[1.8] mb-6; }
+.prose h2 { @apply text-3xl font-serif font-normal mt-14 mb-5 text-foreground tracking-normal; }
+.prose h3 { @apply text-2xl font-serif font-normal mt-10 mb-4 text-foreground tracking-normal; }
+.prose p { @apply text-[19px] leading-[1.8] mb-6 font-medium; }
 .prose blockquote {
-  @apply border-l-2 border-primary/30 pl-6 italic text-muted-foreground my-8;
+  @apply border-l-2 border-primary/30 pl-6 italic text-muted-foreground my-8 text-[18px] leading-[1.8];
 }
 .prose ul, .prose ol { @apply mb-6 space-y-2; }
-.prose li { @apply text-[16.5px] leading-[1.8]; }
-.prose strong { @apply font-semibold text-foreground; }
+.prose li { @apply text-[19px] leading-[1.8] font-medium; }
+.prose strong { @apply font-bold text-foreground; }
 .prose em { @apply italic; }
 .prose hr { @apply border-border/30 my-12; }
 .prose a { @apply text-primary hover:text-primary/80 transition-colors underline underline-offset-2; }
