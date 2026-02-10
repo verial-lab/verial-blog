@@ -28,16 +28,28 @@ export default function HomePage() {
               description="Polished explorations of philosophy, systems thinking, and principles for the exponential age."
               href="/essays"
               badge="Email alerts"
+              icon={{
+                video: "/static/icons/quill_amber_512.mp4",
+                poster: "/static/icons/quill_amber_512.png",
+              }}
             />
             <ContentPreview
               title="Notes"
               description="Build logs, technical discoveries, and reflections. Raw and unfiltered."
               href="/notes"
+              icon={{
+                video: "/static/icons/signal_purple_512.mp4",
+                poster: "/static/icons/signal_purple_512.png",
+              }}
             />
             <ContentPreview
               title="Framework"
               description="Living documentation for evaluation methodologies and systems design patterns."
               href="/framework"
+              icon={{
+                video: "/static/icons/prism_cyan_512.mp4",
+                poster: "/static/icons/prism_cyan_512.png",
+              }}
             />
           </div>
 

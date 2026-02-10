@@ -8,9 +8,13 @@ interface ContentPreviewProps {
   description: string;
   href: string;
   badge?: string;
+  icon?: {
+    video: string;
+    poster: string;
+  };
 }
 
-export function ContentPreview({ title, description, href, badge }: ContentPreviewProps) {
+export function ContentPreview({ title, description, href, badge, icon }: ContentPreviewProps) {
   return (
     <motion.div
       whileHover={{ y: -2 }}
@@ -20,6 +24,22 @@ export function ContentPreview({ title, description, href, badge }: ContentPrevi
       <Link href={href}>
         <div className="relative border border-border/40 rounded-xl p-6 h-full transition-all duration-300 hover:bg-muted/[0.06] hover:border-border/60">
           
+          {icon && (
+            <div className="flex justify-center mb-4">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                width={120}
+                height={120}
+                poster={icon.poster}
+                src={icon.video}
+                className="rounded-lg"
+              />
+            </div>
+          )}
+
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-lg font-serif font-normal group-hover:text-primary transition-colors">
               {title}
