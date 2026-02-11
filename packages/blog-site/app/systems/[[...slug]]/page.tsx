@@ -1,6 +1,7 @@
 import { systemSource } from '@/lib/source';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { SectionIcon } from '@/components/SectionIcon';
 
 export default async function SystemsPage(props: {
   params: Promise<{ slug?: string[] }>;
@@ -14,9 +15,15 @@ export default async function SystemsPage(props: {
     return (
       <div className="min-h-screen">
         <div className="max-w-3xl mx-auto px-6 py-16">
-          <header className="mb-12">
+          <header className="mb-12 flex flex-col items-center text-center">
+            <SectionIcon
+              src="/icons/dna-molecular.webm"
+              fallbackSrc="/icons/dna-molecular.mp4"
+              size={180}
+              className="mb-6"
+            />
             <h1 className="font-serif text-3xl font-normal mb-3 tracking-normal">Systems</h1>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-muted-foreground leading-relaxed max-w-lg">
               Frameworks worth living by. Mental models, methodologies, and practical wisdom — tested, not theoretical.
             </p>
           </header>

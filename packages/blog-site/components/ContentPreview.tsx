@@ -8,9 +8,13 @@ interface ContentPreviewProps {
   description: string;
   href: string;
   badge?: string;
+  /** Optional animated icon (WebM path) shown above the title */
+  iconSrc?: string;
+  /** MP4 fallback for the icon */
+  iconFallback?: string;
 }
 
-export function ContentPreview({ title, description, href, badge }: ContentPreviewProps) {
+export function ContentPreview({ title, description, href, badge, iconSrc, iconFallback }: ContentPreviewProps) {
   return (
     <motion.div
       whileHover={{ y: -2 }}
@@ -20,6 +24,21 @@ export function ContentPreview({ title, description, href, badge }: ContentPrevi
       <Link href={href}>
         <div className="relative border border-border/40 rounded-xl p-6 h-full transition-all duration-300 hover:bg-muted/[0.06] hover:border-border/60">
           
+          {iconSrc && (
+            <div className="flex justify-center mb-4">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-24 h-24 object-contain"
+              >
+                <source src={iconSrc} type="video/webm" />
+                {iconFallback && <source src={iconFallback} type="video/mp4" />}
+              </video>
+            </div>
+          )}
+
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-xl font-serif font-normal group-hover:text-primary transition-colors">
               {title}
