@@ -2,6 +2,7 @@ import { HeroSection } from '@/components/HeroSection';
 import { EmailSignup } from '@/components/EmailSignup';
 import { ContentPreview } from '@/components/ContentPreview';
 import Link from 'next/link';
+import { brand } from '@/lib/brand';
 
 export default function HomePage() {
   return (
@@ -16,11 +17,8 @@ export default function HomePage() {
             <p className="text-sm uppercase tracking-[0.15em] text-muted-foreground/60 mb-4 font-medium">
               The Verial Philosophy
             </p>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              <em>Verial</em> — from <em>veritas</em> (truth) and <em>aerial</em> (limitless sky). 
-              The belief that when we seek truth and build with intention, 
-              the cosmic microwave background is the limit.
-            </p>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+               dangerouslySetInnerHTML={{ __html: brand.philosophy.html }} />
           </div>
 
           <div className="grid md:grid-cols-3 gap-5 mb-14">
