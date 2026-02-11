@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
+import { brand } from '@/lib/brand';
 
 const navSections = [
   {
@@ -233,7 +234,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-base text-muted-foreground leading-relaxed max-w-[300px]">
-              From <em>veritas</em> (truth) and <em>aerial</em> (limitless sky). Seek truth, build with intention, and the cosmic microwave background is the limit.
+              <span dangerouslySetInnerHTML={{ __html: brand.philosophy.html }} />
             </p>
           </div>
 
