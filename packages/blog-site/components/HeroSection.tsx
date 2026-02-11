@@ -74,7 +74,7 @@ export function HeroSection() {
           >
             <motion.a
               href="/essays"
-              className="group relative inline-flex items-center gap-2 text-base font-medium bg-foreground text-background px-7 py-3.5 rounded-lg overflow-hidden transition-all hover:opacity-90"
+              className="group relative inline-flex items-center gap-2 text-base font-display font-semibold bg-foreground text-background px-7 py-3.5 rounded-lg overflow-hidden transition-all hover:opacity-90"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -86,7 +86,7 @@ export function HeroSection() {
             
             <motion.a
               href="#subscribe"
-              className="inline-flex items-center gap-2 text-base font-medium text-muted-foreground hover:text-foreground px-7 py-3.5 rounded-lg border border-border/50 hover:border-border transition-all hover:bg-muted/10"
+              className="inline-flex items-center gap-2 text-base font-display font-semibold text-muted-foreground hover:text-foreground px-7 py-3.5 rounded-lg border border-border/50 hover:border-border transition-all hover:bg-muted/10"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
