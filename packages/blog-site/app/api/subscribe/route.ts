@@ -33,7 +33,8 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         email_address: email,
         tags,
-        type: 'regular',
+        // Omit type to use Buttondown's default double opt-in
+        // Subscriber starts as "unactivated" until they confirm via email
       }),
     });
 
@@ -59,14 +60,14 @@ export async function POST(req: NextRequest) {
           return NextResponse.json({ success: true, alreadySubscribed: true });
         }
 
-        // Reactivate: update subscriber type back to regular
+        // Reactivate: set to unactivated so they get a new confirmation email
         const updateRes = await fetch(
           `${BUTTONDOWN_API}/${subscriber.id}`,
           {
             method: 'PATCH',
             headers,
             body: JSON.stringify({
-              subscriber_type: 'regular',
+              subscriber_type: 'unactivated',
               tags,
             }),
           }
