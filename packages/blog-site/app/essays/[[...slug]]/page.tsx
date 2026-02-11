@@ -1,6 +1,7 @@
 import { essaySource } from '@/lib/source';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { SectionIcon } from '@/components/SectionIcon';
 
 export default async function EssayPage(props: {
   params: Promise<{ slug?: string[] }>;
@@ -14,7 +15,13 @@ export default async function EssayPage(props: {
     return (
       <div className="min-h-screen">
         <div className="max-w-3xl mx-auto px-6 pt-24 pb-16">
-          <header className="mb-16">
+          <header className="mb-16 flex flex-col items-center text-center">
+            <SectionIcon
+              src="/icons/essays-pyramid.webm"
+              fallbackSrc="/icons/essays-pyramid.mp4"
+              size={180}
+              className="mb-6"
+            />
             <h1 className="font-serif text-4xl font-normal mb-4 tracking-normal">Essays</h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
               Polished, high-density writing on building, technology, and the principles that survive contact with reality. New essays are sent by email.
