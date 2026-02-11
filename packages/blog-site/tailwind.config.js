@@ -17,7 +17,7 @@ module.exports = {
         'muted-foreground': 'hsl(0, 0%, 78%)',
         accent: 'hsl(210, 15%, 20%)',
         'accent-foreground': 'hsl(210, 15%, 85%)',
-        primary: 'hsl(43, 75%, 55%)',
+        primary: 'hsl(40, 15%, 85%)',
         'primary-foreground': 'hsl(0, 0%, 100%)',
       },
       fontFamily: {
