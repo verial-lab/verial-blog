@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { Source_Serif_4, Newsreader, JetBrains_Mono } from 'next/font/google';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
+import { SearchDialog } from '@/components/SearchDialog';
 
 const sourceSerif = Source_Serif_4({ weight: ['400', '500', '600', '700'], subsets: ['latin'], variable: '--font-serif' });
 const newsreader = Newsreader({ weight: ['400', '500', '600', '700'], subsets: ['latin'], variable: '--font-display' });
@@ -34,8 +35,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`dark ${sourceSerif.variable} ${newsreader.variable} ${jetbrainsMono.variable}`}>
       <body className="min-h-screen bg-background font-sans antialiased text-[18px] leading-[1.65]">
-        <RootProvider>
+        <RootProvider search={{ enabled: false }}>
           <Navigation />
+          <SearchDialog />
           {children}
           <Footer />
         </RootProvider>

@@ -41,8 +41,7 @@ export function Navigation() {
             ))}
             <button
               onClick={() => {
-                // Trigger FumaDocs search dialog via keyboard shortcut
-                document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }));
+                document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true, bubbles: true }));
               }}
               className="flex items-center gap-2 text-sm text-muted-foreground/60 hover:text-muted-foreground transition-colors border border-border/40 rounded-lg px-3 py-1.5"
               aria-label="Search"
