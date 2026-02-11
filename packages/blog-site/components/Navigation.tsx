@@ -33,8 +33,15 @@ export function Navigation() {
   useEffect(() => {
     if (!isContentPage) return;
     const update = () => {
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      setReadProgress(docHeight > 0 ? Math.min(window.scrollY / docHeight, 1) : 0);
+      const article = document.querySelector('article');
+      if (article) {
+        const articleBottom = article.offsetTop + article.offsetHeight;
+        const scrollEnd = articleBottom - window.innerHeight;
+        setReadProgress(scrollEnd > 0 ? Math.min(Math.max(window.scrollY / scrollEnd, 0), 1) : 0);
+      } else {
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        setReadProgress(docHeight > 0 ? Math.min(window.scrollY / docHeight, 1) : 0);
+      }
     };
     update();
     window.addEventListener('scroll', update, { passive: true });
@@ -127,7 +134,7 @@ export function Navigation() {
       </div>
 
       {isContentPage && (
-        <div className="absolute bottom-0 left-0 w-full h-[2px] bg-transparent">
+        <div className="absolute bottom-0 left-0 w-full h-[3px] bg-transparent">
           <div className="h-full bg-white" style={{ width: `${readProgress * 100}%` }} />
         </div>
       )}
