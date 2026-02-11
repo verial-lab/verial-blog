@@ -1,6 +1,7 @@
 import { postSource } from '@/lib/source';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { SectionIcon } from '@/components/SectionIcon';
 
 export default async function NotePage(props: {
   params: Promise<{ slug?: string[] }>;
@@ -14,11 +15,19 @@ export default async function NotePage(props: {
     return (
       <div className="min-h-screen">
         <div className="max-w-3xl mx-auto px-6 pt-24 pb-16">
-          <header className="mb-16">
-            <h1 className="font-serif text-4xl font-normal mb-4 tracking-normal">Posts</h1>
-            <p className="text-muted-foreground leading-relaxed">
-              Shorter reflections, book notes, and discoveries. Not everything needs to be a manifesto.
-            </p>
+          <header className="mb-16 flex flex-col md:flex-row items-center md:items-center gap-6">
+            <SectionIcon
+              src="/icons/posts-atom.webm"
+              fallbackSrc="/icons/posts-atom.mp4"
+              size={180}
+              className="shrink-0"
+            />
+            <div className="text-center md:text-left">
+              <h1 className="font-serif text-4xl font-normal mb-4 tracking-normal">Posts</h1>
+              <p className="text-muted-foreground leading-relaxed">
+                Shorter reflections, book notes, and discoveries. Not everything needs to be a manifesto.
+              </p>
+            </div>
           </header>
           <div className="space-y-3">
             {pages.map((page) => (
@@ -54,7 +63,7 @@ export default async function NotePage(props: {
 
   return (
     <div className="min-h-screen">
-      <article className="max-w-3xl mx-auto px-6 py-16">
+      <article className="max-w-3xl mx-auto px-6 pt-24 pb-16">
         <div className="mb-10">
           <Link
             href="/posts"
