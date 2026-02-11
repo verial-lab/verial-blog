@@ -2,15 +2,23 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import type { LucideIcon } from 'lucide-react';
+import { Triangle, Atom, Dna } from 'lucide-react';
+
+const iconMap = {
+  triangle: Triangle,
+  atom: Atom,
+  dna: Dna,
+} as const;
+
+type IconName = keyof typeof iconMap;
 
 interface ContentPreviewProps {
   title: string;
   description: string;
   href: string;
   badge?: string;
-  /** Lucide icon component */
-  icon?: LucideIcon;
+  /** Icon name from lucide (triangle, atom, dna) */
+  iconName?: IconName;
   /** Optional animated icon (WebM path) shown above the card */
   iconSrc?: string;
   /** MP4 fallback for the icon */
@@ -19,7 +27,9 @@ interface ContentPreviewProps {
   iconSize?: number;
 }
 
-export function ContentPreview({ title, description, href, badge, icon: Icon, iconSrc, iconFallback, iconSize = 120 }: ContentPreviewProps) {
+export function ContentPreview({ title, description, href, badge, iconName, iconSrc, iconFallback, iconSize = 120 }: ContentPreviewProps) {
+  const Icon = iconName ? iconMap[iconName] : null;
+
   return (
     <motion.div
       whileHover={{ y: -2 }}

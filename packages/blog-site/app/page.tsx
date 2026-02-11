@@ -1,7 +1,6 @@
 import { HeroSection } from '@/components/HeroSection';
 import { EmailSignup } from '@/components/EmailSignup';
 import { ContentPreview } from '@/components/ContentPreview';
-import { Triangle, Atom, Dna } from 'lucide-react';
 import Link from 'next/link';
 
 export default function HomePage() {
@@ -30,19 +29,19 @@ export default function HomePage() {
               description="Deep, polished explorations of engineering philosophy, building lessons, and the ideas shaping the exponential age."
               href="/essays"
               badge="Email alerts"
-              icon={Triangle}
+              iconName="triangle"
             />
             <ContentPreview
               title="Posts"
               description="Shorter reflections, book notes, and discoveries. Not everything needs to be a manifesto."
               href="/posts"
-              icon={Atom}
+              iconName="atom"
             />
             <ContentPreview
               title="Systems"
               description="Frameworks worth living by. Mental models, methodologies, and practical wisdom — tested, not theoretical."
               href="/systems"
-              icon={Dna}
+              iconName="dna"
             />
           </div>
 
