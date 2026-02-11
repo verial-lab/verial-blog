@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
 
     const tags = ['essays'];
     if (includeNotes) {
-      tags.push('notes', 'framework');
+      tags.push('posts', 'systems');
     }
 
     // Try creating new subscriber
