@@ -102,7 +102,7 @@ export function EmailSignup() {
                 className="w-4 h-4 rounded border-border"
               />
               <span className="text-muted-foreground">
-                Also get engineering notes &amp; framework updates
+                Also get posts &amp; systems updates
               </span>
             </label>
             
