@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 
 interface SectionIconProps {
   /** Path to the WebM (transparent) or MP4 video */
@@ -16,8 +17,27 @@ interface SectionIconProps {
 /**
  * Animated 3D section icon — renders a looping video with transparent background.
  * Uses WebM (VP9 + alpha) for transparency, falls back to MP4.
+ * Forces autoplay on mobile via ref-based play() call.
  */
 export function SectionIcon({ src, fallbackSrc, size = 200, className = '' }: SectionIconProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    // Force play on mount + after any pause (mobile browser policies)
+    const tryPlay = () => {
+      video.play().catch(() => {});
+    };
+    tryPlay();
+    // Also retry on visibility change (tab switch, scroll back)
+    const onVisible = () => {
+      if (!document.hidden) tryPlay();
+    };
+    document.addEventListener('visibilitychange', onVisible);
+    return () => document.removeEventListener('visibilitychange', onVisible);
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
@@ -27,10 +47,12 @@ export function SectionIcon({ src, fallbackSrc, size = 200, className = '' }: Se
       style={{ width: size, height: size }}
     >
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
+        preload="auto"
         className="w-full h-full object-contain"
       >
         {/* WebM with alpha transparency (Chrome, Firefox, Edge) */}
