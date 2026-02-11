@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useRef } from 'react';
 
 const navSections = [
   {
@@ -19,29 +20,188 @@ const navSections = [
   },
 ];
 
-function GridPattern() {
+/**
+ * Animated Tron-style grid with glowing pulses that travel along
+ * random grid lines then fade out.
+ */
+function TronGrid() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const CELL = 40;
+    const BASE_OPACITY = 0.06;
+    const GLOW_COLOR = { r: 130, g: 160, b: 210 }; // matches primary hsl(215,30%,60%)
+    const MAX_PULSES = 4;
+    const PULSE_SPEED = 80; // px per second
+    const PULSE_LENGTH = 120; // px
+    const SPAWN_INTERVAL = 1800; // ms between new pulses
+
+    interface Pulse {
+      x: number;
+      y: number;
+      horizontal: boolean;
+      progress: number; // 0..totalLength
+      totalLength: number;
+      opacity: number;
+    }
+
+    let pulses: Pulse[] = [];
+    let lastSpawn = 0;
+    let animId: number;
+
+    function resize() {
+      const rect = canvas!.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas!.width = rect.width * dpr;
+      canvas!.height = rect.height * dpr;
+      ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function spawnPulse() {
+      const rect = canvas!.getBoundingClientRect();
+      const horizontal = Math.random() > 0.5;
+
+      if (horizontal) {
+        const row = Math.floor(Math.random() * (rect.height / CELL)) * CELL;
+        pulses.push({
+          x: -PULSE_LENGTH,
+          y: row,
+          horizontal: true,
+          progress: 0,
+          totalLength: rect.width + PULSE_LENGTH * 2,
+          opacity: 0.4 + Math.random() * 0.4,
+        });
+      } else {
+        const col = Math.floor(Math.random() * (rect.width / CELL)) * CELL;
+        pulses.push({
+          x: col,
+          y: -PULSE_LENGTH,
+          horizontal: false,
+          progress: 0,
+          totalLength: rect.height + PULSE_LENGTH * 2,
+          opacity: 0.4 + Math.random() * 0.4,
+        });
+      }
+    }
+
+    function draw(time: number) {
+      const rect = canvas!.getBoundingClientRect();
+      ctx!.clearRect(0, 0, rect.width, rect.height);
+
+      // Draw base grid
+      ctx!.strokeStyle = `rgba(255, 255, 255, ${BASE_OPACITY})`;
+      ctx!.lineWidth = 0.5;
+      ctx!.beginPath();
+      for (let x = 0; x <= rect.width; x += CELL) {
+        ctx!.moveTo(x, 0);
+        ctx!.lineTo(x, rect.height);
+      }
+      for (let y = 0; y <= rect.height; y += CELL) {
+        ctx!.moveTo(0, y);
+        ctx!.lineTo(rect.width, y);
+      }
+      ctx!.stroke();
+
+      // Spawn pulses
+      if (time - lastSpawn > SPAWN_INTERVAL && pulses.length < MAX_PULSES) {
+        spawnPulse();
+        lastSpawn = time;
+      }
+
+      // Draw and update pulses
+      const dt = 16 / 1000; // ~60fps
+      pulses = pulses.filter((p) => {
+        p.progress += PULSE_SPEED * dt;
+
+        if (p.progress > p.totalLength) return false;
+
+        const { r, g, b } = GLOW_COLOR;
+
+        if (p.horizontal) {
+          const headX = p.x + p.progress;
+          const tailX = headX - PULSE_LENGTH;
+
+          const gradient = ctx!.createLinearGradient(tailX, p.y, headX, p.y);
+          gradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0)`);
+          gradient.addColorStop(0.5, `rgba(${r}, ${g}, ${b}, ${p.opacity})`);
+          gradient.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
+
+          // Glow
+          ctx!.shadowColor = `rgba(${r}, ${g}, ${b}, ${p.opacity * 0.6})`;
+          ctx!.shadowBlur = 8;
+          ctx!.strokeStyle = gradient;
+          ctx!.lineWidth = 1.5;
+          ctx!.beginPath();
+          ctx!.moveTo(tailX, p.y);
+          ctx!.lineTo(headX, p.y);
+          ctx!.stroke();
+          ctx!.shadowBlur = 0;
+        } else {
+          const headY = p.y + p.progress;
+          const tailY = headY - PULSE_LENGTH;
+
+          const gradient = ctx!.createLinearGradient(p.x, tailY, p.x, headY);
+          gradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0)`);
+          gradient.addColorStop(0.5, `rgba(${r}, ${g}, ${b}, ${p.opacity})`);
+          gradient.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
+
+          ctx!.shadowColor = `rgba(${r}, ${g}, ${b}, ${p.opacity * 0.6})`;
+          ctx!.shadowBlur = 8;
+          ctx!.strokeStyle = gradient;
+          ctx!.lineWidth = 1.5;
+          ctx!.beginPath();
+          ctx!.moveTo(p.x, tailY);
+          ctx!.lineTo(p.x, headY);
+          ctx!.stroke();
+          ctx!.shadowBlur = 0;
+        }
+
+        // Bright node at intersections
+        const headPos = p.horizontal
+          ? { x: p.x + p.progress, y: p.y }
+          : { x: p.x, y: p.y + p.progress };
+        const nearGridX = Math.abs(headPos.x % CELL) < 3 || Math.abs(headPos.x % CELL) > CELL - 3;
+        const nearGridY = Math.abs(headPos.y % CELL) < 3 || Math.abs(headPos.y % CELL) > CELL - 3;
+
+        if (nearGridX && nearGridY) {
+          const snapX = Math.round(headPos.x / CELL) * CELL;
+          const snapY = Math.round(headPos.y / CELL) * CELL;
+          ctx!.shadowColor = `rgba(${r}, ${g}, ${b}, ${p.opacity})`;
+          ctx!.shadowBlur = 12;
+          ctx!.fillStyle = `rgba(${r}, ${g}, ${b}, ${p.opacity * 0.8})`;
+          ctx!.beginPath();
+          ctx!.arc(snapX, snapY, 2, 0, Math.PI * 2);
+          ctx!.fill();
+          ctx!.shadowBlur = 0;
+        }
+
+        return true;
+      });
+
+      animId = requestAnimationFrame(draw);
+    }
+
+    resize();
+    window.addEventListener('resize', resize);
+    animId = requestAnimationFrame(draw);
+
+    return () => {
+      window.removeEventListener('resize', resize);
+      cancelAnimationFrame(animId);
+    };
+  }, []);
+
   return (
-    <svg
-      className="absolute inset-0 w-full h-full opacity-[0.07]"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <pattern
-          id="footer-grid"
-          width="40"
-          height="40"
-          patternUnits="userSpaceOnUse"
-        >
-          <path
-            d="M 40 0 L 0 0 0 40"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="0.5"
-          />
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#footer-grid)" />
-    </svg>
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full pointer-events-none"
+    />
   );
 }
 
@@ -57,8 +217,8 @@ export function Footer() {
       {/* Bottom-up gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-transparent via-muted/[0.08] to-muted/[0.15] pointer-events-none" />
 
-      {/* SVG grid background */}
-      <GridPattern />
+      {/* Animated Tron grid */}
+      <TronGrid />
 
       <div className="relative max-w-4xl mx-auto px-6 pt-16 pb-10">
         {/* Main footer content */}

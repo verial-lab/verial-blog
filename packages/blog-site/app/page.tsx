@@ -17,8 +17,9 @@ export default function HomePage() {
               The Verial Philosophy
             </p>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              <em>Verial</em> — from <em>veritas</em> (truth) and <em>aerial</em> (limitless sky). 
-              The pursuit of understanding paired with the belief that possibilities are endless.
+              The name <em>Verial</em> combines <em>veritas</em>, the Latin word for truth, 
+              with <em>aerial</em>, symbolizing the limitless sky. It represents the pursuit 
+              of understanding and the belief that with the right approach, possibilities are endless.
             </p>
           </div>
 
