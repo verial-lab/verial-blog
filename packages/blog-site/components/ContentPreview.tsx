@@ -16,7 +16,7 @@ interface ContentPreviewProps {
   iconSize?: number;
 }
 
-export function ContentPreview({ title, description, href, badge, iconSrc, iconFallback, iconSize = 160 }: ContentPreviewProps) {
+export function ContentPreview({ title, description, href, badge, iconSrc, iconFallback, iconSize = 120 }: ContentPreviewProps) {
   return (
     <motion.div
       whileHover={{ y: -2 }}
@@ -24,9 +24,9 @@ export function ContentPreview({ title, description, href, badge, iconSrc, iconF
       className="group"
     >
       <Link href={href}>
-        {/* Icon floats above the card */}
+        {/* Icon floats above the card, left-aligned */}
         {iconSrc && (
-          <div className="flex justify-center -mb-4">
+          <div className="flex justify-start pl-2 -mb-4">
             <video
               autoPlay
               loop
