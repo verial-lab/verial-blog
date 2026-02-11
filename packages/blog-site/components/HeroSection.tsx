@@ -85,7 +85,7 @@ export function HeroSection() {
             </motion.a>
             
             <motion.a
-              href="#subscribe"
+              href="/#subscribe"
               className="inline-flex items-center gap-2 text-base font-display font-semibold text-muted-foreground hover:text-foreground px-7 py-3.5 rounded-lg border border-border/50 hover:border-border transition-all hover:bg-muted/10"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
