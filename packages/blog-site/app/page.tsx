@@ -17,28 +17,28 @@ export default function HomePage() {
               The Verial Philosophy
             </p>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              The name <em>Verial</em> combines <em>veritas</em>, the Latin word for truth, 
-              with <em>aerial</em>, symbolizing the limitless sky. It represents the pursuit 
-              of understanding and the belief that with the right approach, possibilities are endless.
+              <em>Verial</em> — from <em>veritas</em> (truth) and <em>aerial</em> (limitless sky). 
+              The belief that when we seek truth and build with intention, 
+              the cosmic microwave background is the limit.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-5 mb-14">
             <ContentPreview
               title="Essays"
-              description="Polished explorations of philosophy, systems thinking, and principles for the exponential age."
+              description="Deep, polished explorations of engineering philosophy, building lessons, and the ideas shaping the exponential age."
               href="/essays"
               badge="Email alerts"
             />
             <ContentPreview
-              title="Notes"
-              description="Build logs, technical discoveries, and reflections. Raw and unfiltered."
-              href="/notes"
+              title="Posts"
+              description="Shorter reflections, book notes, and discoveries. Not everything needs to be a manifesto."
+              href="/posts"
             />
             <ContentPreview
-              title="Framework"
-              description="Living documentation for evaluation methodologies and systems design patterns."
-              href="/framework"
+              title="Systems"
+              description="Frameworks worth living by. Mental models, methodologies, and practical wisdom — tested, not theoretical."
+              href="/systems"
             />
           </div>
 

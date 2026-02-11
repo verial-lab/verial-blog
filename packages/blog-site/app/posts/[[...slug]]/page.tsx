@@ -1,4 +1,4 @@
-import { noteSource } from '@/lib/source';
+import { postSource } from '@/lib/source';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
@@ -8,16 +8,16 @@ export default async function NotePage(props: {
   const params = await props.params;
   const slug = params.slug;
 
-  // Index page — list all notes
+  // Index page — list all posts
   if (!slug || slug.length === 0) {
-    const pages = noteSource.getPages().filter(p => p.slugs.length > 0);
+    const pages = postSource.getPages().filter(p => p.slugs.length > 0);
     return (
       <div className="min-h-screen">
         <div className="max-w-3xl mx-auto px-6 pt-24 pb-16">
           <header className="mb-16">
-            <h1 className="font-serif text-4xl font-normal mb-4 tracking-normal">Notes</h1>
+            <h1 className="font-serif text-4xl font-normal mb-4 tracking-normal">Posts</h1>
             <p className="text-muted-foreground leading-relaxed">
-              Build logs, technical discoveries, and engineering reflections. Raw and unfiltered.
+              Shorter reflections, book notes, and discoveries. Not everything needs to be a manifesto.
             </p>
           </header>
           <div className="space-y-3">
@@ -38,7 +38,7 @@ export default async function NotePage(props: {
               </Link>
             ))}
             {pages.length === 0 && (
-              <p className="text-muted-foreground/60 italic">No notes yet.</p>
+              <p className="text-muted-foreground/60 italic">No posts yet.</p>
             )}
           </div>
         </div>
@@ -46,8 +46,8 @@ export default async function NotePage(props: {
     );
   }
 
-  // Individual note page
-  const page = noteSource.getPage(slug);
+  // Individual post page
+  const page = postSource.getPage(slug);
   if (!page) notFound();
 
   const MDX = page.data.body;
@@ -57,10 +57,10 @@ export default async function NotePage(props: {
       <article className="max-w-3xl mx-auto px-6 py-16">
         <div className="mb-10">
           <Link
-            href="/notes"
+            href="/posts"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1"
           >
-            ← Notes
+            ← Posts
           </Link>
         </div>
 
@@ -83,10 +83,10 @@ export default async function NotePage(props: {
       <footer className="border-t border-border/30 px-6 py-8">
         <div className="max-w-3xl mx-auto text-center">
           <Link
-            href="/notes"
+            href="/posts"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
-            ← Back to Notes
+            ← Back to Posts
           </Link>
         </div>
       </footer>
@@ -95,14 +95,14 @@ export default async function NotePage(props: {
 }
 
 export function generateStaticParams() {
-  return noteSource.generateParams();
+  return postSource.generateParams();
 }
 
 export async function generateMetadata(props: {
   params: Promise<{ slug?: string[] }>;
 }) {
   const params = await props.params;
-  const page = noteSource.getPage(params.slug);
-  if (!page) return { title: 'Notes | Verial' };
+  const page = postSource.getPage(params.slug);
+  if (!page) return { title: 'Posts | Verial' };
   return { title: page.data.title, description: page.data.description };
 }
