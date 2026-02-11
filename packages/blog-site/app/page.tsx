@@ -39,8 +39,6 @@ export default function HomePage() {
               title="Systems"
               description="Frameworks worth living by. Mental models, methodologies, and practical wisdom — tested, not theoretical."
               href="/systems"
-              iconSrc="/icons/dna-molecular.webm"
-              iconFallback="/icons/dna-molecular.mp4"
             />
           </div>
 
