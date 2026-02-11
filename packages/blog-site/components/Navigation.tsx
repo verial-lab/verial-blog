@@ -25,7 +25,7 @@ export function Navigation() {
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-background/90 backdrop-blur-md border-b border-border/50' : 'bg-background/70 backdrop-blur-sm border-b border-transparent'}`}>
       <div className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="text-2xl font-serif font-medium tracking-wide hover:text-primary transition-colors">
+          <Link href="/" className="text-2xl font-display font-semibold tracking-wide hover:text-primary transition-colors">
             Verial
           </Link>
 
@@ -34,7 +34,7 @@ export function Navigation() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors font-medium"
+                className="text-base font-display text-muted-foreground hover:text-foreground transition-colors font-semibold"
               >
                 {item.label}
               </Link>
@@ -78,7 +78,7 @@ export function Navigation() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="block text-muted-foreground hover:text-foreground transition-colors font-medium py-1"
+                    className="block font-display text-muted-foreground hover:text-foreground transition-colors font-semibold py-1"
                     onClick={() => setIsOpen(false)}
                   >
                     {item.label}
