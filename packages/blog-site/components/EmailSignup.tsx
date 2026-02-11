@@ -6,16 +6,33 @@ export function EmailSignup() {
   const [email, setEmail] = useState('');
   const [includeNotes, setIncludeNotes] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'success' | 'already' | 'error'>('idle');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setEmail('');
-    setTimeout(() => setIsSubmitted(false), 3000);
+    setStatus('idle');
+
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, includeNotes }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setStatus(data.alreadySubscribed ? 'already' : 'success');
+        setEmail('');
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -33,7 +50,7 @@ export function EmailSignup() {
           on systems thinking when they&apos;re ready.
         </p>
 
-        {isSubmitted ? (
+        {status === 'success' ? (
           <div className="bg-primary/10 border border-primary/20 rounded-lg p-6">
             <div className="flex items-center justify-center gap-2 text-primary">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -41,6 +58,10 @@ export function EmailSignup() {
               </svg>
               <span className="font-medium">Thanks! Check your email to confirm.</span>
             </div>
+          </div>
+        ) : status === 'already' ? (
+          <div className="bg-muted/30 border border-border/50 rounded-lg p-6">
+            <span className="text-muted-foreground font-medium">You&apos;re already subscribed! 🎉</span>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -68,6 +89,10 @@ export function EmailSignup() {
                 )}
               </button>
             </div>
+
+            {status === 'error' && (
+              <p className="text-red-400 text-sm">Something went wrong. Please try again.</p>
+            )}
             
             <label className="flex items-center gap-2 justify-center text-base cursor-pointer">
               <input
