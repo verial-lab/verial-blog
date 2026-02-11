@@ -15,7 +15,6 @@ const navSections = [
     title: 'Connect',
     links: [
       { href: '#subscribe', label: 'Subscribe' },
-      { href: 'https://github.com/verial-lab', label: 'GitHub', external: true },
     ],
   },
 ];
@@ -23,7 +22,7 @@ const navSections = [
 function GridPattern() {
   return (
     <svg
-      className="absolute inset-0 w-full h-full opacity-[0.04]"
+      className="absolute inset-0 w-full h-full opacity-[0.07]"
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
@@ -50,10 +49,13 @@ export function Footer() {
   return (
     <footer className="relative mt-24 overflow-hidden">
       {/* Gradient top border */}
-      <div className="h-px bg-gradient-to-r from-transparent via-muted-foreground/30 to-transparent" />
+      <div className="h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
 
-      {/* Subtle top gradient glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-primary/[0.03] blur-[100px] rounded-full pointer-events-none" />
+      {/* Top gradient glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-primary/[0.06] blur-[120px] rounded-full pointer-events-none" />
+
+      {/* Bottom-up gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-transparent via-muted/[0.08] to-muted/[0.15] pointer-events-none" />
 
       {/* SVG grid background */}
       <GridPattern />
@@ -68,12 +70,8 @@ export function Footer() {
                 Verial
               </span>
             </Link>
-            <p className="text-base text-muted-foreground leading-relaxed max-w-[280px]">
-              Truth-seeking. Applied.
-              <br />
-              <span className="text-muted-foreground/70">
-                High-density essays on philosophy, systems thinking, and building in the exponential age.
-              </span>
+            <p className="text-base text-muted-foreground leading-relaxed max-w-[300px]">
+              From <em>veritas</em> (truth) and <em>aerial</em> (limitless sky) — the pursuit of understanding and the belief that with the right approach, possibilities are endless.
             </p>
           </div>
 
@@ -122,8 +120,8 @@ export function Footer() {
           <p className="text-sm text-muted-foreground/60">
             © {new Date().getFullYear()} Verial. All rights reserved.
           </p>
-          <p className="text-sm text-muted-foreground/40 italic">
-            veritas + aerial — truth from above
+          <p className="text-sm text-muted-foreground/50 italic font-serif">
+            Truth-seeking. Applied.
           </p>
         </div>
       </div>
