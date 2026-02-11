@@ -12,9 +12,11 @@ interface ContentPreviewProps {
   iconSrc?: string;
   /** MP4 fallback for the icon */
   iconFallback?: string;
+  /** Icon size in pixels (default 160) */
+  iconSize?: number;
 }
 
-export function ContentPreview({ title, description, href, badge, iconSrc, iconFallback }: ContentPreviewProps) {
+export function ContentPreview({ title, description, href, badge, iconSrc, iconFallback, iconSize = 160 }: ContentPreviewProps) {
   return (
     <motion.div
       whileHover={{ y: -2 }}
@@ -25,13 +27,14 @@ export function ContentPreview({ title, description, href, badge, iconSrc, iconF
         <div className="relative border border-border/40 rounded-xl p-6 h-full transition-all duration-300 hover:bg-muted/[0.06] hover:border-border/60">
           
           {iconSrc && (
-            <div className="flex justify-center mb-4">
+            <div className="flex justify-center mb-6">
               <video
                 autoPlay
                 loop
                 muted
                 playsInline
-                className="w-24 h-24 object-contain"
+                className="object-contain"
+                style={{ width: iconSize, height: iconSize }}
               >
                 <source src={iconSrc} type="video/webm" />
                 {iconFallback && <source src={iconFallback} type="video/mp4" />}
