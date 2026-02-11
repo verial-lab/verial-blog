@@ -35,7 +35,7 @@ function SpacetimeGrid() {
 
     const GRID_LINES = 20;
     const BASE_OPACITY = 0.05;
-    const GLOW = { r: 0, g: 255, b: 200 };
+    const GLOW = { r: 218, g: 175, b: 65 }; // metallic gold
     const MAX_PULSES = 4;
     const PULSE_SPEED = 0.004; // progress per frame (0→1)
     const SPAWN_INTERVAL = 2000;
@@ -222,8 +222,8 @@ export function Footer() {
       {/* Animated spacetime grid */}
       <SpacetimeGrid />
 
-      <div className="relative max-w-4xl mx-auto px-6 pt-16 pb-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-14">
+      <div className="relative max-w-4xl mx-auto px-6 pt-10 pb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Brand column */}
           <div className="md:col-span-1">
             <Link href="/" className="inline-block mb-4">
