@@ -135,7 +135,7 @@ export function SearchDialog() {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder="Search essays, notes, framework..."
+                  placeholder="Search essays, posts, systems..."
                   className="flex-1 bg-transparent text-lg text-foreground placeholder:text-muted-foreground/40 outline-none"
                 />
                 <kbd className="hidden sm:inline-flex items-center gap-1 rounded border border-border/40 px-1.5 py-0.5 text-xs text-muted-foreground/40">
