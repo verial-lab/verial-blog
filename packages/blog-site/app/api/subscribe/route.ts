@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+const BUTTONDOWN_API = 'https://api.buttondown.com/v1/subscribers';
+
 export async function POST(req: NextRequest) {
   try {
     const { email, includeNotes } = await req.json();
@@ -14,17 +16,20 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
     }
 
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Token ${apiKey}`,
+    };
+
     const tags = ['essays'];
     if (includeNotes) {
       tags.push('notes', 'framework');
     }
 
-    const response = await fetch('https://api.buttondown.com/v1/subscribers', {
+    // Try creating new subscriber
+    const createRes = await fetch(BUTTONDOWN_API, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Token ${apiKey}`,
-      },
+      headers,
       body: JSON.stringify({
         email_address: email,
         tags,
@@ -32,21 +37,53 @@ export async function POST(req: NextRequest) {
       }),
     });
 
-    if (response.ok) {
+    if (createRes.ok) {
       return NextResponse.json({ success: true });
     }
 
-    const data = await response.json();
+    const createData = await createRes.json();
 
-    // Buttondown returns 400 if already subscribed
-    if (response.status === 400 && JSON.stringify(data).includes('already')) {
-      return NextResponse.json({ success: true, alreadySubscribed: true });
+    // If subscriber already exists (active or inactive), try reactivating
+    if (createRes.status === 400 || createRes.status === 409) {
+      // Look up the subscriber
+      const lookupRes = await fetch(
+        `${BUTTONDOWN_API}/${encodeURIComponent(email)}`,
+        { headers }
+      );
+
+      if (lookupRes.ok) {
+        const subscriber = await lookupRes.json();
+
+        // If they're already active and confirmed
+        if (subscriber.subscriber_type === 'regular') {
+          return NextResponse.json({ success: true, alreadySubscribed: true });
+        }
+
+        // Reactivate: update subscriber type back to regular
+        const updateRes = await fetch(
+          `${BUTTONDOWN_API}/${subscriber.id}`,
+          {
+            method: 'PATCH',
+            headers,
+            body: JSON.stringify({
+              subscriber_type: 'regular',
+              tags,
+            }),
+          }
+        );
+
+        if (updateRes.ok) {
+          return NextResponse.json({ success: true });
+        }
+
+        console.error('Buttondown reactivate error:', updateRes.status, await updateRes.text());
+      }
     }
 
-    console.error('Buttondown error:', response.status, data);
+    console.error('Buttondown error:', createRes.status, createData);
     return NextResponse.json(
       { error: 'Failed to subscribe. Please try again.' },
-      { status: response.status }
+      { status: 500 }
     );
   } catch (err) {
     console.error('Subscribe error:', err);
