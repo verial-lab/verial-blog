@@ -34,7 +34,7 @@ export function Navigation() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-base text-muted-foreground hover:text-foreground transition-colors font-semibold"
+                className="text-base font-display text-muted-foreground hover:text-foreground transition-colors font-semibold"
               >
                 {item.label}
               </Link>
@@ -78,7 +78,7 @@ export function Navigation() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="block text-muted-foreground hover:text-foreground transition-colors font-semibold py-1"
+                    className="block font-display text-muted-foreground hover:text-foreground transition-colors font-semibold py-1"
                     onClick={() => setIsOpen(false)}
                   >
                     {item.label}
