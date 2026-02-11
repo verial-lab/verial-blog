@@ -36,7 +36,7 @@ function TronGrid() {
 
     const CELL = 40;
     const BASE_OPACITY = 0.06;
-    const GLOW_COLOR = { r: 130, g: 160, b: 210 }; // matches primary hsl(215,30%,60%)
+    const GLOW_COLOR = { r: 0, g: 255, b: 200 }; // neon cyan-green
     const MAX_PULSES = 4;
     const PULSE_SPEED = 80; // px per second
     const PULSE_LENGTH = 120; // px
@@ -159,25 +159,6 @@ function TronGrid() {
           ctx!.moveTo(p.x, tailY);
           ctx!.lineTo(p.x, headY);
           ctx!.stroke();
-          ctx!.shadowBlur = 0;
-        }
-
-        // Bright node at intersections
-        const headPos = p.horizontal
-          ? { x: p.x + p.progress, y: p.y }
-          : { x: p.x, y: p.y + p.progress };
-        const nearGridX = Math.abs(headPos.x % CELL) < 3 || Math.abs(headPos.x % CELL) > CELL - 3;
-        const nearGridY = Math.abs(headPos.y % CELL) < 3 || Math.abs(headPos.y % CELL) > CELL - 3;
-
-        if (nearGridX && nearGridY) {
-          const snapX = Math.round(headPos.x / CELL) * CELL;
-          const snapY = Math.round(headPos.y / CELL) * CELL;
-          ctx!.shadowColor = `rgba(${r}, ${g}, ${b}, ${p.opacity})`;
-          ctx!.shadowBlur = 12;
-          ctx!.fillStyle = `rgba(${r}, ${g}, ${b}, ${p.opacity * 0.8})`;
-          ctx!.beginPath();
-          ctx!.arc(snapX, snapY, 2, 0, Math.PI * 2);
-          ctx!.fill();
           ctx!.shadowBlur = 0;
         }
 
