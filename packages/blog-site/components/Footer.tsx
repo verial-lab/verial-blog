@@ -21,39 +21,44 @@ const navSections = [
 ];
 
 /**
- * Animated Tron-style grid with glowing pulses that travel along
- * random grid lines then fade out.
+ * Spacetime-curved grid with glowing pulses that travel along warped lines.
+ * The grid simulates gravitational lensing — lines curve toward a mass point.
  */
-function TronGrid() {
+function SpacetimeGrid() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const CELL = 40;
-    const BASE_OPACITY = 0.06;
-    const GLOW_COLOR = { r: 0, g: 255, b: 200 }; // neon cyan-green
+    const GRID_LINES = 20;
+    const BASE_OPACITY = 0.05;
+    const GLOW = { r: 0, g: 255, b: 200 };
     const MAX_PULSES = 4;
-    const PULSE_SPEED = 80; // px per second
-    const PULSE_LENGTH = 120; // px
-    const SPAWN_INTERVAL = 1800; // ms between new pulses
+    const PULSE_SPEED = 0.004; // progress per frame (0→1)
+    const SPAWN_INTERVAL = 2000;
+
+    // Gravity wells — positions normalized 0..1
+    let wells = [
+      { x: 0.5, y: 0.55, strength: 0.06 },
+      { x: 0.25, y: 0.4, strength: 0.03 },
+      { x: 0.78, y: 0.35, strength: 0.035 },
+    ];
 
     interface Pulse {
-      x: number;
-      y: number;
+      lineIdx: number;
       horizontal: boolean;
-      progress: number; // 0..totalLength
-      totalLength: number;
+      progress: number; // 0..1
       opacity: number;
     }
 
     let pulses: Pulse[] = [];
     let lastSpawn = 0;
     let animId: number;
+    let w = 0;
+    let h = 0;
 
     function resize() {
       const rect = canvas!.getBoundingClientRect();
@@ -61,107 +66,123 @@ function TronGrid() {
       canvas!.width = rect.width * dpr;
       canvas!.height = rect.height * dpr;
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
+      w = rect.width;
+      h = rect.height;
+    }
+
+    /** Apply gravitational displacement to a point */
+    function warp(px: number, py: number): [number, number] {
+      let dx = 0;
+      let dy = 0;
+      for (const well of wells) {
+        const wx = well.x * w;
+        const wy = well.y * h;
+        const distX = px - wx;
+        const distY = py - wy;
+        const dist = Math.sqrt(distX * distX + distY * distY) + 1;
+        const force = (well.strength * w * w) / (dist * dist);
+        // Pull toward the well
+        dx -= (distX / dist) * force;
+        dy -= (distY / dist) * force;
+      }
+      return [px + dx, py + dy];
+    }
+
+    /** Get points along a grid line (warped) */
+    function getLinePoints(index: number, total: number, horizontal: boolean, steps: number): [number, number][] {
+      const points: [number, number][] = [];
+      const t = index / (total - 1); // 0..1
+
+      for (let i = 0; i <= steps; i++) {
+        const s = i / steps;
+        let px: number, py: number;
+        if (horizontal) {
+          px = s * w;
+          py = t * h;
+        } else {
+          px = t * w;
+          py = s * h;
+        }
+        points.push(warp(px, py));
+      }
+      return points;
+    }
+
+    function drawCurve(points: [number, number][]) {
+      if (points.length < 2) return;
+      ctx!.beginPath();
+      ctx!.moveTo(points[0][0], points[0][1]);
+      for (let i = 1; i < points.length; i++) {
+        ctx!.lineTo(points[i][0], points[i][1]);
+      }
+      ctx!.stroke();
     }
 
     function spawnPulse() {
-      const rect = canvas!.getBoundingClientRect();
       const horizontal = Math.random() > 0.5;
-
-      if (horizontal) {
-        const row = Math.floor(Math.random() * (rect.height / CELL)) * CELL;
-        pulses.push({
-          x: -PULSE_LENGTH,
-          y: row,
-          horizontal: true,
-          progress: 0,
-          totalLength: rect.width + PULSE_LENGTH * 2,
-          opacity: 0.4 + Math.random() * 0.4,
-        });
-      } else {
-        const col = Math.floor(Math.random() * (rect.width / CELL)) * CELL;
-        pulses.push({
-          x: col,
-          y: -PULSE_LENGTH,
-          horizontal: false,
-          progress: 0,
-          totalLength: rect.height + PULSE_LENGTH * 2,
-          opacity: 0.4 + Math.random() * 0.4,
-        });
-      }
+      const lineIdx = Math.floor(Math.random() * GRID_LINES);
+      pulses.push({
+        lineIdx,
+        horizontal,
+        progress: 0,
+        opacity: 0.5 + Math.random() * 0.4,
+      });
     }
 
     function draw(time: number) {
-      const rect = canvas!.getBoundingClientRect();
-      ctx!.clearRect(0, 0, rect.width, rect.height);
+      ctx!.clearRect(0, 0, w, h);
+      const steps = 60;
 
       // Draw base grid
       ctx!.strokeStyle = `rgba(255, 255, 255, ${BASE_OPACITY})`;
       ctx!.lineWidth = 0.5;
-      ctx!.beginPath();
-      for (let x = 0; x <= rect.width; x += CELL) {
-        ctx!.moveTo(x, 0);
-        ctx!.lineTo(x, rect.height);
-      }
-      for (let y = 0; y <= rect.height; y += CELL) {
-        ctx!.moveTo(0, y);
-        ctx!.lineTo(rect.width, y);
-      }
-      ctx!.stroke();
 
-      // Spawn pulses
+      for (let i = 0; i < GRID_LINES; i++) {
+        const hPoints = getLinePoints(i, GRID_LINES, true, steps);
+        drawCurve(hPoints);
+        const vPoints = getLinePoints(i, GRID_LINES, false, steps);
+        drawCurve(vPoints);
+      }
+
+      // Spawn
       if (time - lastSpawn > SPAWN_INTERVAL && pulses.length < MAX_PULSES) {
         spawnPulse();
         lastSpawn = time;
       }
 
-      // Draw and update pulses
-      const dt = 16 / 1000; // ~60fps
+      // Draw pulses
+      const { r, g, b } = GLOW;
+      const pulseLen = 0.15; // fraction of line length
+
       pulses = pulses.filter((p) => {
-        p.progress += PULSE_SPEED * dt;
+        p.progress += PULSE_SPEED;
+        if (p.progress > 1 + pulseLen) return false;
 
-        if (p.progress > p.totalLength) return false;
+        const points = getLinePoints(p.lineIdx, GRID_LINES, p.horizontal, steps);
 
-        const { r, g, b } = GLOW_COLOR;
+        // Draw glowing segment
+        const head = Math.min(Math.floor(p.progress * steps), steps);
+        const tail = Math.max(Math.floor((p.progress - pulseLen) * steps), 0);
 
-        if (p.horizontal) {
-          const headX = p.x + p.progress;
-          const tailX = headX - PULSE_LENGTH;
+        if (head <= tail) return true;
 
-          const gradient = ctx!.createLinearGradient(tailX, p.y, headX, p.y);
-          gradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0)`);
-          gradient.addColorStop(0.5, `rgba(${r}, ${g}, ${b}, ${p.opacity})`);
-          gradient.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
+        for (let i = tail; i < head && i < points.length - 1; i++) {
+          const segProgress = (i - tail) / (head - tail);
+          // Bell curve opacity — bright in middle, fade at edges
+          const edgeFade = Math.sin(segProgress * Math.PI);
+          const alpha = p.opacity * edgeFade;
 
-          // Glow
-          ctx!.shadowColor = `rgba(${r}, ${g}, ${b}, ${p.opacity * 0.6})`;
-          ctx!.shadowBlur = 8;
-          ctx!.strokeStyle = gradient;
+          ctx!.shadowColor = `rgba(${r}, ${g}, ${b}, ${alpha * 0.7})`;
+          ctx!.shadowBlur = 10;
+          ctx!.strokeStyle = `rgba(${r}, ${g}, ${b}, ${alpha})`;
           ctx!.lineWidth = 1.5;
           ctx!.beginPath();
-          ctx!.moveTo(tailX, p.y);
-          ctx!.lineTo(headX, p.y);
+          ctx!.moveTo(points[i][0], points[i][1]);
+          ctx!.lineTo(points[i + 1][0], points[i + 1][1]);
           ctx!.stroke();
-          ctx!.shadowBlur = 0;
-        } else {
-          const headY = p.y + p.progress;
-          const tailY = headY - PULSE_LENGTH;
-
-          const gradient = ctx!.createLinearGradient(p.x, tailY, p.x, headY);
-          gradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0)`);
-          gradient.addColorStop(0.5, `rgba(${r}, ${g}, ${b}, ${p.opacity})`);
-          gradient.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
-
-          ctx!.shadowColor = `rgba(${r}, ${g}, ${b}, ${p.opacity * 0.6})`;
-          ctx!.shadowBlur = 8;
-          ctx!.strokeStyle = gradient;
-          ctx!.lineWidth = 1.5;
-          ctx!.beginPath();
-          ctx!.moveTo(p.x, tailY);
-          ctx!.lineTo(p.x, headY);
-          ctx!.stroke();
-          ctx!.shadowBlur = 0;
         }
 
+        ctx!.shadowBlur = 0;
         return true;
       });
 
@@ -198,11 +219,10 @@ export function Footer() {
       {/* Bottom-up gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-transparent via-muted/[0.08] to-muted/[0.15] pointer-events-none" />
 
-      {/* Animated Tron grid */}
-      <TronGrid />
+      {/* Animated spacetime grid */}
+      <SpacetimeGrid />
 
       <div className="relative max-w-4xl mx-auto px-6 pt-16 pb-10">
-        {/* Main footer content */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-14">
           {/* Brand column */}
           <div className="md:col-span-1">
