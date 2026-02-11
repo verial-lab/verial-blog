@@ -22,6 +22,7 @@ module.exports = {
       },
       fontFamily: {
         serif: ['var(--font-serif)', 'Source Serif 4', 'serif'],
+        display: ['var(--font-display)', 'Newsreader', 'serif'],
         sans: ['var(--font-serif)', 'Source Serif 4', 'serif'],
         mono: ['var(--font-mono)', 'JetBrains Mono', 'monospace'],
       },
