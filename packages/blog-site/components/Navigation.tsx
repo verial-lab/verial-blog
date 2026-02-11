@@ -2,7 +2,10 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
+
+const CONTENT_PREFIXES = ['/essays/', '/posts/', '/systems/'];
 
 const navItems = [
   { href: '/essays', label: 'Essays' },
@@ -11,8 +14,14 @@ const navItems = [
 ];
 
 export function Navigation() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [readProgress, setReadProgress] = useState(0);
+
+  const isContentPage = CONTENT_PREFIXES.some(
+    (prefix) => pathname.startsWith(prefix) && pathname !== prefix.slice(0, -1)
+  );
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -20,6 +29,28 @@ export function Navigation() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  useEffect(() => {
+    if (!isContentPage) return;
+    const update = () => {
+      const article = document.querySelector('article');
+      if (article) {
+        const articleBottom = article.offsetTop + article.offsetHeight;
+        const scrollEnd = articleBottom - window.innerHeight;
+        setReadProgress(scrollEnd > 0 ? Math.min(Math.max(window.scrollY / scrollEnd, 0), 1) : 0);
+      } else {
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        setReadProgress(docHeight > 0 ? Math.min(window.scrollY / docHeight, 1) : 0);
+      }
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
+  }, [isContentPage]);
 
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-background/90 backdrop-blur-md border-b border-border/50' : 'bg-background/70 backdrop-blur-sm border-b border-transparent'}`}>
@@ -101,6 +132,12 @@ export function Navigation() {
           )}
         </AnimatePresence>
       </div>
+
+      {isContentPage && (
+        <div className="absolute bottom-0 left-0 w-full h-[3px] bg-transparent">
+          <div className="h-full bg-white" style={{ width: `${readProgress * 100}%` }} />
+        </div>
+      )}
     </nav>
   );
 }
