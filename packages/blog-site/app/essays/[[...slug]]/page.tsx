@@ -14,13 +14,13 @@ export default async function EssayPage(props: {
     const pages = essaySource.getPages().filter(p => p.slugs.length > 0);
     return (
       <div className="min-h-screen">
-        <div className="max-w-3xl mx-auto px-6 pt-24 pb-16">
+        <div className="max-w-3xl mx-auto px-6 pt-10 pb-16">
           <header className="mb-16 flex flex-col items-center text-center">
             <SectionIcon
               src="/icons/essays-pyramid.webm"
               fallbackSrc="/icons/essays-pyramid.mp4"
-              size={180}
-              className="mb-6"
+              size={220}
+              className="mb-2"
             />
             <h1 className="font-serif text-4xl font-normal mb-4 tracking-normal">Essays</h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
@@ -61,7 +61,7 @@ export default async function EssayPage(props: {
 
   return (
     <div className="min-h-screen">
-      <article className="max-w-3xl mx-auto px-6 py-16">
+      <article className="max-w-3xl mx-auto px-6 pt-10 pb-16">
         <div className="mb-12">
           <Link
             href="/essays"

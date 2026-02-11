@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 
 interface SectionIconProps {
@@ -39,10 +38,7 @@ export function SectionIcon({ src, fallbackSrc, size = 200, className = '' }: Se
   }, []);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
+    <div
       className={`relative z-0 ${className}`}
       style={{ width: size, height: size }}
     >
@@ -60,6 +56,6 @@ export function SectionIcon({ src, fallbackSrc, size = 200, className = '' }: Se
         {/* MP4 fallback (Safari, older browsers) */}
         {fallbackSrc && <source src={fallbackSrc} type="video/mp4" />}
       </video>
-    </motion.div>
+    </div>
   );
 }
