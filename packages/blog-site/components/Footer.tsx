@@ -16,6 +16,7 @@ const navSections = [
     title: 'Connect',
     links: [
       { href: '#subscribe', label: 'Subscribe' },
+      { href: '#feedback', label: 'Feedback' },
     ],
   },
 ];
@@ -245,12 +246,21 @@ export function Footer() {
               <ul className="space-y-3">
                 {section.links.map((link) => (
                   <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-base font-display font-semibold text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      {link.label}
-                    </Link>
+                    {link.href === '#feedback' ? (
+                      <button
+                        onClick={() => window.dispatchEvent(new CustomEvent('open-feedback'))}
+                        className="text-base font-display font-semibold text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        {link.label}
+                      </button>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="text-base font-display font-semibold text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
