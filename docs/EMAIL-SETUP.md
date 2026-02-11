@@ -70,7 +70,7 @@ Go to [buttondown.com/automations](https://buttondown.com/automations):
 
 ### Step 1: Add Domain in Buttondown
 
-1. In Buttondown dashboard, go to **Settings → Sending** (or search for "sending domain")
+1. Go to [buttondown.com/settings/domains](https://buttondown.com/settings/domains)
    - Docs: [docs.buttondown.com/sending-from-a-custom-domain](https://docs.buttondown.com/sending-from-a-custom-domain)
 2. Choose **"Managed" setup** and enter `mail.verial.xyz` as the subdomain
 3. Buttondown will display **2 NS record values** — copy these
@@ -91,7 +91,7 @@ Go to [buttondown.com/automations](https://buttondown.com/automations):
 
 ### Step 3: Verify
 
-1. Go back to Buttondown **Settings → Sending**
+1. Go back to [buttondown.com/settings/domains](https://buttondown.com/settings/domains)
 2. Click **Verify**
 3. If it fails, wait 30 minutes and try again (DNS propagation can take up to 48h, but usually resolves in under an hour)
 
