@@ -15,17 +15,19 @@ export default async function NotePage(props: {
     return (
       <div className="min-h-screen">
         <div className="max-w-3xl mx-auto px-6 pt-10 pb-16">
-          <header className="mb-16 flex flex-col items-center text-center">
+          <header className="mb-16 flex flex-col md:flex-row items-center md:items-start gap-6">
             <SectionIcon
               src="/icons/posts-atom.webm"
               fallbackSrc="/icons/posts-atom.mp4"
-              size={220}
-              className="mb-2"
+              size={180}
+              className="shrink-0"
             />
-            <h1 className="font-serif text-4xl font-normal mb-4 tracking-normal">Posts</h1>
-            <p className="text-muted-foreground leading-relaxed">
-              Shorter reflections, book notes, and discoveries. Not everything needs to be a manifesto.
-            </p>
+            <div className="text-center md:text-left">
+              <h1 className="font-serif text-4xl font-normal mb-4 tracking-normal">Posts</h1>
+              <p className="text-muted-foreground leading-relaxed">
+                Shorter reflections, book notes, and discoveries. Not everything needs to be a manifesto.
+              </p>
+            </div>
           </header>
           <div className="space-y-3">
             {pages.map((page) => (

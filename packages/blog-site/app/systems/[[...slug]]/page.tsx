@@ -15,17 +15,19 @@ export default async function SystemsPage(props: {
     return (
       <div className="min-h-screen">
         <div className="max-w-3xl mx-auto px-6 pt-10 pb-16">
-          <header className="mb-12 flex flex-col items-center text-center">
+          <header className="mb-12 flex flex-col md:flex-row items-center md:items-start gap-6">
             <SectionIcon
               src="/icons/dna-molecular.webm"
               fallbackSrc="/icons/dna-molecular.mp4"
-              size={220}
-              className="mb-2"
+              size={180}
+              className="shrink-0"
             />
-            <h1 className="font-serif text-3xl font-normal mb-3 tracking-normal">Systems</h1>
-            <p className="text-muted-foreground leading-relaxed max-w-lg">
-              Frameworks worth living by. Mental models, methodologies, and practical wisdom — tested, not theoretical.
-            </p>
+            <div className="text-center md:text-left">
+              <h1 className="font-serif text-3xl font-normal mb-3 tracking-normal">Systems</h1>
+              <p className="text-muted-foreground leading-relaxed">
+                Frameworks worth living by. Mental models, methodologies, and practical wisdom — tested, not theoretical.
+              </p>
+            </div>
           </header>
           <div className="space-y-4">
             {pages.map((page) => (

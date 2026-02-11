@@ -15,17 +15,19 @@ export default async function EssayPage(props: {
     return (
       <div className="min-h-screen">
         <div className="max-w-3xl mx-auto px-6 pt-10 pb-16">
-          <header className="mb-16 flex flex-col items-center text-center">
+          <header className="mb-16 flex flex-col md:flex-row items-center md:items-start gap-6">
             <SectionIcon
               src="/icons/essays-pyramid.webm"
               fallbackSrc="/icons/essays-pyramid.mp4"
-              size={220}
-              className="mb-2"
+              size={180}
+              className="shrink-0"
             />
-            <h1 className="font-serif text-4xl font-normal mb-4 tracking-normal">Essays</h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Polished, high-density writing on building, technology, and the principles that survive contact with reality. New essays are sent by email.
-            </p>
+            <div className="text-center md:text-left">
+              <h1 className="font-serif text-4xl font-normal mb-4 tracking-normal">Essays</h1>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Polished, high-density writing on building, technology, and the principles that survive contact with reality. New essays are sent by email.
+              </p>
+            </div>
           </header>
           <div className="space-y-4">
             {pages.map((page) => (
