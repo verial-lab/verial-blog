@@ -8,8 +8,8 @@ const navSections = [
     title: 'Content',
     links: [
       { href: '/essays', label: 'Essays' },
-      { href: '/notes', label: 'Notes' },
-      { href: '/framework', label: 'Framework' },
+      { href: '/posts', label: 'Posts' },
+      { href: '/systems', label: 'Systems' },
     ],
   },
   {
@@ -233,7 +233,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-base text-muted-foreground leading-relaxed max-w-[300px]">
-              From <em>veritas</em> (truth) and <em>aerial</em> (limitless sky) — the pursuit of understanding and the belief that with the right approach, possibilities are endless.
+              From <em>veritas</em> (truth) and <em>aerial</em> (limitless sky). Seek truth, build with intention, and the cosmic microwave background is the limit.
             </p>
           </div>
 

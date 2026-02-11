@@ -6,8 +6,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const navItems = [
   { href: '/essays', label: 'Essays' },
-  { href: '/notes', label: 'Notes' },
-  { href: '/framework', label: 'Framework' },
+  { href: '/posts', label: 'Posts' },
+  { href: '/systems', label: 'Systems' },
 ];
 
 export function Navigation() {

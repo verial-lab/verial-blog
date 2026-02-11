@@ -40,7 +40,7 @@ export function HeroSection() {
             className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-muted-foreground/70 font-medium"
           >
             <span className="w-8 h-px bg-muted-foreground/20" />
-            Essays &middot; Philosophy &middot; Systems
+            Inquiry &middot; Engineering &middot; Transformation
             <span className="w-8 h-px bg-muted-foreground/20" />
           </motion.div>
 
@@ -62,8 +62,8 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            Low frequency, high density essays on philosophy, systems thinking, 
-            and practical wisdom for building in the exponential age.
+            High-density writing on building, technology, and the systems behind 
+            a life well-engineered. For those paying attention to what comes next.
           </motion.p>
           
           <motion.div 

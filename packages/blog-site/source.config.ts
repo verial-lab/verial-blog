@@ -4,12 +4,12 @@ export const essays = defineDocs({
   dir: 'content/essays',
 });
 
-export const notes = defineDocs({
-  dir: 'content/notes',
+export const posts = defineDocs({
+  dir: 'content/posts',
 });
 
-export const framework = defineDocs({
-  dir: 'content/framework',
+export const systems = defineDocs({
+  dir: 'content/systems',
 });
 
 export default defineConfig();
