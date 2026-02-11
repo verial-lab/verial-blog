@@ -17,7 +17,7 @@ export default async function EssayPage(props: {
           <header className="mb-16">
             <h1 className="font-serif text-4xl font-normal mb-4 tracking-normal">Essays</h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Polished, timeless, high-density explorations of systems thinking and architecture principles. New essays are sent by email.
+              Polished, high-density writing on building, technology, and the principles that survive contact with reality. New essays are sent by email.
             </p>
           </header>
           <div className="space-y-4">

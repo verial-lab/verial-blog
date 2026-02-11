@@ -1,4 +1,4 @@
-import { essaySource, noteSource, frameworkSource } from '@/lib/source';
+import { essaySource, postSource, systemSource } from '@/lib/source';
 import { createSearchAPI } from 'fumadocs-core/search/server';
 
 export const { GET } = createSearchAPI('advanced', {
@@ -12,21 +12,21 @@ export const { GET } = createSearchAPI('advanced', {
       structuredData: page.data.structuredData,
       tag: 'essays',
     })),
-    ...noteSource.getPages().map((page) => ({
+    ...postSource.getPages().map((page) => ({
       title: page.data.title,
       description: page.data.description,
       url: page.url,
       id: page.url,
       structuredData: page.data.structuredData,
-      tag: 'notes',
+      tag: 'posts',
     })),
-    ...frameworkSource.getPages().map((page) => ({
+    ...systemSource.getPages().map((page) => ({
       title: page.data.title,
       description: page.data.description,
       url: page.url,
       id: page.url,
       structuredData: page.data.structuredData,
-      tag: 'framework',
+      tag: 'systems',
     })),
   ],
 });
