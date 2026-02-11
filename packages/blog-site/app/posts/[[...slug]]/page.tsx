@@ -14,8 +14,8 @@ export default async function NotePage(props: {
     const pages = postSource.getPages().filter(p => p.slugs.length > 0);
     return (
       <div className="min-h-screen">
-        <div className="max-w-3xl mx-auto px-6 pt-10 pb-16">
-          <header className="mb-16 flex flex-col md:flex-row items-center md:items-start gap-6">
+        <div className="max-w-3xl mx-auto px-6 pt-24 pb-16">
+          <header className="mb-16 flex flex-col md:flex-row items-center md:items-center gap-6">
             <SectionIcon
               src="/icons/posts-atom.webm"
               fallbackSrc="/icons/posts-atom.mp4"
@@ -63,7 +63,7 @@ export default async function NotePage(props: {
 
   return (
     <div className="min-h-screen">
-      <article className="max-w-3xl mx-auto px-6 pt-10 pb-16">
+      <article className="max-w-3xl mx-auto px-6 pt-24 pb-16">
         <div className="mb-10">
           <Link
             href="/posts"

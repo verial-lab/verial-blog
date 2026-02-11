@@ -14,8 +14,8 @@ export default async function SystemsPage(props: {
     const pages = systemSource.getPages().filter(p => p.slugs.length > 0);
     return (
       <div className="min-h-screen">
-        <div className="max-w-3xl mx-auto px-6 pt-10 pb-16">
-          <header className="mb-12 flex flex-col md:flex-row items-center md:items-start gap-6">
+        <div className="max-w-3xl mx-auto px-6 pt-24 pb-16">
+          <header className="mb-12 flex flex-col md:flex-row items-center md:items-center gap-6">
             <SectionIcon
               src="/icons/dna-molecular.webm"
               fallbackSrc="/icons/dna-molecular.mp4"
@@ -63,7 +63,7 @@ export default async function SystemsPage(props: {
 
   return (
     <div className="min-h-screen">
-      <article className="max-w-3xl mx-auto px-6 pt-10 pb-16">
+      <article className="max-w-3xl mx-auto px-6 pt-24 pb-16">
         <div className="mb-12">
           <Link
             href="/systems"
