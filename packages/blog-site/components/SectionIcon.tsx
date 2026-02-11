@@ -23,7 +23,7 @@ export function SectionIcon({ src, fallbackSrc, size = 200, className = '' }: Se
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
-      className={`relative ${className}`}
+      className={`relative z-0 ${className}`}
       style={{ width: size, height: size }}
     >
       <video
