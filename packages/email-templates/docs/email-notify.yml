@@ -1,0 +1,73 @@
+name: Email Notification Draft
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'packages/blog-site/content/essays/**/*.mdx'
+      - 'packages/blog-site/content/posts/**/*.mdx'
+      - 'packages/blog-site/content/systems/**/*.mdx'
+
+jobs:
+  create-email-draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile || npm install
+
+      - name: Find changed MDX files with send_email
+        id: find
+        run: |
+          FILES=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD -- \
+            'packages/blog-site/content/essays/**/*.mdx' \
+            'packages/blog-site/content/posts/**/*.mdx' \
+            'packages/blog-site/content/systems/**/*.mdx' \
+          | grep -v 'index.mdx' || true)
+
+          if [ -z "$FILES" ]; then
+            echo "No content files changed"
+            echo "has_files=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # Filter to only files with send_email: true
+          SEND_FILES=""
+          for f in $FILES; do
+            if grep -q 'send_email:\s*true' "$f" 2>/dev/null; then
+              SEND_FILES="$SEND_FILES $f"
+            fi
+          done
+
+          if [ -z "$SEND_FILES" ]; then
+            echo "No files with send_email: true"
+            echo "has_files=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          echo "has_files=true" >> $GITHUB_OUTPUT
+          echo "files<<EOF" >> $GITHUB_OUTPUT
+          echo "$SEND_FILES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          echo "Found files: $SEND_FILES"
+
+      - name: Create email drafts
+        if: steps.find.outputs.has_files == 'true'
+        env:
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+        run: |
+          for f in ${{ steps.find.outputs.files }}; do
+            echo "Processing: $f"
+            cd packages/email-templates && npx tsx scripts/send-draft.ts "../../$f" && cd ../..
+          done
