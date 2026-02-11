@@ -1,23 +1,23 @@
-import { frameworkSource } from '@/lib/source';
+import { systemSource } from '@/lib/source';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
-export default async function FrameworkPage(props: {
+export default async function SystemsPage(props: {
   params: Promise<{ slug?: string[] }>;
 }) {
   const params = await props.params;
   const slug = params.slug;
 
-  // Index page — list all framework pages
+  // Index page — list all systems pages
   if (!slug || slug.length === 0) {
-    const pages = frameworkSource.getPages().filter(p => p.slugs.length > 0);
+    const pages = systemSource.getPages().filter(p => p.slugs.length > 0);
     return (
       <div className="min-h-screen">
         <div className="max-w-3xl mx-auto px-6 py-16">
           <header className="mb-12">
-            <h1 className="font-serif text-3xl font-normal mb-3 tracking-normal">Framework</h1>
+            <h1 className="font-serif text-3xl font-normal mb-3 tracking-normal">Systems</h1>
             <p className="text-muted-foreground leading-relaxed">
-              Living documentation — evolving models, principles, and design patterns.
+              Frameworks worth living by. Mental models, methodologies, and practical wisdom — tested, not theoretical.
             </p>
           </header>
           <div className="space-y-4">
@@ -38,7 +38,7 @@ export default async function FrameworkPage(props: {
               </Link>
             ))}
             {pages.length === 0 && (
-              <p className="text-muted-foreground/60 italic">No framework pages yet.</p>
+              <p className="text-muted-foreground/60 italic">No systems pages yet.</p>
             )}
           </div>
         </div>
@@ -46,8 +46,8 @@ export default async function FrameworkPage(props: {
     );
   }
 
-  // Individual framework page
-  const page = frameworkSource.getPage(slug);
+  // Individual systems page
+  const page = systemSource.getPage(slug);
   if (!page) notFound();
 
   const MDX = page.data.body;
@@ -57,10 +57,10 @@ export default async function FrameworkPage(props: {
       <article className="max-w-3xl mx-auto px-6 py-16">
         <div className="mb-12">
           <Link
-            href="/framework"
+            href="/systems"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1"
           >
-            ← Framework
+            ← Systems
           </Link>
         </div>
 
@@ -83,10 +83,10 @@ export default async function FrameworkPage(props: {
       <footer className="border-t border-border/30 px-6 py-8">
         <div className="max-w-3xl mx-auto text-center">
           <Link
-            href="/framework"
+            href="/systems"
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
-            ← Back to Framework
+            ← Back to Systems
           </Link>
         </div>
       </footer>
@@ -95,7 +95,7 @@ export default async function FrameworkPage(props: {
 }
 
 export function generateStaticParams() {
-  return frameworkSource.generateParams();
+  return systemSource.generateParams();
 }
 
 export async function generateMetadata(props: {
@@ -104,9 +104,9 @@ export async function generateMetadata(props: {
   const params = await props.params;
   const slug = params.slug;
   if (!slug || slug.length === 0) {
-    return { title: 'Framework | Verial', description: 'Living documentation — evolving models, principles, and design patterns.' };
+    return { title: 'Systems | Verial', description: 'Frameworks worth living by. Mental models, methodologies, and practical wisdom — tested, not theoretical.' };
   }
-  const page = frameworkSource.getPage(slug);
+  const page = systemSource.getPage(slug);
   if (!page) notFound();
   return { title: page.data.title, description: page.data.description };
 }

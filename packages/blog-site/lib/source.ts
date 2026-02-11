@@ -1,4 +1,4 @@
-import { essays, notes, framework } from '@/.source';
+import { essays, posts, systems } from '@/.source';
 import { loader } from 'fumadocs-core/source';
 
 export const essaySource = loader({
@@ -6,12 +6,12 @@ export const essaySource = loader({
   source: essays.toFumadocsSource(),
 });
 
-export const noteSource = loader({
-  baseUrl: '/notes',
-  source: notes.toFumadocsSource(),
+export const postSource = loader({
+  baseUrl: '/posts',
+  source: posts.toFumadocsSource(),
 });
 
-export const frameworkSource = loader({
-  baseUrl: '/framework',
-  source: framework.toFumadocsSource(),
+export const systemSource = loader({
+  baseUrl: '/systems',
+  source: systems.toFumadocsSource(),
 });
