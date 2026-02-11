@@ -29,16 +29,19 @@ export default function HomePage() {
               description="Deep, polished explorations of engineering philosophy, building lessons, and the ideas shaping the exponential age."
               href="/essays"
               badge="Email alerts"
+              iconName="triangle"
             />
             <ContentPreview
               title="Posts"
               description="Shorter reflections, book notes, and discoveries. Not everything needs to be a manifesto."
               href="/posts"
+              iconName="atom"
             />
             <ContentPreview
               title="Systems"
               description="Frameworks worth living by. Mental models, methodologies, and practical wisdom — tested, not theoretical."
               href="/systems"
+              iconName="dna"
             />
           </div>
 

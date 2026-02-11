@@ -2,12 +2,23 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { Triangle, Atom, Dna } from 'lucide-react';
+
+const iconMap = {
+  triangle: Triangle,
+  atom: Atom,
+  dna: Dna,
+} as const;
+
+type IconName = keyof typeof iconMap;
 
 interface ContentPreviewProps {
   title: string;
   description: string;
   href: string;
   badge?: string;
+  /** Icon name from lucide (triangle, atom, dna) */
+  iconName?: IconName;
   /** Optional animated icon (WebM path) shown above the card */
   iconSrc?: string;
   /** MP4 fallback for the icon */
@@ -16,7 +27,9 @@ interface ContentPreviewProps {
   iconSize?: number;
 }
 
-export function ContentPreview({ title, description, href, badge, iconSrc, iconFallback, iconSize = 120 }: ContentPreviewProps) {
+export function ContentPreview({ title, description, href, badge, iconName, iconSrc, iconFallback, iconSize = 120 }: ContentPreviewProps) {
+  const Icon = iconName ? iconMap[iconName] : null;
+
   return (
     <motion.div
       whileHover={{ y: -2 }}
@@ -24,7 +37,7 @@ export function ContentPreview({ title, description, href, badge, iconSrc, iconF
       className="group"
     >
       <Link href={href}>
-        {/* Icon floats above the card, left-aligned */}
+        {/* Animated video icon (legacy) */}
         {iconSrc && (
           <div className="flex justify-start pl-2 -mb-4">
             <video
@@ -43,9 +56,14 @@ export function ContentPreview({ title, description, href, badge, iconSrc, iconF
 
         <div className="relative border border-border/40 rounded-xl p-6 h-full transition-all duration-300 hover:bg-muted/[0.06] hover:border-border/60">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-xl font-serif font-normal group-hover:text-primary transition-colors">
-              {title}
-            </h3>
+            <div className="flex items-center gap-2.5">
+              {Icon && (
+                <Icon className="w-5 h-5 text-muted-foreground/50 group-hover:text-primary/70 transition-colors" strokeWidth={1.5} />
+              )}
+              <h3 className="text-xl font-serif font-normal group-hover:text-primary transition-colors">
+                {title}
+              </h3>
+            </div>
             {badge && (
               <span className="text-[10px] uppercase tracking-wider text-primary/70 bg-primary/[0.06] px-2 py-0.5 rounded-full border border-primary/10 font-medium">
                 {badge}
