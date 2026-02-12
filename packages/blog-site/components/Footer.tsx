@@ -11,7 +11,6 @@ const navSections = [
       { href: '/essays', label: 'Essays' },
       { href: '/posts', label: 'Posts' },
       { href: '/systems', label: 'Systems' },
-      { href: '/glossary', label: 'Glossary' },
     ],
   },
   {
@@ -19,6 +18,7 @@ const navSections = [
     links: [
       { href: '/#subscribe', label: 'Subscribe' },
       { href: '#feedback', label: 'Feedback' },
+      { href: '/glossary', label: 'Glossary' },
     ],
   },
 ];
