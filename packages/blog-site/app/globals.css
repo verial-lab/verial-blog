@@ -66,8 +66,9 @@ code { @apply font-mono text-sm; }
 
 /* Footnote superscript links */
 .prose sup a[data-footnote-ref] {
-  @apply text-primary/70 hover:text-primary no-underline text-[13px] font-normal;
-  padding: 0 1px;
+  @apply text-primary hover:text-foreground no-underline text-[13px] font-semibold bg-muted/40 hover:bg-muted/60 rounded-sm transition-colors;
+  padding: 1px 5px;
+  margin-left: 1px;
 }
 
 /* Scroll offset for footnote targets */
