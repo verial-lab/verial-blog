@@ -18,7 +18,6 @@ const navSections = [
     links: [
       { href: '/#subscribe', label: 'Subscribe' },
       { href: '#feedback', label: 'Feedback' },
-      { href: '/glossary', label: 'Glossary' },
     ],
   },
 ];

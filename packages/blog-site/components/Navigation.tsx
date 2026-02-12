@@ -13,6 +13,10 @@ const navItems = [
   { href: '/systems', label: 'Systems' },
 ];
 
+const mobileOnlyItems = [
+  { href: '/glossary', label: 'Glossary' },
+];
+
 export function Navigation() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
@@ -127,6 +131,18 @@ export function Navigation() {
                     {item.label}
                   </Link>
                 ))}
+                <div className="border-t border-border/20 pt-3 mt-2">
+                  {mobileOnlyItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="block font-display text-muted-foreground/70 hover:text-foreground transition-colors text-sm py-1"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
               </div>
             </motion.div>
           )}
