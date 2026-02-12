@@ -38,7 +38,7 @@ export default function GlossaryPage() {
                   {entry.definition}
                 </p>
                 {links.length > 0 && (
-                  <div className="text-sm text-muted-foreground/60">
+                  <div className="text-sm text-foreground/50">
                     <span className="mr-2">Referenced in:</span>
                     {links.map((link, i) => (
                       <span key={link.url}>

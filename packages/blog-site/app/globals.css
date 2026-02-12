@@ -55,10 +55,10 @@ code { @apply font-mono text-sm; }
   @apply space-y-3 list-decimal pl-6;
 }
 .prose .footnotes li {
-  @apply text-[15px] leading-[1.7] text-muted-foreground font-normal;
+  @apply text-[16px] leading-[1.7] text-foreground/60 font-normal;
 }
 .prose .footnotes li p {
-  @apply text-[15px] leading-[1.7] text-muted-foreground font-normal mb-0;
+  @apply text-[16px] leading-[1.7] text-foreground/60 font-normal mb-0;
 }
 .prose .footnotes li a[data-footnote-backref] {
   @apply no-underline text-primary/60 hover:text-primary ml-1;
@@ -125,7 +125,7 @@ code { @apply font-mono text-sm; }
   @apply font-serif font-semibold text-sm text-foreground;
 }
 .glossary-popover-def {
-  @apply text-sm text-muted-foreground leading-relaxed;
+  @apply text-sm text-foreground/70 leading-relaxed;
 }
 
 /* Selection */
