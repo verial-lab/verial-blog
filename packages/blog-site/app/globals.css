@@ -46,6 +46,34 @@ code { @apply font-mono text-sm; }
 .prose hr { @apply border-border/30 my-12; }
 .prose a { @apply text-primary hover:text-primary/80 transition-colors underline underline-offset-2; }
 
+/* Footnotes — remark-gfm [^1] syntax */
+.prose .footnotes {
+  @apply mt-16 pt-8 border-t border-border/30;
+}
+.prose .footnotes ol {
+  @apply space-y-3 list-decimal pl-6;
+}
+.prose .footnotes li {
+  @apply text-[15px] leading-[1.7] text-muted-foreground font-normal;
+}
+.prose .footnotes li p {
+  @apply text-[15px] leading-[1.7] text-muted-foreground font-normal mb-0;
+}
+.prose .footnotes li a[data-footnote-backref] {
+  @apply no-underline text-primary/60 hover:text-primary ml-1;
+}
+
+/* Footnote superscript links */
+.prose sup a[data-footnote-ref] {
+  @apply text-primary/70 hover:text-primary no-underline text-[13px] font-normal;
+  padding: 0 1px;
+}
+
+/* Scroll offset for footnote targets */
+.prose .footnotes li:target {
+  @apply bg-muted/20 -mx-3 px-3 py-1 rounded-lg;
+}
+
 /* Buttons */
 .button-primary {
   @apply bg-foreground text-background px-6 py-3 rounded-lg font-display font-semibold 
