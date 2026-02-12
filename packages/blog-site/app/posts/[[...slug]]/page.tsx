@@ -2,6 +2,7 @@ import { postSource } from '@/lib/source';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { SectionIcon } from '@/components/SectionIcon';
+import { GlossaryTerm } from '@/components/GlossaryTerm';
 
 export default async function NotePage(props: {
   params: Promise<{ slug?: string[] }>;
@@ -85,7 +86,7 @@ export default async function NotePage(props: {
         </header>
 
         <div className="prose">
-          <MDX />
+          <MDX components={{ GlossaryTerm }} />
         </div>
       </article>
 
