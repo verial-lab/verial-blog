@@ -62,6 +62,11 @@ code { @apply font-mono text-sm; }
 }
 .prose .footnotes li a[data-footnote-backref] {
   @apply no-underline text-primary/60 hover:text-primary ml-1;
+  font-size: 0;
+}
+.prose .footnotes li a[data-footnote-backref]::after {
+  content: '↑';
+  font-size: 14px;
 }
 
 /* Footnote superscript links */
