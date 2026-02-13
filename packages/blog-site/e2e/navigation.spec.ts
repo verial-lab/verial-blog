@@ -6,7 +6,8 @@ test.describe('Navigation', () => {
     await expect(page).toHaveTitle(/Verial/);
   });
 
-  test('nav links are visible on desktop', async ({ page }) => {
+  test('nav links are visible on desktop', async ({ page, isMobile }) => {
+    test.skip(!!isMobile, 'Desktop only');
     await page.goto('/');
     const nav = page.locator('nav');
     await expect(nav.getByRole('link', { name: 'Essays' })).toBeVisible();
