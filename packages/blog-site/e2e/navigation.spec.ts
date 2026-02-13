@@ -8,34 +8,35 @@ test.describe('Navigation', () => {
 
   test('nav links are visible on desktop', async ({ page }) => {
     await page.goto('/');
-    await expect(page.getByRole('link', { name: 'Essays' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Posts' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Systems' })).toBeVisible();
+    const nav = page.locator('nav');
+    await expect(nav.getByRole('link', { name: 'Essays' })).toBeVisible();
+    await expect(nav.getByRole('link', { name: 'Posts' })).toBeVisible();
+    await expect(nav.getByRole('link', { name: 'Systems' })).toBeVisible();
   });
 
   test('essays page loads', async ({ page }) => {
     await page.goto('/essays');
-    await expect(page.getByRole('heading', { name: 'Essays' })).toBeVisible();
+    await expect(page.locator('h1:text("Essays")')).toBeVisible();
   });
 
   test('posts page loads', async ({ page }) => {
     await page.goto('/posts');
-    await expect(page.getByRole('heading', { name: 'Posts' })).toBeVisible();
+    await expect(page.locator('h1:text("Posts")')).toBeVisible();
   });
 
   test('systems page loads', async ({ page }) => {
     await page.goto('/systems');
-    await expect(page.getByRole('heading', { name: 'Systems' })).toBeVisible();
+    await expect(page.locator('h1:text("Systems")')).toBeVisible();
   });
 
   test('glossary page loads', async ({ page }) => {
     await page.goto('/glossary');
-    await expect(page.getByRole('heading', { name: 'Glossary' })).toBeVisible();
+    await expect(page.locator('h1:text("Glossary")')).toBeVisible();
   });
 
   test('nav logo links to homepage', async ({ page }) => {
     await page.goto('/essays');
-    await page.getByRole('link', { name: 'Verial' }).click();
+    await page.locator('nav').getByRole('link', { name: 'Verial' }).click();
     await expect(page).toHaveURL('/');
   });
 });

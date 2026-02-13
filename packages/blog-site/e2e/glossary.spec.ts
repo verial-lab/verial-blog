@@ -34,13 +34,14 @@ test.describe('Glossary', () => {
 
   test('glossary page lists all terms', async ({ page }) => {
     await page.goto('/glossary');
-    await expect(page.getByText('Containment')).toBeVisible();
-    await expect(page.getByText('Legibility')).toBeVisible();
-    await expect(page.getByText('Systems Thinking')).toBeVisible();
+    // Check for term headings specifically
+    await expect(page.locator('h2:text("Containment")')).toBeVisible();
+    await expect(page.locator('h2:text("Legibility")')).toBeVisible();
+    await expect(page.locator('h2:text("Systems Thinking")')).toBeVisible();
   });
 
   test('glossary page shows backlinks', async ({ page }) => {
     await page.goto('/glossary');
-    await expect(page.getByText('Referenced in:')).toBeVisible();
+    await expect(page.getByText('Referenced in:').first()).toBeVisible();
   });
 });
