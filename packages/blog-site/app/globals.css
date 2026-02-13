@@ -122,7 +122,8 @@ code { @apply font-mono text-sm; }
   gap: 4px;
 }
 .glossary-popover-title {
-  @apply font-serif font-semibold text-sm text-foreground;
+  @apply font-serif font-semibold text-sm text-foreground hover:text-primary transition-colors cursor-pointer;
+  text-decoration: none;
 }
 .glossary-popover-def {
   @apply text-sm text-foreground/70 leading-relaxed;

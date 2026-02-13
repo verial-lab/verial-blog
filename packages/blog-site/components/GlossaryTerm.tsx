@@ -88,7 +88,13 @@ export function GlossaryTerm({
       </button>
       {open && (
         <span ref={popoverRef} className="glossary-popover" role="tooltip">
-          <span className="glossary-popover-title">{term}</span>
+          <a
+            href={`/glossary#${term.toLowerCase().replace(/\s+/g, '-')}`}
+            className="glossary-popover-title"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {term}
+          </a>
           <span className="glossary-popover-def">{definition}</span>
         </span>
       )}
