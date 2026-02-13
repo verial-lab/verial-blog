@@ -6,7 +6,6 @@ dist
 .env
 .env.local
 .source
-package-lock.json
 -e 
 # Testing
 playwright-report/
