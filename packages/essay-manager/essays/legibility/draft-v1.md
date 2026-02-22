@@ -19,25 +19,38 @@ But as the features piled up, something shifted. My understanding of the system 
 
 ## 2. The New Failure Mode
 
-<!-- OUTLINE TARGET: 250-350w. Core idea: AI generates code faster than humans can comprehend it. Bottleneck shifted from writing to understanding. -->
+<!-- OUTLINE TARGET: 500-700w (expanded — essay target now ~5,000w). Core idea: AI generates code faster than humans can comprehend it. Bottleneck shifted from writing to understanding. -->
+<!-- STATUS: 📝 Draft written 2026-02-27 — needs author review + voice tuning. -->
 
-🎙️ On any team, the amount of code per developer is skyrocketing. We're moving into a point where we're having less developers managing orders of magnitude more code than was available before AI.
+The bottleneck has moved. For decades, writing code was the constraint — you could only build as fast as you could type. Not anymore. AI can generate code faster than most engineers can read it. That gap, between generation speed and human comprehension, is the new failure mode.
 
-🎙️ Review time and planning — that seems to be the current bottleneck. And we're definitely not at a point yet where AI can be fully trusted. If you care about quality, you always want to have a quality and review check — whether it's CI/CD, AI review, preferably both.
+On any team right now, the code-per-developer ratio is skyrocketing. Researchers found that AI assistance makes developers 55.8% faster at completing tasks.[^1] That's not a small efficiency gain — that's a structural shift in what one person can produce. And for a while, the story seemed purely positive: more output, faster, with fewer people.
 
-🎙️ But there's still the limitation of human cognition. Even though AI is ridiculously fast, it doesn't automatically make our ability to learn faster and understand things faster improve.[^3]
+Then DORA published something that complicated it. Organizations that increased AI adoption by 25% saw delivery stability *decrease* by 7.2%.[^2] Speed went up. Reliability went down. That's not a coincidence — that's the first sign of the new problem.
 
-🎙️ So at this point, managing complexity and legibility are arguably so much more important than they ever were before. Because if a single person is managing ten times the amount of code, but they can still only comprehend the same amount as they did before — it's pretty challenging.
+The thing AI doesn't improve is human comprehension. Our working memory holds roughly 7 ± 2 chunks of information at once — that's Miller's Law, and it hasn't been patched recently.[^3] You can write code ten times faster. You cannot understand ten times faster. Which means the faster you generate, the faster you outrun your own grasp of what you've built.
 
-✏️ [INSERT: The scale numbers — 1B tokens/day ≈ 3 years of human work. Peter Steinberger logged 93,570 GitHub contributions in a single year[^16] — proof of what one AI-augmented developer looks like at full tilt.]
+The context window makes this concrete. The rule of thumb practitioners use: roughly 10 tokens per line of code. Claude's 200K context window fits about 20,000 lines — roughly 40 files at 500 lines each. Gemini 1.5's 1M context pushes to around 100,000 lines. Now look at what real production systems contain:
 
-🎙️ Of course, it means we're moving up the stack. We're becoming more like engineering managers. You don't have to go down and know every single detail about all the low-level packages. But the system as a whole — the functionality — that's really key. The ability to see what's happening.
+| Codebase | Lines of code | Claude 200K sees | Gemini 1M sees |
+|---|---|---|---|
+| Small startup app | ~50K LOC | 40% | 100% |
+| Medium SaaS | ~150K LOC | 13% | 67% |
+| React | ~593K LOC | 4% | 17% |
+| VS Code | ~1.44M LOC | 1.4% | 7% |
+| Linux kernel | ~40M LOC | 0.05% | 0.25% |
 
-✏️ [INSERT: Copilot users complete tasks 55.8% faster[^1] — but DORA 2024 found that 25% more AI adoption correlates with a 7.2% *decrease* in delivery stability[^2]. The speed is real, but so is the instability.]
+A fresh agent session on a medium-sized codebase sees roughly one-eighth of the system at best. It doesn't know what it doesn't know. Every new session bootstraps from zero context. That's not carelessness — the agent genuinely can't see the existing implementation. So things get duplicated. Dependencies get missed. Features land adjacent to features that already solve the same problem.
 
-🎙️ And then there's the context problem. LLMs with a 200k context window can only really hold about fifty 500-line files at one time. That means it's likely missing so much of the system's code. Things get duplicated. Dependencies get missed.
+Now scale that up. I ran the math on where this is heading: within a few years, running 1 billion tokens per day will be within reach of individual developers. Converting that to code output — using my own commit history as a baseline — that's roughly three years of software development compressed into a single day. Peter Steinberger logged 93,570 GitHub contributions in a single year.[^16] That's what one AI-augmented developer already looks like at full tilt. The AI can handle the generation. The problem is the human in the seat.
 
-🎙️ Planning is an interesting one. You want to add a feature, but you're not really sure where it fits in. If an AI gives you a plan, you kind of just have to trust it. And then that gets back to the problem of code rot — context is being missed, things are being duplicated.
+Reviewing a day's output that represents three years of work is obviously impossible line by line. You need a higher-order understanding of the system — something you can validate at a glance. The moment you can't validate it, you've lost the ability to direct it. You're watching a dashboard and hoping the numbers make sense.
+
+This is the shift. We're moving up the stack — becoming something closer to engineering managers than line-level implementers. You don't need to understand every low-level dependency. But you need to understand the shape of the system: its capabilities, its boundaries, where things fit. Want to add a feature but can't see where it belongs? You've already hit a complexity limit.
+
+Think of it like a building. Software is abstract — there's no physical structure you can walk through, no way to see the load-bearing walls by looking at it. That structure has to be made intentional. And the systems that do this — that surface their own shape, that show you what they can do — those are the ones that survive being handed to an AI generating at scale.
+
+A locomotive is one of the most powerful leverage devices ever built: one human, moving thousands of tonnes. The constraint on that system isn't the engine. It's the driver's ability to see the track. You have a buzzer that tells you when to stop at the next station. But if anything happens between stations — it's going to be bad. Speed without visibility isn't power. It's just a faster way to crash.
 
 ---
 

@@ -1,0 +1,18 @@
+{
+  "name": "@verial/essay-manager",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "essay": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "essay": "node --loader ts-node/esm src/cli.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  }
+}
