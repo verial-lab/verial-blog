@@ -4,9 +4,9 @@ on:
   push:
     branches: [main]
     paths:
-      - 'packages/blog-site/content/essays/**/*.mdx'
-      - 'packages/blog-site/content/posts/**/*.mdx'
-      - 'packages/blog-site/content/systems/**/*.mdx'
+      - 'packages/blog-site/content/essays/'
+      - 'packages/blog-site/content/posts/'
+      - 'packages/blog-site/content/systems/'
 
 jobs:
   create-email-draft:
@@ -28,10 +28,10 @@ jobs:
         id: find
         run: |
           FILES=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD -- \
-            'packages/blog-site/content/essays/**/*.mdx' \
-            'packages/blog-site/content/posts/**/*.mdx' \
-            'packages/blog-site/content/systems/**/*.mdx' \
-          | grep -v 'index.mdx' || true)
+            'packages/blog-site/content/essays/' \
+            'packages/blog-site/content/posts/' \
+            'packages/blog-site/content/systems/' \
+          | grep '.mdx$' | grep -v 'index.mdx' || true)
 
           if [ -z "$FILES" ]; then
             echo "No content files changed"
