@@ -6,7 +6,7 @@ const BUTTONDOWN_API = 'https://api.buttondown.com/v1';
 async function main() {
   const filePath = process.argv[2];
   if (!filePath) {
-    console.error('Usage: send-draft <path-to-mdx-file>');
+    console.error('Usage: create-draft <path-to-mdx-file>');
     process.exit(1);
   }
 
@@ -37,8 +37,8 @@ async function main() {
       subject: content.meta.title,
       body: html,
       status: 'draft',
+      tags: content.tags,
       metadata: {
-        tags: content.tags,
         canonical_url: content.canonicalUrl,
         content_type: content.meta.type,
         slug: content.meta.slug,
