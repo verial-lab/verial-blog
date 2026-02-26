@@ -183,7 +183,7 @@ jobs:
           // Build markdown table for the comment
           let md = '| Page | Perf | A11y | BP | SEO |\n|------|------|------|-----|-----|\n';
           for (const r of results) {
-            md += `| \`${r.page}\` | ${r.perfStatus} ${r.performance} | ${r.a11yStatus} ${r.accessibility} | ${r.bpStatus} ${r.bestPractices} | ${r.seoStatus} ${r.seo} |\n`;
+            md += `| ${r.page} | ${r.perfStatus} ${r.performance} | ${r.a11yStatus} ${r.accessibility} | ${r.bpStatus} ${r.bestPractices} | ${r.seoStatus} ${r.seo} |\n`;
           }
 
           // GitHub output (escape newlines)
