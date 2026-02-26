@@ -10,7 +10,7 @@ export interface ContentMeta {
   date?: string;
   type: string;
   slug: string;
-  send_email?: boolean;
+  email_draft?: boolean;
 }
 
 export interface ConvertedContent {
@@ -92,7 +92,7 @@ export async function convertMdxToEmail(filePath: string): Promise<ConvertedCont
     date: data.date,
     type,
     slug,
-    send_email: data.send_email,
+    email_draft: data.email_draft,
   };
 
   return {

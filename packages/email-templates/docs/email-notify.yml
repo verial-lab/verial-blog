@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile || npm install
 
-      - name: Find changed MDX files with send_email
+      - name: Find changed MDX files with email_draft
         id: find
         run: |
           FILES=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD -- \
@@ -42,16 +42,16 @@ jobs:
             exit 0
           fi
 
-          # Filter to only files with send_email: true
+          # Filter to only files with email_draft: true
           SEND_FILES=""
           for f in $FILES; do
-            if grep -q 'send_email:\s*true' "$f" 2>/dev/null; then
+            if grep -q 'email_draft:\s*true' "$f" 2>/dev/null; then
               SEND_FILES="$SEND_FILES $f"
             fi
           done
 
           if [ -z "$SEND_FILES" ]; then
-            echo "No files with send_email: true"
+            echo "No files with email_draft: true"
             echo "has_files=false" >> $GITHUB_OUTPUT
             exit 0
           fi
