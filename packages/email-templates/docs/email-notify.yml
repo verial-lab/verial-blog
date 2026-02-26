@@ -20,12 +20,9 @@ jobs:
         with:
           node-version: 22
 
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile || npm install
+        run: npm ci
 
       - name: Find changed MDX files with email_draft
         id: find
@@ -69,5 +66,5 @@ jobs:
         run: |
           for f in ${{ steps.find.outputs.files }}; do
             echo "Processing: $f"
-            cd packages/email-templates && npx tsx scripts/send-draft.ts "../../$f" && cd ../..
+            cd packages/email-templates && npx tsx scripts/create-draft.ts "../../$f" && cd ../..
           done
