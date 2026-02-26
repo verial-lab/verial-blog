@@ -1,0 +1,318 @@
+# CI Workflow with Sticky PR Comments
+# =====================================
+# This file lives in docs/ because the bot can't push to .github/workflows/.
+# To activate: copy this file to .github/workflows/ci.yml
+#
+# Features:
+# - Playwright E2E tests with pass/fail reporting
+# - Lighthouse CI with per-page scores and threshold checks
+# - Single sticky PR comment (updated each run, not spammed)
+# - Lighthouse scores persisted as JSON artifacts for graphing
+# - Run history table (last 10 runs)
+
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+
+  test-e2e:
+    name: Playwright E2E
+    runs-on: ubuntu-latest
+    needs: build
+    outputs:
+      total: ${{ steps.results.outputs.total }}
+      passed: ${{ steps.results.outputs.passed }}
+      failed: ${{ steps.results.outputs.failed }}
+      skipped: ${{ steps.results.outputs.skipped }}
+      browsers: ${{ steps.results.outputs.browsers }}
+      status: ${{ steps.results.outputs.status }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Install Playwright browsers
+        working-directory: packages/blog-site
+        run: npx playwright install --with-deps chromium
+      - name: Run Playwright tests
+        id: playwright
+        working-directory: packages/blog-site
+        continue-on-error: true
+        run: npx playwright test --reporter=json > playwright-results.json 2>&1 || true
+      - name: Parse Playwright results
+        id: results
+        working-directory: packages/blog-site
+        run: |
+          if [ -f playwright-results.json ]; then
+            TOTAL=$(jq '.stats.expected + .stats.unexpected + .stats.flaky + .stats.skipped' playwright-results.json 2>/dev/null || echo "0")
+            PASSED=$(jq '.stats.expected' playwright-results.json 2>/dev/null || echo "0")
+            FAILED=$(jq '.stats.unexpected' playwright-results.json 2>/dev/null || echo "0")
+            SKIPPED=$(jq '.stats.skipped' playwright-results.json 2>/dev/null || echo "0")
+          else
+            TOTAL=0; PASSED=0; FAILED=0; SKIPPED=0
+          fi
+          # Detect browsers from config
+          BROWSERS="chromium"
+          if [ "$FAILED" -gt 0 ]; then STATUS="❌ FAIL"; else STATUS="✅ PASS"; fi
+          echo "total=$TOTAL" >> "$GITHUB_OUTPUT"
+          echo "passed=$PASSED" >> "$GITHUB_OUTPUT"
+          echo "failed=$FAILED" >> "$GITHUB_OUTPUT"
+          echo "skipped=$SKIPPED" >> "$GITHUB_OUTPUT"
+          echo "browsers=$BROWSERS" >> "$GITHUB_OUTPUT"
+          echo "status=$STATUS" >> "$GITHUB_OUTPUT"
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: packages/blog-site/playwright-report/
+          retention-days: 14
+
+  lighthouse:
+    name: Lighthouse CI
+    runs-on: ubuntu-latest
+    needs: build
+    outputs:
+      scores_json: ${{ steps.parse.outputs.scores_json }}
+      summary: ${{ steps.parse.outputs.summary }}
+      has_errors: ${{ steps.parse.outputs.has_errors }}
+      has_warnings: ${{ steps.parse.outputs.has_warnings }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Build site
+        run: npm run build
+      - name: Run Lighthouse CI
+        id: lhci
+        working-directory: packages/blog-site
+        continue-on-error: true
+        run: |
+          npm start &
+          SERVER_PID=$!
+          sleep 5
+          npx @lhci/cli autorun \
+            --collect.url=http://localhost:3000/ \
+            --collect.url=http://localhost:3000/essays \
+            --collect.url=http://localhost:3000/essays/containment-systems-design \
+            --collect.url=http://localhost:3000/glossary \
+            --output-path=.lighthouseci/ || true
+          kill $SERVER_PID 2>/dev/null || true
+      - name: Parse Lighthouse results
+        id: parse
+        working-directory: packages/blog-site
+        run: |
+          # Parse all Lighthouse JSON results into a structured summary
+          cat > /tmp/parse-lh.js << 'SCRIPT'
+          const fs = require('fs');
+          const path = require('path');
+          const dir = '.lighthouseci';
+          const files = fs.readdirSync(dir).filter(f => f.endsWith('.json') && !f.startsWith('manifest'));
+          const results = [];
+          let hasErrors = false;
+          let hasWarnings = false;
+
+          for (const file of files) {
+            try {
+              const data = JSON.parse(fs.readFileSync(path.join(dir, file), 'utf8'));
+              if (!data.categories) continue;
+              const url = new URL(data.finalUrl || data.requestedUrl);
+              const page = url.pathname === '/' ? '/' : url.pathname;
+              const scores = {
+                page,
+                performance: Math.round((data.categories.performance?.score || 0) * 100),
+                accessibility: Math.round((data.categories.accessibility?.score || 0) * 100),
+                bestPractices: Math.round((data.categories['best-practices']?.score || 0) * 100),
+                seo: Math.round((data.categories.seo?.score || 0) * 100),
+              };
+              // Threshold checks
+              scores.perfStatus = scores.performance < 80 ? '⚠️' : '✅';
+              scores.a11yStatus = scores.accessibility < 90 ? '❌' : '✅';
+              scores.bpStatus = scores.bestPractices < 90 ? '⚠️' : '✅';
+              scores.seoStatus = scores.seo < 90 ? '⚠️' : '✅';
+
+              if (scores.accessibility < 90) hasErrors = true;
+              if (scores.performance < 80 || scores.bestPractices < 90 || scores.seo < 90) hasWarnings = true;
+
+              results.push(scores);
+            } catch (e) { /* skip non-report files */ }
+          }
+
+          // Sort by page name
+          results.sort((a, b) => a.page.localeCompare(b.page));
+
+          // Output
+          const output = {
+            timestamp: new Date().toISOString(),
+            runNumber: process.env.GITHUB_RUN_NUMBER || '0',
+            commit: (process.env.GITHUB_SHA || '').slice(0, 7),
+            pages: results,
+            averages: {
+              performance: Math.round(results.reduce((s, r) => s + r.performance, 0) / (results.length || 1)),
+              accessibility: Math.round(results.reduce((s, r) => s + r.accessibility, 0) / (results.length || 1)),
+            }
+          };
+
+          fs.writeFileSync('lighthouse-scores.json', JSON.stringify(output, null, 2));
+
+          // Build markdown table for the comment
+          let md = '| Page | Perf | A11y | BP | SEO |\n|------|------|------|-----|-----|\n';
+          for (const r of results) {
+            md += `| \`${r.page}\` | ${r.perfStatus} ${r.performance} | ${r.a11yStatus} ${r.accessibility} | ${r.bpStatus} ${r.bestPractices} | ${r.seoStatus} ${r.seo} |\n`;
+          }
+
+          // GitHub output (escape newlines)
+          const escaped = md.replace(/\n/g, '%0A');
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `scores_json=${JSON.stringify(output)}\n`);
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `summary<<EOF\n${md}EOF\n`);
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `has_errors=${hasErrors}\n`);
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `has_warnings=${hasWarnings}\n`);
+          SCRIPT
+          node /tmp/parse-lh.js
+      - name: Upload Lighthouse scores JSON
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-scores
+          path: packages/blog-site/lighthouse-scores.json
+          retention-days: 90
+      - name: Upload Lighthouse HTML reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: packages/blog-site/.lighthouseci/
+          retention-days: 14
+
+  comment:
+    name: PR Comment
+    runs-on: ubuntu-latest
+    needs: [test-e2e, lighthouse]
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Build comment body
+        id: body
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const playwright = {
+              status: '${{ needs.test-e2e.outputs.status }}',
+              total: '${{ needs.test-e2e.outputs.total }}',
+              passed: '${{ needs.test-e2e.outputs.passed }}',
+              failed: '${{ needs.test-e2e.outputs.failed }}',
+              skipped: '${{ needs.test-e2e.outputs.skipped }}',
+              browsers: '${{ needs.test-e2e.outputs.browsers }}',
+            };
+
+            const lhSummary = `${{ needs.lighthouse.outputs.summary }}`;
+            const lhErrors = '${{ needs.lighthouse.outputs.has_errors }}' === 'true';
+            const lhWarnings = '${{ needs.lighthouse.outputs.has_warnings }}' === 'true';
+
+            let lhScores;
+            try { lhScores = JSON.parse('${{ needs.lighthouse.outputs.scores_json }}'); } catch { lhScores = null; }
+
+            const runNumber = context.runNumber;
+            const runDate = new Date().toISOString().slice(0, 10);
+            const lhStatus = lhErrors ? '❌ FAIL' : lhWarnings ? '⚠️ WARN' : '✅ PASS';
+
+            // --- Build run history ---
+            // Try to fetch existing comment to extract history
+            let history = [];
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const marker = '<!-- ci-sticky-comment -->';
+            const existing = comments.find(c => c.body && c.body.includes(marker));
+            if (existing) {
+              // Parse history from existing comment
+              const histMatch = existing.body.match(/<!-- history:(.*?) -->/);
+              if (histMatch) {
+                try { history = JSON.parse(histMatch[1]); } catch {}
+              }
+            }
+
+            // Add current run
+            const currentRun = {
+              num: runNumber,
+              date: runDate,
+              tests: playwright.total,
+              testStatus: playwright.status.includes('PASS') ? '✅' : '❌',
+              perfAvg: lhScores?.averages?.performance ?? '—',
+              a11yAvg: lhScores?.averages?.accessibility ?? '—',
+            };
+            history.push(currentRun);
+            // Keep last 10
+            if (history.length > 10) history = history.slice(-10);
+
+            // --- Compose comment ---
+            let body = `${marker}\n`;
+            body += `## 🧪 CI Results — Run #${runNumber}\n\n`;
+
+            // Playwright section
+            body += `### Playwright E2E ${playwright.status}\n`;
+            body += `| Tests | Passed | Failed | Skipped | Browsers |\n`;
+            body += `|-------|--------|--------|---------|----------|\n`;
+            body += `| ${playwright.total} | ${playwright.passed} | ${playwright.failed} | ${playwright.skipped} | ${playwright.browsers} |\n\n`;
+
+            // Lighthouse section
+            body += `### Lighthouse ${lhStatus}\n`;
+            body += `> Thresholds: Perf ≥80 ⚠️ | A11y ≥90 ❌ | BP ≥90 ⚠️ | SEO ≥90 ⚠️\n\n`;
+            body += lhSummary + '\n';
+
+            // Run history
+            body += `### 📊 Run History (last 10)\n`;
+            body += `| # | Date | Tests | Status | Perf Avg | A11y Avg |\n`;
+            body += `|---|------|-------|--------|----------|----------|\n`;
+            for (const h of history) {
+              const isCurrent = h.num == runNumber;
+              const prefix = isCurrent ? '**' : '';
+              const suffix = isCurrent ? '**' : '';
+              body += `| ${prefix}${h.num}${suffix} | ${prefix}${h.date}${suffix} | ${prefix}${h.tests}${suffix} | ${prefix}${h.testStatus}${suffix} | ${prefix}${h.perfAvg}${suffix} | ${prefix}${h.a11yAvg}${suffix} |\n`;
+            }
+
+            // Hidden history data for next run
+            body += `\n<!-- history:${JSON.stringify(history)} -->\n`;
+
+            core.setOutput('body', body);
+
+      - name: Find existing comment
+        uses: peter-evans/find-comment@v3
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body-includes: '<!-- ci-sticky-comment -->'
+
+      - name: Create or update comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          body: ${{ steps.body.outputs.body }}
+          edit-mode: replace
