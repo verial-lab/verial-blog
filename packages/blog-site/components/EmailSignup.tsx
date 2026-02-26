@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 export function EmailSignup() {
   const [email, setEmail] = useState('');
-  const [includeNotes, setIncludeNotes] = useState(false);
+  const [includeUpdates, setIncludeUpdates] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'already' | 'error'>('idle');
 
@@ -17,7 +17,11 @@ export function EmailSignup() {
       const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, includeNotes }),
+        body: JSON.stringify({
+          email,
+          includePosts: includeUpdates,
+          includeSystems: includeUpdates,
+        }),
       });
 
       const data = await res.json();
@@ -97,8 +101,8 @@ export function EmailSignup() {
             <label className="flex items-center gap-2 justify-center text-base cursor-pointer">
               <input
                 type="checkbox"
-                checked={includeNotes}
-                onChange={(e) => setIncludeNotes(e.target.checked)}
+                checked={includeUpdates}
+                onChange={(e) => setIncludeUpdates(e.target.checked)}
                 className="w-4 h-4 rounded border-border"
               />
               <span className="text-muted-foreground">
