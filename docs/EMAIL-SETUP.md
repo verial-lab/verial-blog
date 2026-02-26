@@ -127,20 +127,20 @@ For the email pipeline scripts, `BUTTONDOWN_API_KEY` must also be available in C
 
 ### Automatic (via GitHub Action)
 
-When you merge content to `main` with `send_email: true` in frontmatter:
+When you merge content to `main` with `email_draft: true` in frontmatter:
 
 ```yaml
 ---
 title: "My New Essay"
 date: 2026-02-15
 type: essay          # essay | post | systems
-send_email: true     # triggers the email pipeline
+email_draft: true     # creates a Buttondown draft (does NOT send)
 excerpt: "A brief preview..."
 ---
 ```
 
 The GitHub Action:
-1. Detects new/changed MDX files with `send_email: true`
+1. Detects new/changed MDX files with `email_draft: true`
 2. Converts MDX → email-safe HTML
 3. Creates a **draft** in Buttondown (does NOT auto-send)
 4. You review the draft at [buttondown.com/emails](https://buttondown.com/emails)
@@ -191,7 +191,7 @@ When sending from Buttondown dashboard, you can also manually filter by tag unde
 ### Email draft not created after merge
 - Check GitHub Actions tab for workflow errors
 - Verify `BUTTONDOWN_API_KEY` is set as a repository secret
-- Ensure MDX file has `send_email: true` in frontmatter
+- Ensure MDX file has `email_draft: true` in frontmatter
 
 ### Tags not appearing on subscribers
 - Tags are created automatically when a subscriber is tagged
