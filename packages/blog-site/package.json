@@ -11,6 +11,7 @@
     "test:ui": "playwright test --ui"
   },
   "dependencies": {
+    "@verial/design-tokens": "*",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.8",
     "lucide-react": "^0.474.0",
