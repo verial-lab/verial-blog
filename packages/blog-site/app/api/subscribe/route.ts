@@ -4,7 +4,7 @@ const BUTTONDOWN_API = 'https://api.buttondown.com/v1/subscribers';
 
 export async function POST(req: NextRequest) {
   try {
-    const { email, includeNotes } = await req.json();
+    const { email, includePosts, includeSystems } = await req.json();
 
     if (!email || typeof email !== 'string') {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 });
@@ -22,9 +22,8 @@ export async function POST(req: NextRequest) {
     };
 
     const tags = ['essays'];
-    if (includeNotes) {
-      tags.push('posts', 'systems');
-    }
+    if (includePosts) tags.push('posts');
+    if (includeSystems) tags.push('systems');
 
     // Try creating new subscriber
     const createRes = await fetch(BUTTONDOWN_API, {
