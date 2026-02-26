@@ -53,7 +53,7 @@ export const Newsletter = ({
           </Section>
 
           {/* Body */}
-          <Section
+          <div
             style={bodySection}
             dangerouslySetInnerHTML={{ __html: bodyHtml }}
           />
