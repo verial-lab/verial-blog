@@ -25,15 +25,15 @@ But as the features piled up, something shifted. My understanding of the system 
 
 🎙️ Review time and planning — that seems to be the current bottleneck. And we're definitely not at a point yet where AI can be fully trusted. If you care about quality, you always want to have a quality and review check — whether it's CI/CD, AI review, preferably both.
 
-🎙️ But there's still the limitation of human cognition. Even though AI is ridiculously fast, it doesn't automatically make our ability to learn faster and understand things faster improve. [^3 Miller — working memory ~7 ± 2 chunks]
+🎙️ But there's still the limitation of human cognition. Even though AI is ridiculously fast, it doesn't automatically make our ability to learn faster and understand things faster improve.[^3]
 
 🎙️ So at this point, managing complexity and legibility are arguably so much more important than they ever were before. Because if a single person is managing ten times the amount of code, but they can still only comprehend the same amount as they did before — it's pretty challenging.
 
-✏️ [INSERT: The scale numbers — 1B tokens/day ≈ 3 years of human work. Reference Steinberger's 93,570 contributions/year as concrete evidence of what AI-augmented output looks like from a single developer.]
+✏️ [INSERT: The scale numbers — 1B tokens/day ≈ 3 years of human work. Peter Steinberger logged 93,570 GitHub contributions in a single year[^16] — proof of what one AI-augmented developer looks like at full tilt.]
 
 🎙️ Of course, it means we're moving up the stack. We're becoming more like engineering managers. You don't have to go down and know every single detail about all the low-level packages. But the system as a whole — the functionality — that's really key. The ability to see what's happening.
 
-✏️ [INSERT: Peng et al. stat — Copilot users 55.8% faster [^1]. DORA 2024 — 25% more AI adoption → 7.2% decrease in delivery stability [^2]. The speed is real, but so is the instability.]
+✏️ [INSERT: Copilot users complete tasks 55.8% faster[^1] — but DORA 2024 found that 25% more AI adoption correlates with a 7.2% *decrease* in delivery stability[^2]. The speed is real, but so is the instability.]
 
 🎙️ And then there's the context problem. LLMs with a 200k context window can only really hold about fifty 500-line files at one time. That means it's likely missing so much of the system's code. Things get duplicated. Dependencies get missed.
 
@@ -55,11 +55,11 @@ But as the features piled up, something shifted. My understanding of the system 
 
 🎙️ **"It's basically like driving a freight train in the dark. You can feel the power. It's moving. But you don't see that the tunnel through the next mountain had collapsed. And you just keep chugging along at faster and faster speeds until everything is obliterated."**
 
-✏️ [INSERT: Real-world examples that prove this cascade:
-- Amazon scrapped its AI recruiting tool — opaque bias, couldn't fix it [^4]
-- Dutch childcare scandal — opaque algorithm, 26,000 false accusations, government fell [^5]
-- Netscape rewrote Navigator from scratch, cost 3 years, killed the company [^6]
-- The Big Ball of Mud is the default, not the exception [^7]]
+✏️ [INSERT: Real-world examples — this is where the evidence hits hardest:
+- Amazon built an AI recruiting tool, discovered it had learned opaque gender bias, and *couldn't fix it* — they scrapped the whole system[^4]
+- The Dutch government used an opaque fraud-detection algorithm that falsely accused 26,000 families — the scandal brought down the entire government[^5]
+- Netscape rewrote Navigator from scratch. It cost three years and killed the company[^6]
+- Foote & Yoder called it the Big Ball of Mud — and argued it's the *default* architecture, not the exception[^7]]
 
 🎙️ For AI systems — they're extremely powerful. There's a lot of internal decision-making. How do you make all that work visible? How can you be absolutely confident that they're taking safe actions?
 
@@ -147,3 +147,24 @@ Footnotes: Fowler — Ubiquitous Language [^14], Fowler — Strangler Fig [^15]]
 - Legibility isn't about slowing down. It's about making speed sustainable.
 - "The systems that survive won't be the fastest or most powerful — they'll be the ones humans can still understand."
 - Maybe callback to Dutch scandal or Amazon as cost of illegibility at scale.]
+
+---
+
+## Footnotes Reference
+
+[^1]: Peng et al. — "The Impact of AI on Developer Productivity: Evidence from GitHub Copilot" (2023). Copilot users completed tasks 55.8% faster.
+[^2]: Google DORA Report 2024 — 25% increase in AI adoption correlated with 7.2% decrease in delivery stability.
+[^3]: George Miller — "The Magical Number Seven, Plus or Minus Two" (1956). Human working memory holds ~7 ± 2 chunks.
+[^4]: Reuters (Jeffrey Dastin) — Amazon scrapped AI recruiting tool that showed bias against women (2018).
+[^5]: Dutch childcare benefits scandal — opaque algorithmic fraud detection falsely accused ~26,000 families; government fell (2020-21).
+[^6]: Joel Spolsky — "Things You Should Never Do, Part I" (2000). Netscape's rewrite cost 3 years and killed the company.
+[^7]: Foote & Yoder — "Big Ball of Mud" (1999). Argues this is the default architecture pattern.
+[^8]: Eric Evans — *Domain-Driven Design* (2003). Ubiquitous language, bounded contexts.
+[^9]: Martin Fowler — Event Sourcing. Complete audit log + temporal queries.
+[^10]: Greg Young — CQRS Documents (2010). Events as first-class citizens.
+[^11]: John Sweller — Cognitive Load Theory (2011). Design must respect working memory limits.
+[^12]: Skelton & Pais — *Team Topologies* (2019). Software boundaries should align with cognitive load limits.
+[^13]: Martin Fowler — Bounded Context (2014). Explicit boundaries → manageable sub-models.
+[^14]: Martin Fowler — Ubiquitous Language (2006). Shared vocabulary = code reads how business thinks.
+[^15]: Martin Fowler — Strangler Fig Application (2004). Industry pattern to avoid rewrites.
+[^16]: Peter Steinberger (@steipete) — 93,570 GitHub contributions in one year (2025-2026). AI-augmented solo developer.
