@@ -1,3 +1,5 @@
+const { colors } = require('@verial/design-tokens/colors');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -9,17 +11,7 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
-      colors: {
-        background: 'hsl(0, 0%, 0%)',
-        foreground: 'hsl(0, 0%, 96%)',
-        border: 'hsla(0, 0%, 100%, 0.08)',
-        muted: 'hsl(0, 0%, 12%)',
-        'muted-foreground': 'hsl(0, 0%, 78%)',
-        accent: 'hsl(210, 15%, 20%)',
-        'accent-foreground': 'hsl(210, 15%, 85%)',
-        primary: 'hsl(40, 15%, 85%)',
-        'primary-foreground': 'hsl(0, 0%, 100%)',
-      },
+      colors,
       fontFamily: {
         serif: ['var(--font-serif)', 'Source Serif 4', 'serif'],
         display: ['var(--font-display)', 'Newsreader', 'serif'],
