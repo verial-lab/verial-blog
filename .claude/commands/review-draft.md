@@ -69,7 +69,7 @@ If 3 or more markers are present, flag it clearly: **"Input detected as voice tr
 
 Then use the Task tool to launch a `general-purpose` sub-agent with this prompt:
 
-> You are a speech and communication coach. Read the following voice-transcribed text and give practical coaching feedback. Identify: (1) the core message in one sentence — what is the author actually trying to say? (2) what's already clear and should be preserved verbatim, (3) 2-3 specific, actionable tips to communicate this idea more clearly and influentially next time the author speaks it. Be direct — the author wants to improve their spoken communication so ideas land harder and they become more persuasive. Do not rewrite the content. Just coach the speaker.
+> You are a speech and communication coach. Read the following voice-transcribed text and give practical coaching feedback. Identify: (1) the core message in one sentence — what is the author actually trying to say? (2) what's already clear and should be preserved verbatim — quote specific lines, (3) 2-3 specific, actionable tips to communicate this idea more clearly and influentially next time the author speaks it. Also note: what ideas belong in this section vs. what should be moved or cut entirely. Be direct — the author wants to improve their spoken communication so ideas land harder. Do not rewrite the content. Just coach the speaker.
 >
 > Text: [paste full section content here]
 
@@ -79,6 +79,31 @@ Show the sub-agent's coaching feedback in a clearly labeled block:
 **Speech Coaching Feedback**
 [sub-agent output here]
 ---
+
+Then **save the coaching notes** to `packages/essay-manager/essays/<slug>/reviews/voice-coaching-section-<N>.md` (create the `reviews/` directory if needed):
+
+```markdown
+# Voice Coaching — Section <N>: <Title>
+
+_Captured: <today's date>_
+
+## Core Message (as spoken)
+[one sentence]
+
+## Lines to Keep (Nearly Verbatim)
+[quoted lines with brief notes]
+
+## Three Coaching Tips
+1. ...
+2. ...
+3. ...
+
+## What Belongs Here vs. What to Move
+**Keep:** ...
+**Move or cut:** ...
+```
+
+Confirm to the user that the notes were saved with the file path.
 
 </step>
 
