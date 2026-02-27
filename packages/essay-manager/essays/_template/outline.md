@@ -17,3 +17,6 @@
 
 ## Notes
 <!-- Loose thoughts, angles to explore -->
+
+## Resources
+<!-- See resources/ folder for reference material, voice transcripts, etc. -->
