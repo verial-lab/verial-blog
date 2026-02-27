@@ -9,7 +9,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "essay": "node --loader ts-node/esm src/cli.ts",
+    "essay": "tsx src/cli.ts",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
