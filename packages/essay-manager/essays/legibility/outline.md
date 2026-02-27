@@ -49,7 +49,9 @@
 
 ## 3. What Breaks When Legibility Breaks (250-350w)
 
-**Key point:** The cascade — prediction fails → debugging stalls → improvement risky → transfer fails → trust collapses → shutdown.
+**Key point:** Systems that can't be understood get shut down. Black boxes don't evolve — they get abandoned. Without legibility, there's no trust, no confidence, no ability to improve. It's not just risky, it's scary. And at scale, it's existential. Legibility is the prerequisite for a system's long-term survival.
+
+**The cascade:** prediction fails → debugging stalls → improvement too risky → trust collapses → system gets shut down or rewritten.
 
 **Your angles:**
 - Without legibility, you can't distill (remove excess code). Every addition is liability, maintenance burden, security risk.
