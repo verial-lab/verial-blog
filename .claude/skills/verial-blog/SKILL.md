@@ -31,6 +31,15 @@ See [references/writing.md](references/writing.md) for:
 - Glossary system (planned)
 - Writing voice and brand
 
+## Content Distribution Pipeline
+
+See [references/distribution.md](references/distribution.md) for:
+- Typefully API integration (Twitter, LinkedIn, Threads, Bluesky)
+- Platform-specific voice templates
+- Blog-publish → auto-draft pipeline
+- Email subscriber tag routing (essays/systems/everything)
+- Full implementation checklist
+
 ## Email System (Buttondown)
 
 See [references/email.md](references/email.md) for:
