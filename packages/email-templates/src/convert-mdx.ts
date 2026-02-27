@@ -54,6 +54,42 @@ function mapTags(type: string): string[] {
 }
 
 /**
+ * Convert markdown footnotes to simple HTML
+ * [^1] → superscript link, [^1]: text → footnote list at bottom
+ */
+function processFootnotes(html: string): string {
+  // Collect footnote definitions: <p>[^N]: text</p> or standalone [^N]: text
+  const definitions: Record<string, string> = {};
+  // Remove footnote definitions from body and collect them
+  let cleaned = html.replace(
+    /(?:<p>)?\[\^(\d+)\]:\s*(.*?)(?:<\/p>)?(?:\n|$)/g,
+    (_, id, text) => {
+      definitions[id] = text.replace(/<\/?p>/g, '').trim();
+      return '';
+    }
+  );
+
+  // Replace inline footnote references [^N] with superscript
+  cleaned = cleaned.replace(
+    /\[\^(\d+)\]/g,
+    (_, id) => `<sup><a href="#fn-${id}" id="fnref-${id}" style="color:#4D80FF;text-decoration:none">[${id}]</a></sup>`
+  );
+
+  // Append footnotes section if any exist
+  const ids = Object.keys(definitions).sort((a, b) => Number(a) - Number(b));
+  if (ids.length > 0) {
+    cleaned += '<hr style="border-top:1px solid #e5e5e5;margin:24px 0">';
+    cleaned += '<div style="font-size:14px;color:#666;line-height:1.6">';
+    for (const id of ids) {
+      cleaned += `<p id="fn-${id}" style="margin:4px 0"><sup>[${id}]</sup> ${definitions[id]} <a href="#fnref-${id}" style="color:#4D80FF;text-decoration:none">↩</a></p>`;
+    }
+    cleaned += '</div>';
+  }
+
+  return cleaned;
+}
+
+/**
  * Strip JSX/MDX components from markdown, keep plain markdown
  */
 function stripJsx(content: string): string {
@@ -83,7 +119,8 @@ export async function convertMdxToEmail(filePath: string): Promise<ConvertedCont
   const type = detectType(absolutePath);
   const slug = deriveSlug(absolutePath);
   const cleanMarkdown = stripJsx(content);
-  const html = await marked.parse(cleanMarkdown);
+  const rawHtml = await marked.parse(cleanMarkdown);
+  const html = processFootnotes(rawHtml);
 
   const meta: ContentMeta = {
     title: data.title || slug,
