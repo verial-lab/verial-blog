@@ -36,6 +36,13 @@ Research compiled 2026-02-13.
 - **URL:** https://blog.logrocket.com/ai-coding-tools-shift-bottleneck-to-review/
 - **Summary:** Reports that nearly half of developers say debugging AI output takes longer than fixing human-written code. Argues AI has shifted the bottleneck from writing to reviewing/understanding code.
 
+### Source 1f: Peter Steinberger (@steipete) — GitHub Contribution Volume as AI-Leverage Evidence
+- **Author:** Peter Steinberger (ex-PSPDFKit founder, now full-time open-source AI builder)
+- **Year:** 2025-2026
+- **URL:** https://github.com/steipete
+- **Screenshot:** `resources/steipete-github-profile.png`
+- **Summary:** **93,570 GitHub contributions in one year** — a staggering number that illustrates the scale of AI-augmented development. Steinberger, a well-known iOS/Swift developer who "came back from retirement to mess with AI," now ships dozens of open-source tools (OpenClaw, Peekaboo, CodexBar, etc.) at a pace previously impossible for a single developer. His contribution graph is a visual proof point: AI doesn't just make individual tasks faster — it changes the *volume* of what one person can produce. This directly supports the essay's thesis: if one person can generate this much code, legibility becomes the survival constraint. No human can review 93k contributions worth of system evolution without structural and operational legibility tools.
+
 ---
 
 ## 2. Agent Observability / Explainability
