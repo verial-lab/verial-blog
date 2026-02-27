@@ -31,6 +31,14 @@ See [references/writing.md](references/writing.md) for:
 - Glossary system (planned)
 - Writing voice and brand
 
+See [references/voice-and-personality.md](references/voice-and-personality.md) for:
+- Author voice characteristics and guardrails
+- Voice-to-text input handling (the author frequently dictates)
+- Section-by-section discipline
+- Word count constraints
+- Humor guidelines and universal landing check
+- What "good" looks like per section
+
 ## Content Distribution Pipeline
 
 See [references/distribution.md](references/distribution.md) for:
