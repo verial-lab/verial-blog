@@ -14,6 +14,10 @@
     { "id": 12, "source": "Skelton & Pais", "detail": "Team Topologies — boundaries align with cognitive load", "tier": 2, "section": "pillar-2" },
     { "id": 13, "source": "Fowler", "detail": "Bounded Context — manageable sub-models", "tier": 2, "section": "pillar-2" },
     { "id": 14, "source": "Fowler", "detail": "Ubiquitous Language — shared vocabulary", "tier": 2, "section": "pillar-3" },
-    { "id": 15, "source": "Fowler", "detail": "Strangler Fig — patterns to avoid rewrites", "tier": 2, "section": "pillar-3" }
+    { "id": 15, "source": "Fowler", "detail": "Strangler Fig — patterns to avoid rewrites", "tier": 2, "section": "pillar-3" },
+    { "id": 17, "source": "Google — Gemini 1.5 Technical Report", "detail": "1M context window; demonstrated loading JAX codebase at 746,152 tokens in one session", "url": "https://arxiv.org/abs/2403.05530", "tier": 1, "section": "new-failure-mode" },
+    { "id": 18, "source": "Open Hub — React (facebook/react)", "detail": "~593,499 LOC, 88% JavaScript / 11% TypeScript", "url": "https://openhub.net/p/facebook-react", "tier": 2, "section": "new-failure-mode" },
+    { "id": 19, "source": "Open Hub — VS Code (microsoft/vscode)", "detail": "~1,439,706 LOC, 97% TypeScript", "url": "https://openhub.net/p/vscode", "tier": 2, "section": "new-failure-mode" },
+    { "id": 20, "source": "Stackscale — Linux kernel surpasses 40M lines", "detail": "Linux kernel 6.14 rc1 (Jan 2025): 40,063,856 total lines measured by cloc", "url": "https://www.stackscale.com/blog/linux-kernel-surpasses-40-million-lines-code/", "tier": 2, "section": "new-failure-mode" }
   ]
 }
