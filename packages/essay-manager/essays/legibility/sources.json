@@ -1,0 +1,19 @@
+{
+  "footnotes": [
+    { "id": 1, "source": "Peng et al.", "detail": "Copilot users complete tasks 55.8% faster", "tier": 1, "section": "new-failure-mode" },
+    { "id": 2, "source": "DORA 2024", "detail": "25% more AI adoption → 7.2% decrease in delivery stability", "tier": 2, "section": "new-failure-mode" },
+    { "id": 3, "source": "Miller", "detail": "Human working memory holds ~7 ± 2 chunks", "tier": 1, "section": "new-failure-mode" },
+    { "id": 4, "source": "Reuters", "detail": "Amazon AI recruiting tool scrapped — opaque bias", "tier": 1, "section": "what-breaks" },
+    { "id": 5, "source": "Dutch childcare scandal", "detail": "Opaque algorithm, 26,000 false accusations, government fell", "tier": 1, "section": "what-breaks" },
+    { "id": 6, "source": "Spolsky", "detail": "Netscape rewrite killed the company", "tier": 1, "section": "what-breaks" },
+    { "id": 7, "source": "Foote & Yoder", "detail": "Big Ball of Mud", "tier": 2, "section": "what-breaks" },
+    { "id": 8, "source": "Evans", "detail": "DDD — ubiquitous language makes systems legible", "tier": 1, "section": "pillar-1" },
+    { "id": 9, "source": "Fowler", "detail": "Event Sourcing — complete audit log + temporal queries", "tier": 2, "section": "pillar-1" },
+    { "id": 10, "source": "Young", "detail": "Events as first-class citizens, system becomes its own narrative", "tier": 2, "section": "pillar-1" },
+    { "id": 11, "source": "Sweller", "detail": "Cognitive Load Theory — design must respect working memory limits", "tier": 1, "section": "pillar-2" },
+    { "id": 12, "source": "Skelton & Pais", "detail": "Team Topologies — boundaries align with cognitive load", "tier": 2, "section": "pillar-2" },
+    { "id": 13, "source": "Fowler", "detail": "Bounded Context — manageable sub-models", "tier": 2, "section": "pillar-2" },
+    { "id": 14, "source": "Fowler", "detail": "Ubiquitous Language — shared vocabulary", "tier": 2, "section": "pillar-3" },
+    { "id": 15, "source": "Fowler", "detail": "Strangler Fig — patterns to avoid rewrites", "tier": 2, "section": "pillar-3" }
+  ]
+}
