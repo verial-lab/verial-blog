@@ -4,7 +4,9 @@
 
 **Target:** ~3,000-5,000 words
 
-**Arc:** Past (your story) → Present (the failure mode + pillars) → Future (3D visualization of complex systems)
+**Arc:** Past (your story) → Present (the failure mode + pillars) → Future (the paradigm shift + visualization)
+
+**Core tension:** What used to take a team of 100 engineers now falls on one person. AI solved the code generation. It didn't solve the comprehension. Legibility is what makes the 1-to-100 multiplier actually work.
 
 ---
 
@@ -76,7 +78,9 @@
 
 ---
 
-## 3. The Three Pillars (700-900w)
+## 3. Three Pillars of Legibility (700-900w)
+
+> These are personal insights from lived experience — not gospel, but directions that have worked. Always welcoming new approaches.
 
 ### Pillar 1: Temporal + Domain Legibility (~250w)
 **Key point:** Event sourcing + DDD. Events as narrative, time-travel debugging.
@@ -122,17 +126,27 @@
 
 > **New section.** Where legibility is *going*, not just where it's been.
 
-**Key point:** AI is abstracting away low-level code. The human job is shifting to *visualization and comprehension tooling*. The next frontier of legibility is making complex systems visually navigable — in 2D and eventually 3D.
+**Key point:** We're living through a paradigm shift in the relationship between people and computing. What previously required teams of experienced engineers working together can now be wielded by a single person — but only if they can *see* and *understand* what they're building. Legibility is what makes the 1-to-100 multiplier work.
+
+### The Paradigm Shift
 
 **Your angle:**
+- Previously: even a brilliant 10x developer couldn't *type enough code per hour* to build what a team could. The constraint was raw output.
+- Now: AI removes the output constraint. A single engineer can generate what 100 engineers produced. But can they *manage* it?
+- The question becomes: how do you go from 100 engineers managing a codebase to 1 engineer managing that same codebase? Knowledge has to compress.
+- This isn't just an engineering problem — everyone now has access to leveraging computing for scaling and automation. There's so much to automate in every person's life that could genuinely improve life satisfaction.
+- Legibility is the bridge between "AI can build anything" and "a human can actually use what was built"
+
+### The Visualization Frontier
+
+**Your story:** You've been experimenting — 2D JS tools for architecture diagrams, and now getting into Blender for 3D. The idea: if a system is too complex to hold in your head, maybe you shouldn't read it — you should *fly through it*.
+
 - AI handles the lower-level implementation — we now have a new abstraction layer
 - The human role is innovating on *how we see systems* — new kinds of visualizations
 - 2D: JavaScript architecture diagram tools, auto-generated component diagrams from vertical slice architecture
 - 3D: Blender experiments, complex system visualization — navigating a codebase like navigating a space
 - Vision: by end of year, something semi-solid for 3D system visualization
-- The systems that win will be the ones that invest in making themselves *seeable*, not just readable
-
-**Your story:** You've been experimenting — 2D JS tools for architecture diagrams, and now getting into Blender for 3D. The idea: if a system is too complex to hold in your head, maybe you shouldn't read it — you should *fly through it*.
+- We're on the cusp of creating incredible ways to visualize data and systems that haven't yet been created
 
 **Why this matters:**
 - Current tools (text, diagrams, docs) are 2D representations of multi-dimensional systems
@@ -145,11 +159,11 @@
 - [^17] Any relevant spatial computing / system visualization research
 
 **🎯 Stickiness notes:**
-- **Unexpected** ✅ — nobody in the legibility conversation is talking about 3D visualization. This is uniquely yours.
-- **Concrete** — "fly through your codebase" is a vivid image. Use it.
+- **Unexpected** ✅ — the 1-to-100 framing is powerful. Nobody frames legibility as the thing that unlocks solo engineer superpowers.
+- **Concrete** — "fly through your codebase" is vivid. "Couldn't type enough code per hour" grounds the old constraint.
 - **Story** — your progression from text → 2D diagrams → 3D experiments IS the story of the frontier.
 - **Emotional** — the excitement of possibility. After the heavy failure-mode section, this is the hopeful turn.
-- **Simple** — core idea: if you can't hold it in your head, make it something you can *see*.
+- **Simple** — core idea: AI solved the building. Legibility solves the understanding. Together, one person can do what a team couldn't.
 
 ---
 
