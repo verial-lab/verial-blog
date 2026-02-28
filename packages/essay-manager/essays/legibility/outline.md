@@ -4,7 +4,7 @@
 
 **Target:** ~3,000-5,000 words
 
-**Arc:** Past (your story) → Present (the failure mode + pillars) → Future (the paradigm shift + visualization)
+**Arc:** Past (your story) → Present (the failure mode + insights) → Future (the paradigm shift + visualization)
 
 **Core tension:** What used to take a team of 100 engineers now falls on one person. AI solved the code generation. It didn't solve the comprehension. Legibility is what makes the 1-to-100 multiplier actually work.
 
@@ -78,11 +78,11 @@
 
 ---
 
-## 3. Three Pillars of Legibility (700-900w)
+## 3. Three Insights on Legibility (700-900w)
 
-> These are personal insights from lived experience — not gospel, but directions that have worked. Always welcoming new approaches.
+> These aren't the definitive dimensions of legibility — they're insights from building and breaking systems in the AI era. They're the patterns that survived my own trial and error. If you've found others, I want to hear about them.
 
-### Pillar 1: Temporal + Domain Legibility (~250w)
+### Insight 1: Temporal + Domain Legibility (~250w)
 **Key point:** Event sourcing + DDD. Events as narrative, time-travel debugging.
 
 **Your story:** DDD journey — went hard on DDD, it was complex → discovered hexagonal architecture (ports & adapters) → event sourcing (Martin Dilger) was the breakthrough. Simplified the 80/20 to aggregates + bounded contexts. Event sourcing provides temporal data + massive flexibility. Bridges the gap between engineers and business — "what does this business do and is this software supporting that?"
@@ -92,7 +92,7 @@
 - [^9] Fowler — Event Sourcing, complete audit log + temporal queries (Tier 2)
 - [^10] Young — events as first-class citizens, system becomes its own narrative (Tier 2)
 
-### Pillar 2: Modularity + Low Cognitive Load (~250w)
+### Insight 2: Modularity + Low Cognitive Load (~250w)
 **Key point:** Deep complexity behind stable interfaces. Boundaries.
 
 **Your story:** Vertical slice architecture — standardized structure so you can auto-generate component diagrams with every commit. See how the system changes over time. Anyone can ask "can we add XYZ?" and immediately see where it fits. The diagram gives a quick overview of capabilities and co-locates components in their modules.
@@ -102,7 +102,7 @@
 - [^12] Skelton & Pais — Team Topologies, software boundaries should align with cognitive load limits (Tier 2)
 - [^13] Fowler — Bounded Context, manageable sub-models (Tier 2)
 
-### Pillar 3: Standardization / Consistency (~250w)
+### Insight 3: Standardization / Consistency (~250w)
 **Key point:** Reusable comprehension. Consistent patterns compound understanding.
 
 **Your story:** Built an event sourcing platform as a foundation. The goal: understanding compounds across systems. "I might not know all the functionality, but I can know exactly how it should be organized and where things might break." Standardized vertical slice architecture = can auto-generate diagrams. When you know the standard, you can read any system built on it.
@@ -113,12 +113,12 @@
 - [^14] Fowler — Ubiquitous Language, shared vocabulary = code reads how business thinks (Tier 2)
 - [^15] Fowler — Strangler Fig, industry developed patterns to avoid rewrites (Tier 2)
 
-**🎯 Stickiness notes (all 3 pillars):**
-- **Simple** — each pillar should be explainable in one sentence. If a reader skims, they should get the framework from the headers alone.
+**🎯 Stickiness notes (all 3 insights):**
+- **Simple** — each insight should be explainable in one sentence. If a reader skims, they should get the core ideas from the headers alone.
 - **Concrete** — your DDD→hexagonal→event sourcing journey is a concrete progression. Don't abstract it — tell it as "I tried X, it was too complex, then I found Y."
 - **Credible** — Evans, Fowler, Young are heavy hitters. Name-drop them naturally, not academically.
 - **Unexpected** — the docs anti-pattern is a great surprise. "I tried to make things legible by writing more docs, and it made things *worse*." That's counterintuitive and honest.
-- **Story** — your personal progression through DDD → hex → event sourcing IS the story of finding legibility. Each pillar can echo that journey.
+- **Story** — your personal progression through DDD → hex → event sourcing IS the story of finding legibility. Each insight can echo that journey.
 
 ---
 
@@ -169,7 +169,7 @@
 
 ## 5. Legibility Checklist (150-220w)
 
-**6 copy-pastable bullets** (derived from your experience + the 3 pillars):
+**6 copy-pastable bullets** (derived from your experience + the 3 insights):
 
 1. **Can a new person understand this system in one day?** If not, your onboarding cost is a scaling bottleneck.
 2. **Can you generate an architecture view automatically?** If it requires manual upkeep, it's already out of date.
@@ -217,14 +217,14 @@
 | 5 | Dutch childcare scandal | 1 | New Failure Mode |
 | 6 | Spolsky — Netscape rewrite | 1 | New Failure Mode |
 | 7 | Foote & Yoder — Big Ball of Mud | 2 | New Failure Mode |
-| 8 | Evans — DDD | 1 | Pillar 1 |
-| 9 | Fowler — Event Sourcing | 2 | Pillar 1 |
-| 10 | Young — CQRS Documents | 2 | Pillar 1 |
-| 11 | Sweller — Cognitive Load Theory | 1 | Pillar 2 |
-| 12 | Skelton & Pais — Team Topologies | 2 | Pillar 2 |
-| 13 | Fowler — Bounded Context | 2 | Pillar 2 |
-| 14 | Fowler — Ubiquitous Language | 2 | Pillar 3 |
-| 15 | Fowler — Strangler Fig | 2 | Pillar 3 |
+| 8 | Evans — DDD | 1 | Insight 1 |
+| 9 | Fowler — Event Sourcing | 2 | Insight 1 |
+| 10 | Young — CQRS Documents | 2 | Insight 1 |
+| 11 | Sweller — Cognitive Load Theory | 1 | Insight 2 |
+| 12 | Skelton & Pais — Team Topologies | 2 | Insight 2 |
+| 13 | Fowler — Bounded Context | 2 | Insight 2 |
+| 14 | Fowler — Ubiquitous Language | 2 | Insight 3 |
+| 15 | Fowler — Strangler Fig | 2 | Insight 3 |
 | 16 | Bret Victor — Inventing on Principle (TBD) | 1 | The Frontier |
 | 17 | Spatial computing / visualization research (TBD) | — | The Frontier |
 
