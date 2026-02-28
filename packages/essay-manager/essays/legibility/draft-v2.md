@@ -24,9 +24,13 @@ That's legibility. And as AI pushes one person to do the work of a hundred, gett
 
 The bottleneck has moved. For decades, writing code was the constraint — you could only build as fast as you could type. Not anymore. AI can generate code faster than most engineers can read it. That gap, between generation speed and human comprehension, is the new failure mode.
 
-On any team right now, the code-per-developer ratio is skyrocketing. Researchers found that AI assistance makes developers 55.8% faster at completing tasks.[^1] And that's before agentic orchestration enters the picture — which promises gains of another order of magnitude on top. That's not a small efficiency gain — that's a structural shift in what one person can produce. And for a while, the story seemed purely positive: more output, faster, with fewer people.
+One person running the workload of a hundred. That's not a forecast — it's already happening.
 
-Then DORA published something that complicated it. Organizations that increased AI adoption by 25% saw delivery stability *decrease* by 7.2%.[^2] Speed went up. Reliability went down. That's not a coincidence — that's the first sign of the new problem.
+Peter Steinberger, developer of PSPDFKit, logged 93,570 GitHub contributions in a single year.[^16] Before AI tools reached their current capability, that number was physically impossible — a human can only type so fast, review so much, ship so often. Even discounted by 5x for noise, that's output that would have required a team. And we're still in early days, before agentic orchestration has fully arrived.
+
+This shift isn't exclusive to software. Anyone now directing agents — legal teams running AI document review, accountants managing automated reconciliation, doctors with agents flagging anomalies and drafting recommendations — is navigating the same dynamic. The language of working with agents is already something most people speak: it's English. The constraint isn't access. It's what software engineers hit first: when the system you're directing gets complex enough that you can't see it clearly, something breaks.
+
+Then DORA published something that made the pattern legible. Organizations that increased AI adoption by 25% saw delivery stability *decrease* by 7.2%.[^2] Speed went up. Reliability went down. That's what happens when you add capacity faster than comprehension. The output scales. The understanding doesn't.
 
 The thing AI doesn't improve is human comprehension. Our working memory holds roughly 7 ± 2 chunks of information at once — that's Miller's Law, and it hasn't been patched recently.[^3] You can write code ten times faster. You cannot understand ten times faster. Which means the faster you generate, the faster you outrun your own grasp of what you've built.
 
@@ -40,11 +44,11 @@ The context window makes this concrete. The rule of thumb: roughly 10 tokens per
 
 A fresh agent session on a medium-sized codebase sees roughly one-eighth of the system at best. It doesn't know what it doesn't know. Every new session bootstraps from zero context. Things get duplicated. Dependencies get missed. Features land adjacent to features that already solve the same problem.
 
-I ran the math: 1 billion tokens per day — a plausible near-future number for individual developers — converts to roughly three years of software development in a single day. Peter Steinberger logged 93,570 GitHub contributions in a year.[^16] The AI handles the generation. The problem is the human in the seat — who needs a higher-order understanding of the system they can validate at a glance, not line by line.
+I ran the math: 1 billion tokens per day — a plausible near-future number for individual developers — converts to roughly three years of software development in a single day. The AI handles the generation. The problem is the person in the seat — who needs a higher-order understanding of the system they can validate at a glance, not operation by operation.
 
-This is the shift. We're becoming something closer to engineering managers than line-level implementers. You don't need to understand every low-level dependency. But you need to understand the shape of the system: its capabilities, its boundaries, where things fit. Want to add a feature but can't see where it belongs? You've already hit a complexity limit.
+This is the shift. The role is moving from execution to direction — less doing the work, more understanding the system well enough to guide what comes next. Whether you're managing software agents or AI workflows in medicine, law, or finance, the shape of the problem is the same. You need to understand the system: its capabilities, its boundaries, where things fit. Want to expand it but can't see where a new piece belongs? You've already hit a complexity limit.
 
-Software is abstract — there's no physical structure you can walk through. No way to see the load-bearing walls by looking at it. If you can't make that structure visible, intentionally, you're asking an AI to keep adding floors to a building whose blueprints only exist in your head. At 55.8% speed. With agentic orchestration on deck.
+Software is abstract — there's no physical structure you can walk through. No way to see the load-bearing walls by looking at it. If you can't make that structure visible, intentionally, you're asking an AI to keep adding floors to a building whose blueprints only exist in your head. At machine speed. With agentic orchestration on deck.
 
 ### Part B: The Cascade
 
@@ -166,7 +170,6 @@ Legibility isn't about slowing down. It's about making speed sustainable. The sy
 ## Footnotes Reference
 
 [^syntropic]: Syntropic137 — agent engineering framework. (Internal reference.)
-[^1]: Peng et al. — "The Impact of AI on Developer Productivity: Evidence from GitHub Copilot" (2023). Copilot users completed tasks 55.8% faster.
 [^2]: Google DORA Report 2024 — 25% increase in AI adoption correlated with 7.2% decrease in delivery stability.
 [^3]: George Miller — "The Magical Number Seven, Plus or Minus Two" (1956). Human working memory holds ~7 ± 2 chunks.
 [^4]: Reuters (Jeffrey Dastin) — Amazon scrapped AI recruiting tool that showed bias against women (2018).
