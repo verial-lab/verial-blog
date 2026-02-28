@@ -10,7 +10,7 @@ description: "The limit of AI-assisted engineering isn't how fast AI can code �
 
 Legibility isn't something I ever thought I'd care about this much. I grew up drawn to math, not language. Code felt like math — build a function, test the input, validate the output. You could check your work. But I kept running into something math didn't prepare me for: whether anyone, including me, could actually understand what I'd built.
 
-When AI started accelerating, I did the math. Three years of software development compressing into a single day. I jumped headfirst into building an agent engineering framework.[^syntropic] <!-- [NOTE: link to post when published] --> Fast. A lot of code.
+When AI started accelerating, I did the math. Three years of software development could be compressed into a single day — within two years.[^math] I was ready to get out of the IDE and scale, but I knew there needed to be a new layer built first. That's why I started building an agent engineering framework focused on agent orchestration and observability.[^syntropic] Fast. A lot of code.
 
 But as the features piled up, something shifted. My understanding of the system got smaller and smaller. I felt less confident. Scared to change things. Projects I'd started with excitement stalled out — and eventually just got lost. A fair amount of wasted effort, looking back.
 
@@ -172,6 +172,7 @@ Legibility isn't about slowing down. It's about making speed sustainable. The sy
 
 ## Footnotes Reference
 
+[^math]: Based on average token output across three years of commits versus daily AI generation capacity. Full calculation in a future post.
 [^syntropic]: Syntropic137 — agent engineering framework. GitHub organization: github.com/Syntropic137. Repository not yet public.
 [^2]: Google DORA Report 2024 — 25% increase in AI adoption correlated with 7.2% decrease in delivery stability.
 [^3]: George Miller — "The Magical Number Seven, Plus or Minus Two" (1956). Human working memory holds ~7 ± 2 chunks.
