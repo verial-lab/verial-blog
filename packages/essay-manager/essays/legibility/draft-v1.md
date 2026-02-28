@@ -24,21 +24,21 @@ But as the features piled up, something shifted. My understanding of the system 
 
 The bottleneck has moved. For decades, writing code was the constraint — you could only build as fast as you could type. Not anymore. AI can generate code faster than most engineers can read it. That gap, between generation speed and human comprehension, is the new failure mode.
 
-On any team right now, the code-per-developer ratio is skyrocketing. Researchers found that AI assistance makes developers 55.8% faster at completing tasks.[^1] (EDIT: and with agentic orchestration around the corner to offer orders of magnitude gains) That's not a small efficiency gain — that's a structural shift in what one person can produce. And for a while, the story seemed purely positive: more output, faster, with fewer people.
+On any team right now, the code-per-developer ratio is skyrocketing. Researchers found that AI assistance makes developers 55.8% faster at completing tasks.[^1] And that's before agentic orchestration enters the picture — which promises gains of another order of magnitude on top. That's not a small efficiency gain — that's a structural shift in what one person can produce. And for a while, the story seemed purely positive: more output, faster, with fewer people.
 
 Then DORA published something that complicated it. Organizations that increased AI adoption by 25% saw delivery stability *decrease* by 7.2%.[^2] Speed went up. Reliability went down. That's not a coincidence — that's the first sign of the new problem.
 
 The thing AI doesn't improve is human comprehension. Our working memory holds roughly 7 ± 2 chunks of information at once — that's Miller's Law, and it hasn't been patched recently.[^3] You can write code ten times faster. You cannot understand ten times faster. Which means the faster you generate, the faster you outrun your own grasp of what you've built.
 
-The context window makes this concrete. The rule of thumb practitioners use: roughly 10 tokens per line of code. Claude's 200K context window fits about 20,000 lines — roughly 40 files at 500 lines each. Gemini 1.5's 1M context pushes to around 100,000 lines. Now look at what real production systems contain:
+The context window makes this concrete. The rule of thumb practitioners use: roughly 10 tokens per line of code. Claude's 200K context window fits about 20,000 lines — roughly 40 files at 500 lines each. Gemini 1.5's 1M context pushes to around 100,000 lines; Google demonstrated this by loading the entire JAX codebase (746K tokens) in a single session.[^17] Now look at what real production systems contain:
 
 | Codebase | Lines of code | Claude 200K sees | Gemini 1M sees |
 |---|---|---|---|
 | Small startup app | ~50K LOC | 40% | 100% |
 | Medium SaaS | ~150K LOC | 13% | 67% |
-| React | ~593K LOC | 4% | 17% |
-| VS Code | ~1.44M LOC | 1.4% | 7% |
-| Linux kernel | ~40M LOC | 0.05% | 0.25% |
+| React | ~593K LOC [^18] | 4% | 17% |
+| VS Code | ~1.44M LOC [^19] | 1.4% | 7% |
+| Linux kernel | ~40M LOC [^20] | 0.05% | 0.25% |
 
 A fresh agent session on a medium-sized codebase sees roughly one-eighth of the system at best. It doesn't know what it doesn't know. Every new session bootstraps from zero context. That's not carelessness — the agent genuinely can't see the existing implementation. So things get duplicated. Dependencies get missed. Features land adjacent to features that already solve the same problem.
 
@@ -48,9 +48,7 @@ Reviewing a day's output that represents three years of work is obviously imposs
 
 This is the shift. We're moving up the stack — becoming something closer to engineering managers than line-level implementers. You don't need to understand every low-level dependency. But you need to understand the shape of the system: its capabilities, its boundaries, where things fit. Want to add a feature but can't see where it belongs? You've already hit a complexity limit.
 
-Think of it like a building. Software is abstract — there's no physical structure you can walk through, no way to see the load-bearing walls by looking at it. That structure has to be made intentional. And the systems that do this — that surface their own shape, that show you what they can do — those are the ones that survive being handed to an AI generating at scale.
-
-A locomotive is one of the most powerful leverage devices ever built: one human, moving thousands of tonnes. The constraint on that system isn't the engine. It's the driver's ability to see the track. You have a buzzer that tells you when to stop at the next station. But if anything happens between stations — it's going to be bad. Speed without visibility isn't power. It's just a faster way to crash.
+Software is abstract — there's no physical structure you can walk through. No way to see the load-bearing walls by looking at it. If you can't make that structure visible, intentionally, you're asking an AI to keep adding floors to a building whose blueprints only exist in your head. At 55.8% speed. With agentic orchestration on deck.
 
 ---
 
@@ -181,3 +179,7 @@ Footnotes: Fowler — Ubiquitous Language [^14], Fowler — Strangler Fig [^15]]
 [^14]: Martin Fowler — Ubiquitous Language (2006). Shared vocabulary = code reads how business thinks.
 [^15]: Martin Fowler — Strangler Fig Application (2004). Industry pattern to avoid rewrites.
 [^16]: Peter Steinberger (@steipete) — 93,570 GitHub contributions in one year (2025-2026). AI-augmented solo developer.
+[^17]: Google — Gemini 1.5 Technical Report (2024). Demonstrated loading JAX codebase at 746,152 tokens in a single session. arxiv.org/abs/2403.05530
+[^18]: Open Hub — React (facebook/react). ~593,499 LOC, 88% JavaScript / 11% TypeScript. openhub.net/p/facebook-react
+[^19]: Open Hub — VS Code (microsoft/vscode). ~1,439,706 LOC, 97% TypeScript. openhub.net/p/vscode
+[^20]: Stackscale — "Linux kernel surpasses 40 million lines" (Jan 2025). Linux 6.14 rc1: 40,063,856 total lines.
