@@ -1,6 +1,8 @@
-# Legibility — Draft v2
-
-> **Status:** Full draft — all sections written. ~2,350w / 3,000-5,000w target. Sections 4B and 6 are first-pass prose; your voice will want to come through on both.
+---
+email_draft: true
+title: "Legibility: The Scaling Bottleneck of the AI Era"
+description: "The limit of AI-assisted engineering isn't how fast AI can code — it's how fast you can understand what you've built. Legibility is the bottleneck."
+---
 
 ---
 
@@ -41,6 +43,7 @@ The context window makes this concrete. The rule of thumb: roughly 10 tokens per
 | Medium SaaS | ~150K LOC | 13% | 67% |
 | React | ~593K LOC [^18] | 4% | 17% |
 | VS Code | ~1.44M LOC [^19] | 1.4% | 7% |
+| Linux kernel | ~40M LOC [^20] | 0.05% | 0.25% |
 
 A fresh agent session on a medium-sized codebase sees roughly one-eighth of the system at best. It doesn't know what it doesn't know. Every new session bootstraps from zero context. Things get duplicated. Dependencies get missed. Features land adjacent to features that already solve the same problem.
 
@@ -169,7 +172,7 @@ Legibility isn't about slowing down. It's about making speed sustainable. The sy
 
 ## Footnotes Reference
 
-[^syntropic]: Syntropic137 — agent engineering framework. (Internal reference.)
+[^syntropic]: Syntropic137 — agent engineering framework. GitHub organization: github.com/Syntropic137. Repository not yet public.
 [^2]: Google DORA Report 2024 — 25% increase in AI adoption correlated with 7.2% decrease in delivery stability.
 [^3]: George Miller — "The Magical Number Seven, Plus or Minus Two" (1956). Human working memory holds ~7 ± 2 chunks.
 [^4]: Reuters (Jeffrey Dastin) — Amazon scrapped AI recruiting tool that showed bias against women (2018).
