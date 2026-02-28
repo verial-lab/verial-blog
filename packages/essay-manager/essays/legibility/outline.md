@@ -93,9 +93,13 @@
 - [^10] Young — events as first-class citizens, system becomes its own narrative (Tier 2)
 
 ### Insight 2: Modularity + Low Cognitive Load (~250w)
-**Key point:** Deep complexity behind stable interfaces. Boundaries.
+**Key point:** Wrap complex functions behind simple interfaces. Reduce the time and effort it takes to find answers and feel confident about what's happening.
 
-**Your story:** Vertical slice architecture — standardized structure so you can auto-generate component diagrams with every commit. See how the system changes over time. Anyone can ask "can we add XYZ?" and immediately see where it fits. The diagram gives a quick overview of capabilities and co-locates components in their modules.
+**Your story:** The real win of modularity isn't organization — it's comprehension. A complex system can do powerful things but still be simply comprehended if the boundaries are right. Each module hides deep complexity behind a stable interface. You don't need to understand the internals to trust the system — you just need to understand the contract.
+
+**Anti-pattern:** Over-documentation. Wrote tons of docs trying to make the system more legible → they got out of sync → became overwhelming → actually *increased* cognitive load instead of reducing it. The lesson: complex systems need their model to be clear enough that the code itself is comprehensible. Docs should be discoverable and actionable, not exhaustive. Diagrams > walls of text — a picture is worth a thousand words (and maybe videos worth a million). Auto-generation > manual maintenance.
+
+**Key principle:** Always consider human cognition. Reduce cognitive load. Make answers discoverable and actionable. This is powerful for humans wanting trust and confidence, AND it's token-efficient for AI too.
 
 **Footnotes:**
 - [^11] Sweller — Cognitive Load Theory, design must respect working memory limits (Tier 1)
@@ -103,11 +107,11 @@
 - [^13] Fowler — Bounded Context, manageable sub-models (Tier 2)
 
 ### Insight 3: Standardization / Consistency (~250w)
-**Key point:** Reusable comprehension. Consistent patterns compound understanding.
+**Key point:** Reusable comprehension. Consistent patterns compound understanding. When you know the standard, you can read any system built on it.
 
-**Your story:** Built an event sourcing platform as a foundation. The goal: understanding compounds across systems. "I might not know all the functionality, but I can know exactly how it should be organized and where things might break." Standardized vertical slice architecture = can auto-generate diagrams. When you know the standard, you can read any system built on it.
+**Your story:** Built an event sourcing platform as a foundation. The goal: understanding compounds across systems. "I might not know all the functionality, but I can know exactly how it should be organized and where things might break."
 
-**Anti-pattern:** Over-documentation. Wrote too many docs → got out of sync → overwhelming → didn't add value. Auto-generation > manual maintenance. Keep docs focused.
+**VSA as the centerpiece:** Vertical slice architecture — standardized structure so you can auto-generate component diagrams with every commit. See how the system changes over time. Anyone can ask "can we add XYZ?" and immediately see where it fits. The diagram gives a quick overview of capabilities and co-locates components in their modules. This is a *standardization* win — the structure is consistent, so comprehension transfers.
 
 **Footnotes:**
 - [^14] Fowler — Ubiquitous Language, shared vocabulary = code reads how business thinks (Tier 2)
