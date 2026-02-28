@@ -1,6 +1,5 @@
 {
   "footnotes": [
-    { "id": 1, "source": "Peng et al.", "detail": "Copilot users complete tasks 55.8% faster", "tier": 1, "section": "new-failure-mode" },
     { "id": 2, "source": "DORA 2024", "detail": "25% more AI adoption → 7.2% decrease in delivery stability", "tier": 2, "section": "new-failure-mode" },
     { "id": 3, "source": "Miller", "detail": "Human working memory holds ~7 ± 2 chunks", "tier": 1, "section": "new-failure-mode" },
     { "id": 4, "source": "Reuters", "detail": "Amazon AI recruiting tool scrapped — opaque bias", "tier": 1, "section": "what-breaks" },
