@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hero section animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
