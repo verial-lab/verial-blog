@@ -1,6 +1,6 @@
 # Legibility — Draft v2
 
-> **Status:** Sections 1, 2, 3 finalized as clean prose. Section 4 Part A done; Part B (Visualization Frontier) needs your voice. Section 5 ready. Section 6 needs full draft.
+> **Status:** Full draft — all sections written. ~2,350w / 3,000-5,000w target. Sections 4B and 6 are first-pass prose; your voice will want to come through on both.
 
 ---
 
@@ -48,7 +48,7 @@ Software is abstract — there's no physical structure you can walk through. No 
 
 ### Part B: The Cascade
 
-Code is a liability. Not just the cost of writing it — the cost of holding it. Managing dependencies, tracking what each piece does, knowing what's safe to change. Even with AI, you want to accomplish the most with the least code. But when legibility breaks down, refactoring gets skipped — it's too risky when you can't see the system clearly. You start patching instead. Feature on top of feature, none of them fully integrated.
+Code is a liability. Not just the cost of writing it — the cost of holding it. Managing dependencies, tracking what each piece does, knowing what's safe to change. Even with AI, you want to accomplish the most with the least code. But when legibility breaks down, refactoring gets skipped — it's too risky when you can't see the system clearly. You start patching instead. Feature on top of feature, none of them fully integrated — what Foote and Yoder called the Big Ball of Mud.[^7]
 
 The cascade from there is predictable. Confusion sets in. Debugging slows — you can't reason about a system you can't see. Improvements become risky because you don't know what they'll break. Trust erodes. Eventually someone proposes a rewrite. Spolsky called it one of the worst things a company can do.[^6] He was right, and most teams do it anyway.
 
@@ -104,7 +104,7 @@ Standardization used to feel constraining to me — ordinary, not novel. But ord
 
 The proof is everywhere. Drive anywhere in the United States — same signs, same exits — and you feel at home. The cognitive load of being somewhere new drops dramatically. HTTP and TCP are the same idea at internet scale: ubiquitous standards every system integrates with, enabling a decentralized global network. The standard was designed once. It scaled to billions.
 
-In code, this compounds in a way that matters enormously for the AI era: understand the standard once, and you can read any system built on it. Not just faster — fundamentally differently. You can manage ten codebases with the cognitive overhead of one, because the structure transfers. Every new repo starts at partial comprehension instead of zero.[^15]
+In code, this compounds in a way that matters enormously for the AI era: understand the standard once, and you can read any system built on it. Not just faster — fundamentally differently. You can manage ten codebases with the cognitive overhead of one, because the structure transfers. Every new repo starts at partial comprehension instead of zero.
 
 Vertical slice architecture is where this gets concrete for me. Standardized module structure means you can auto-generate component diagrams with every commit. You can see how the system changes over time. Anyone can ask "can we add XYZ?" and immediately see where it fits. The diagram gives a quick overview of capabilities and co-locates components in their modules. That's a standardization win — the structure is consistent, so comprehension *transfers*. And when AI is generating the code, a consistent structure is also how one human navigates a hundred simultaneous agents.
 
@@ -153,7 +153,7 @@ By end of year, I want something semi-solid for 3D system visualization. We're o
 
 Legibility is how you stay in control of the leverage you're building.
 
-A black box that controls a thousand tireless agents isn't powerful — it's dangerous. The question that ends AI systems is always the same: *what did it do, and why?* The Dutch government couldn't answer it.[^5] Amazon couldn't answer it.[^4] Netscape lost three years trying to undo what they couldn't explain.[^6]
+A black box that controls a thousand tireless agents isn't powerful — it's dangerous. The question that ends AI systems is always the same: *what did it do, and why?* The Dutch government couldn't answer it.[^5] Amazon couldn't answer it.[^4] Netscape lost three years trying to undo what they couldn't explain.[^6][^15]
 
 Confidence is the currency. Can you audit it? Can a new person work with it? Can you change it without fear? If the answer to any of those is no, you have a legibility problem — and that problem compounds at AI speed.
 
