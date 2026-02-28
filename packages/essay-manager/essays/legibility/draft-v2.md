@@ -8,7 +8,7 @@ description: "The limit of AI-assisted engineering isn't how fast AI can code �
 
 ## 1. Hook
 
-Legibility isn't something I ever thought I'd care about this much. I grew up drawn to math, not language. But code bridges that gap — it conveys meaning through naming, structure, and organization. A legible system is one where you can build an accurate mental model quickly, based on how things are connected.
+Legibility isn't something I ever thought I'd care about this much. I grew up drawn to math, not language. Code felt like math — build a function, test the input, validate the output. You could check your work. But I kept running into something math didn't prepare me for: whether anyone, including me, could actually understand what I'd built.
 
 When AI started accelerating, I did the math. Three years of software development compressing into a single day. I jumped headfirst into building an agent engineering framework.[^syntropic] <!-- [NOTE: link to post when published] --> Fast. A lot of code.
 
