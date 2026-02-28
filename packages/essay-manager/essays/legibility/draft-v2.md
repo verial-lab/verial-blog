@@ -20,9 +20,6 @@ That's legibility. And as AI pushes one person to do the work of a hundred, gett
 
 ## 2. The New Failure Mode
 
-<!-- OUTLINE TARGET: 700-900w (merged section — Part A: The Shift, Part B: The Cascade, Part C: Real-World Carnage). -->
-<!-- STATUS: ✅ Locked in — ~780w. Polish pass only. -->
-
 ### Part A: The Shift
 
 The bottleneck has moved. For decades, writing code was the constraint — you could only build as fast as you could type. Not anymore. AI can generate code faster than most engineers can read it. That gap, between generation speed and human comprehension, is the new failure mode.
@@ -105,7 +102,7 @@ I tried to make things legible by writing more docs. Tons of docs. And it made t
 
 Standardization used to feel constraining to me — ordinary, not novel. But ordinary has a superpower: it eliminates the cognitive overhead of decision-making across every system that uses it.
 
-The proof is everywhere. Drive anywhere in the United States — same signs, same exits — and you feel at home. The cognitive load of being somewhere new drops dramatically. HTTP and TCP are the same idea at internet scale: ubiquitous standards every system integrates with, enabling a decentralized global network.[^14] The standard was designed once. It scaled to billions.
+The proof is everywhere. Drive anywhere in the United States — same signs, same exits — and you feel at home. The cognitive load of being somewhere new drops dramatically. HTTP and TCP are the same idea at internet scale: ubiquitous standards every system integrates with, enabling a decentralized global network. The standard was designed once. It scaled to billions.
 
 In code, this compounds in a way that matters enormously for the AI era: understand the standard once, and you can read any system built on it. Not just faster — fundamentally differently. You can manage ten codebases with the cognitive overhead of one, because the structure transfers. Every new repo starts at partial comprehension instead of zero.[^15]
 
@@ -114,9 +111,6 @@ Vertical slice architecture is where this gets concrete for me. Standardized mod
 ---
 
 ## 4. The Frontier
-
-<!-- OUTLINE TARGET: 300-500w total across both sub-sections. -->
-<!-- STATUS: Part A drafted as first-pass prose (~200w). Part B needs your voice — personal story. -->
 
 ### The Paradigm Shift
 
@@ -132,23 +126,19 @@ Legibility is the bridge. Between AI that can build anything, and a human who ca
 
 ### The Visualization Frontier
 
-<!-- Key: Your experiments — 2D JS tools → Blender 3D. The idea: fly through it instead of reading it. -->
+The human role isn't disappearing — it's shifting. From writing low-level code to something harder: understanding what was built, navigating it, and deciding what comes next.
 
-✏️ [**Your frontier story — voice dictate this.** Key beats from outline:
-- The human role is shifting: not writing low-level code, but *innovating on how we see systems*
-- 2D: JS architecture diagram tools, auto-generated component diagrams from vertical slice architecture
-- 3D: Blender experiments — navigating a codebase like navigating a space
-- *"If a system is too complex to hold in your head, maybe you shouldn't read it — you should fly through it"*
-- Vision: by end of year, something semi-solid for 3D system visualization
-- We're on the cusp of creating incredible ways to visualize data and systems that haven't yet been created
-- The systems that win will be the ones that invest in making themselves *seeable*, not just readable]
+The tools for that are still primitive. We read code in text editors — flat files, no spatial sense, no way to feel the shape of a large system. As systems scale to thousands of services and agents, those flat representations break down. You can't read your way through a system that large. You have to see it.
+
+I've been experimenting with this. First with 2D architecture diagram tools in JavaScript — auto-generated component maps from vertical slice architecture that update with every commit. A living picture of a system, not a document written once and immediately out of date.
+
+Now I'm getting into Blender. The hypothesis: a codebase too complex to hold in your head might be something you can *fly through*. Navigate it like a space, not a document. See clusters, boundaries, anomalies — the things invisible in flat text.
+
+By end of year, I want something semi-solid for 3D system visualization. We're on the cusp of ways to see and understand systems that haven't been invented yet. The systems that win won't just be the most capable. They'll be the ones humans can actually *see*.
 
 ---
 
 ## 5. Legibility Checklist
-
-<!-- OUTLINE TARGET: 150-220w. No footnotes. Copy-pastable. -->
-<!-- STATUS: ✅ Ready — from outline. Approve or tweak. -->
 
 1. **Can a new person understand this system in one day?** If not, your onboarding cost is a scaling bottleneck.
 2. **Can you generate an architecture view automatically?** If it requires manual upkeep, it's already out of date.
@@ -161,19 +151,15 @@ Legibility is the bridge. Between AI that can build anything, and a human who ca
 
 ## 6. Closing
 
-<!-- OUTLINE TARGET: 120-180w. Quotable closer: "If a system can't explain itself, it won't survive." -->
-<!-- STATUS: ⚠️ Voice notes only — needs full draft. Key lines preserved below. -->
+Legibility is how you stay in control of the leverage you're building.
 
-🎙️ Humans are the gods of AI. We always have the input. LLMs don't work without input.
+A black box that controls a thousand tireless agents isn't powerful — it's dangerous. The question that ends AI systems is always the same: *what did it do, and why?* The Dutch government couldn't answer it.[^5] Amazon couldn't answer it.[^4] Netscape lost three years trying to undo what they couldn't explain.[^6]
 
-🎙️ This is just the beginning of exponential leverage when it comes to software engineering. It's just going to keep getting crazy.
+Confidence is the currency. Can you audit it? Can a new person work with it? Can you change it without fear? If the answer to any of those is no, you have a legibility problem — and that problem compounds at AI speed.
 
-✏️ [**Fill in the closing — voice dictate or write.** Outline beats:
-- Confidence is the currency. Can you audit it? Can a new person work with it? Can you change it without fear?
-- A black box that controls 1000 tireless agents isn't powerful — it's dangerous.
-- Legibility isn't about slowing down. It's about making speed sustainable.
-- *"The systems that survive won't be the fastest or most powerful — they'll be the ones humans can still understand."*
-- Callback to Dutch scandal or Amazon — cost of illegibility at scale.]
+Humans are the direction-givers. LLMs don't work without input. That's not a limitation, it's leverage — but only if you understand the system well enough to direct it. This is just the beginning of exponential leverage in software engineering. It's going to keep getting more powerful.
+
+Legibility isn't about slowing down. It's about making speed sustainable. The systems that survive won't be the fastest or most powerful. They'll be the ones humans can still understand.
 
 ---
 
