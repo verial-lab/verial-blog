@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { SectionIcon } from '@/components/SectionIcon';
 import { GlossaryTerm } from '@/components/GlossaryTerm';
+import { TagList } from '@/components/TagChip';
 
 export default async function EssayPage(props: {
   params: Promise<{ slug?: string[] }>;
@@ -45,6 +46,11 @@ export default async function EssayPage(props: {
                     {page.data.description}
                   </p>
                 )}
+                {page.data.tags && page.data.tags.length > 0 && (
+                  <div className="mt-3" onClick={(e) => e.stopPropagation()}>
+                    <TagList tags={page.data.tags} />
+                  </div>
+                )}
               </Link>
             ))}
             {pages.length === 0 && (
@@ -82,6 +88,11 @@ export default async function EssayPage(props: {
             <p className="text-xl text-muted-foreground leading-relaxed">
               {page.data.description}
             </p>
+          )}
+          {page.data.tags && page.data.tags.length > 0 && (
+            <div className="mt-6">
+              <TagList tags={page.data.tags} />
+            </div>
           )}
         </header>
 
