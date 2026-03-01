@@ -1,0 +1,34 @@
+{
+  "id": "bottleneck-shift",
+  "title": {
+    "subtitle": "mental model",
+    "main": "The Bottleneck Shift",
+    "sub2": "comprehension is the new limit"
+  },
+  "elements": [
+    { "type": "box", "x": 100, "y": 180, "w": 160, "h": 60, "stroke": "#FFFFFF", "opacity": 0.6 },
+    { "type": "label", "x": 180, "y": 215, "text": "WRITING CODE", "size": 11, "weight": 700, "opacity": 0.8 },
+
+    { "type": "box", "x": 540, "y": 180, "w": 160, "h": 60, "stroke": "#FFFFFF", "opacity": 0.6 },
+    { "type": "label", "x": 620, "y": 215, "text": "READING CODE", "size": 11, "weight": 700, "opacity": 0.8 },
+
+    { "type": "line", "x1": 270, "y1": 210, "x2": 530, "y2": 210, "arrow": "end", "opacity": 0.5 },
+    { "type": "label", "x": 400, "y": 198, "text": "AI accelerates production", "size": 9, "opacity": 0.4 },
+
+    { "type": "box", "x": 280, "y": 320, "w": 240, "h": 80, "rx": 6, "stroke": "#999999", "neon": true },
+    { "type": "label", "x": 400, "y": 350, "text": "BOTTLENECK", "size": 16, "weight": 700, "neon": true },
+    { "type": "label", "x": 400, "y": 372, "text": "shifts from production → comprehension", "size": 9, "opacity": 0.5 },
+
+    { "type": "line", "x1": 180, "y1": 250, "x2": 320, "y2": 320, "arrow": "end", "dashed": true, "opacity": 0.3 },
+    { "type": "line", "x1": 620, "y1": 250, "x2": 480, "y2": 320, "arrow": "end", "dashed": true, "opacity": 0.3 },
+
+    { "type": "box", "x": 200, "y": 460, "w": 400, "h": 50, "stroke": "#FFFFFF", "dashed": true, "opacity": 0.3 },
+    { "type": "label", "x": 400, "y": 490, "text": "legibility determines velocity", "size": 10, "opacity": 0.4 }
+  ],
+  "masks": [
+    { "cx": 400, "cy": 340, "rx": 250, "ry": 180 }
+  ],
+  "footer": [
+    { "text": "verial.xyz", "y": 780, "opacity": 0.25 }
+  ]
+}
