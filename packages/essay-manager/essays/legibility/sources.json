@@ -1,5 +1,9 @@
 {
   "footnotes": [
+    { "id": "llmflation", "source": "Guido Appenzeller — a16z", "detail": "AI inference cost decreasing 10x per year — coined 'LLMflation'", "url": "https://a16z.com/llmflation-llm-inference-cost/", "tier": 1, "section": "hook" },
+    { "id": 16, "source": "The Pragmatic Engineer — Peter Steinberger", "detail": "6,600+ commits in January 2025 alone. Creator of OpenClaw. 'I ship code I don't read.'", "url": "https://newsletter.pragmaticengineer.com/p/the-creator-of-clawd-i-ship-code", "tier": 1, "section": "new-failure-mode" },
+    { "id": 22, "source": "paulmillr — GitHub worldwide contributor leaderboard 2012–2013", "detail": "TJ Holowaychuk (#1 globally, pre-AI): 7,458 contributions/year. Baseline for elite solo developer output.", "url": "https://gist.github.com/paulmillr/2657075", "tier": 2, "section": "new-failure-mode" },
+    { "id": "openclaw", "source": "OpenClaw GitHub repo — Peter Steinberger (@steipete)", "detail": "Launched Nov 24, 2025. ~240k stars by Feb 2026, closing in on React (~243k) as most-starred software repo on GitHub. 100k stars in 2 days (Jan 29–30, 2026).", "url": "https://github.com/openclaw/openclaw", "tier": 1, "section": "new-failure-mode" },
     { "id": 2, "source": "DORA 2024", "detail": "25% more AI adoption → 7.2% decrease in delivery stability", "tier": 2, "section": "new-failure-mode" },
     { "id": 3, "source": "Miller", "detail": "Human working memory holds ~7 ± 2 chunks", "tier": 1, "section": "new-failure-mode" },
     { "id": 4, "source": "Reuters", "detail": "Amazon AI recruiting tool scrapped — opaque bias", "tier": 1, "section": "what-breaks" },
