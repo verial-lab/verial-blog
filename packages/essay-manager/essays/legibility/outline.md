@@ -1,6 +1,6 @@
 # Legibility Essay — Outline
 
-**Thesis:** The limit of AI-assisted engineering isn't how fast AI can code — it's how fast a human can understand the system well enough to direct it. Legibility is the scaling bottleneck of the AI era.
+**Thesis:** The limit of operating agentic systems isn't how fast AI can produce output — it's how fast a human can understand the system well enough to direct it. Legibility is a scaling bottleneck of human comprehension in the AI era.
 
 **Target:** ~3,000-5,000 words
 
