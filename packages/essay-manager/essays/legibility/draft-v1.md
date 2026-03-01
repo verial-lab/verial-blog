@@ -9,70 +9,90 @@
 
 Legibility is something I never thought I'd value this much. I grew up with hard-to-read handwriting and communication that didn't always land — math was my love, writing was the struggle. But it's funny how software bridges that gap. Code is written in language. It has to convey meaning through naming, through structure, to help you build a model of real-world systems. A legible system is one where you can most easily build that mental model — based on how things are organized, named, and connected.
 
-When AI started accelerating, I did the math. I calculated the average tokens I'd contributed over three years of commits and estimated the cost. The conclusion was thrilling: three years of software development could compress into a single day. But not without the right tools — which is why I jumped headfirst into building an agent engineering framework (EDIT: add footnote to: Syntropic137, but don't shill much).
+When AI started accelerating, I did the math. I calculated the average tokens I'd contributed over three years of commits and estimated the cost. [NOTE to post (not yet made)] The conclusion was thrilling: three years of software development could compress into a single day. But not without the right tools — which is why I jumped headfirst into building an agent engineering framework (EDIT: add footnote to: Syntropic137, but don't shill much).
 
-A lot of building happened. A lot of speed. A lot of experimentation. I'd already researched event sourcing and chosen it for this system — for reasons I'd later realize were about legibility, though I didn't have that word for it yet.
+(needs a lot of work) A lot of building happened. A lot of speed. A lot of experimentation. I'd already researched event sourcing and chosen it for this system — for reasons I'd later realize were about legibility, though I didn't have that word for it yet.
 
 But as the features piled up, something shifted. My understanding of the system slowly got smaller and smaller. I felt less confident. I felt scared to change things.
+
+(VTT) It was when the systems that I built that got confusing and hard to restart. I noticed they would tend to stall and procrastinate on them, and eventually they would just get lost in a pile of unfinished projects. I mean, technically they were all, in a way, their own little experiments, which isn't a bad thing, but it did feel like lots of... It did feel like a fair amount of wasted effort and frustration knowing how I started with the excitement of some of these projects and then ending with just kind of loss and confusion. So I would say that's one of the first insights with the whole value of legibility, especially as we're scaling very high.
+
+I mean, for me basically, you know, I would start to feel bad, feel frustrated, kind of have some self-doubt. But fortunately after enough of the frustration and, you know, some great meditation, just trying to sit with my feelings. And even though I'm feeling uncertain, eventually like some, the right book would come or the right idea. and I would just slowly make a little bit of progress towards feeling more confident in how I was architecting and just like feeling about like these more complex systems. And yeah, the high note is that today I do feel confident. I do feel confident about how to build systems that feel that we can better understand. And ultimately, the insights led me to the realization that if we're going to be able to, if we're basically going to be doing a single engineer or person's going to be doing the work of 100 software engineers from 2022, then we definitely have to take our ability to understand and feel confident about that system seriously. And that's where legibility comes in almost as a forefront. I would say legibility was important before up until 2022. But I would argue that now it's front and center, and you hear stuff about traceability, observability, and agentic systems, and those are all part of the purpose of legibility, which is to be able to understand and comprehend these powerful systems we're working on.
 
 ---
 
 ## 2. The New Failure Mode
 
-<!-- OUTLINE TARGET: 700-900w (merged sections — Part A: The Shift, Part B: The Cascade, Part C: Real-World Carnage). -->
-<!-- STATUS: 📝 Parts A+B+C drafted 2026-02-28 — needs author review. -->
-
-### Part A: The Shift
+<!-- OUTLINE TARGET: 500-700w (expanded — essay target now ~5,000w). Core idea: AI generates code faster than humans can comprehend it. Bottleneck shifted from writing to understanding. -->
+<!-- STATUS: 📝 Draft written 2026-02-27 — needs author review + voice tuning. -->
 
 The bottleneck has moved. For decades, writing code was the constraint — you could only build as fast as you could type. Not anymore. AI can generate code faster than most engineers can read it. That gap, between generation speed and human comprehension, is the new failure mode.
 
-On any team right now, the code-per-developer ratio is skyrocketing. Researchers found that AI assistance makes developers 55.8% faster at completing tasks.[^1] And that's before agentic orchestration enters the picture — which promises gains of another order of magnitude on top. That's not a small efficiency gain — that's a structural shift in what one person can produce. And for a while, the story seemed purely positive: more output, faster, with fewer people.
+On any team right now, the code-per-developer ratio is skyrocketing. Researchers found that AI assistance makes developers 55.8% faster at completing tasks.[^1] (EDIT: and with agentic orchestration around the corner to offer orders of magnitude gains) That's not a small efficiency gain — that's a structural shift in what one person can produce. And for a while, the story seemed purely positive: more output, faster, with fewer people.
 
 Then DORA published something that complicated it. Organizations that increased AI adoption by 25% saw delivery stability *decrease* by 7.2%.[^2] Speed went up. Reliability went down. That's not a coincidence — that's the first sign of the new problem.
 
 The thing AI doesn't improve is human comprehension. Our working memory holds roughly 7 ± 2 chunks of information at once — that's Miller's Law, and it hasn't been patched recently.[^3] You can write code ten times faster. You cannot understand ten times faster. Which means the faster you generate, the faster you outrun your own grasp of what you've built.
 
-The context window makes this concrete. The rule of thumb: roughly 10 tokens per line of code. Claude's 200K context window fits about 20,000 lines — roughly 40 files at 500 lines each. Gemini 1.5's 1M context pushes to around 100,000 lines; Google demonstrated this by loading the entire JAX codebase (746K tokens) in a single session.[^17] Now look at what real production systems contain:
+(EDIT: So this section is, I kind of want to do it a little bit differently. And like the interesting thing is like this doesn't just apply to humans understanding systems, it also applies to LLM's understanding systems too. I you know the well while I have a software background this can also apply to any kind of any field where you're managing a lot of data and information and we're all going to be managing like any kind of knowledge work is going to be basically scaled to a lot and even non-non-knowledge work has knowledge behind it um any like hands-on work can have a whole knowledge base behind it so a little bit of a ramble. But the key here, though, is like whenever, how we design systems is also important because AI can generate, LLMs can generate a ton of code and documentation, writing, legal documents, accounting output. But then if they're trying to work on all of that information, how much they have a limited context window as well. So similar to humans, we have kind of a fixed context window. LLMs have the context window that's been fixed for the past year. Of course, as they get better, that context window will increase. So that's kind of something we have to think about is when we plug in an LLM into a system, Is there a distilled amount of information for the AI to even understand it? Is it clear how it's built? Because humans need to understand it, but so does AI to be able to get up to speed quickly and even move around. And hopefully the pieces are modular in a sense that they... Anyway, so the main key point here is that for this section is that it's important to keep in mind like what the AI is working on too because the context limit numbers below show that even a single LLM model can't understand an entire code base it can only understand pieces at a time)
+. The rule of thumb practitioners use: roughly 10 tokens per line of code. Claude's 200K context window fits about 20,000 lines — roughly 40 files at 500 lines each. Gemini 1.5's 1M context pushes to around 100,000 lines. Now look at what real production systems contain:
 
 | Codebase | Lines of code | Claude 200K sees | Gemini 1M sees |
 |---|---|---|---|
+| Small startup app | ~50K LOC | 40% | 100% |
 | Medium SaaS | ~150K LOC | 13% | 67% |
-| React | ~593K LOC [^18] | 4% | 17% |
-| VS Code | ~1.44M LOC [^19] | 1.4% | 7% |
+| React | ~593K LOC | 4% | 17% |
+| VS Code | ~1.44M LOC | 1.4% | 7% |
+| Linux kernel | ~40M LOC | 0.05% | 0.25% |
 
-A fresh agent session on a medium-sized codebase sees roughly one-eighth of the system at best. It doesn't know what it doesn't know. Every new session bootstraps from zero context. Things get duplicated. Dependencies get missed. Features land adjacent to features that already solve the same problem.
+A fresh agent session on a medium-sized codebase sees roughly one-eighth of the system at best. It doesn't know what it doesn't know. Every new session bootstraps from zero context. That's not carelessness — the agent genuinely can't see the existing implementation. So things get duplicated. Dependencies get missed. Features land adjacent to features that already solve the same problem.
 
-I ran the math: 1 billion tokens per day — a plausible near-future number for individual developers — converts to roughly three years of software development in a single day. Peter Steinberger logged 93,570 GitHub contributions in a year.[^16] The AI handles the generation. The problem is the human in the seat — who needs a higher-order understanding of the system they can validate at a glance, not line by line.
+Now scale that up. I (EDIT: I don't feel great about the "I" statements, more like, the math says) ran the math on where this is heading: within a few years, running 1 billion tokens per day will be within reach of individual developers. Converting that to code output — using my own commit history as a baseline — that's roughly three years of software development compressed into a single day. Peter Steinberger logged 93,570 GitHub contributions in a single year.[^16] That's what one AI-augmented developer already looks like at full tilt. The AI can handle the generation. The problem is the human in the seat.
 
-This is the shift. We're becoming something closer to engineering managers than line-level implementers. You don't need to understand every low-level dependency. But you need to understand the shape of the system: its capabilities, its boundaries, where things fit. Want to add a feature but can't see where it belongs? You've already hit a complexity limit.
+Reviewing a day's output that represents three years of work is obviously impossible line by line. You need a higher-order understanding of the system — something you can validate at a glance. The moment you can't validate it, you've lost the ability to direct it. You're watching a dashboard and hoping the numbers make sense.
 
-Software is abstract — there's no physical structure you can walk through. No way to see the load-bearing walls by looking at it. If you can't make that structure visible, intentionally, you're asking an AI to keep adding floors to a building whose blueprints only exist in your head. At 55.8% speed. With agentic orchestration on deck.
+This is the shift. We're moving up the stack — becoming something closer to managers than hands on producers. You don't need to understand every low-level dependency. But you need to understand the shape of the system: its capabilities, its boundaries, where things fit. Want to add a feature but can't see where it belongs? You've already hit a complexity limit.
 
-### Part B: The Cascade
+Think of it like a building. Software is abstract — there's no physical structure you can walk through, no way to see the load-bearing walls by looking at it. That structure has to be made intentional. And the systems that do this — that surface their own shape, that show you what they can do — those are the ones that survive being handed to a human orchestrator of agents.
 
-Code is a liability. Not just the cost of writing it — the cost of holding it. Managing dependencies, tracking what each piece does, knowing what's safe to change. Even with AI, you want to accomplish the most with the least code. But when legibility breaks down, refactoring gets skipped — it's too risky when you can't see the system clearly. You start patching instead. Feature on top of feature, none of them fully integrated.
-
-The cascade from there is predictable. Confusion sets in. Debugging slows — you can't reason about a system you can't see. Improvements become risky because you don't know what they'll break. Trust erodes. Eventually someone proposes a rewrite. Spolsky called it one of the worst things a company can do.[^6] He was right, and most teams do it anyway.
-
-Agent systems amplify every step of this. A single developer managing a hundred coding agents — or a thousand — is a near-future scenario, not a hypothetical. The leverage is real. But leverage without legibility is a freight train in the dark: enormous momentum, no visibility, no way to stop before something collapses. The question that ends AI systems is always the same: *what did it do, and why?* If you can't answer it, the system gets shut down.
-
-### Part C: Real-World Carnage
-
-These aren't edge cases.
-
-Amazon built an AI recruiting tool. It learned to penalize resumes that included the word "women's." Engineers found the bias but couldn't fix it — the model's decision-making was opaque. They scrapped the whole system.[^4]
-
-The Dutch government used an algorithmic fraud-detection system for childcare benefits. It falsely accused 26,000 families. Parents lost housing. Children entered state care. The scandal brought down the entire government.[^5]
-
-Netscape decided their codebase had become too complex to maintain and chose a full rewrite of Navigator from scratch. It took three years. The market moved on. The company never recovered.[^6]
-
-In each case: the system couldn't explain itself. And systems that can't explain themselves don't get fixed — they get shut down, or they take the organization down with them.
-
-Why build something that would eventually get shut down?
+(EDIT: This doesn't sound great) not a fan) A locomotive is one of the most powerful leverage devices ever built: one human, moving thousands of tonnes. The constraint on that system isn't the engine. It's the driver's ability to see the track. You have a buzzer that tells you when to stop at the next station. But if anything happens between stations — it's going to be bad. Speed without visibility isn't power. It's just a faster way to crash.
 
 ---
 
-## 3. The Three Pillars
+## 3. What Breaks When Legibility Breaks
+
+<!-- OUTLINE TARGET: 250-350w. The cascade: prediction fails → debugging stalls → improvement risky → transfer fails → trust collapses → shutdown. -->
+
+🎙️ Legibility can come in the form of structural — when it comes to architecture and being able to understand the system, its functionality, its features. But it can also come in terms of operational as well, especially with agent systems. You hear about observability and traceability, and those are really key, especially for very powerful systems at scale.
+
+🎙️ The question is: what did this system do, and why did it do it? Because you really have to think — the system itself will get shut down if you can't answer that.
+
+🎙️ Code is definitely a liability. Writing a bunch of code, managing a bunch of code, managing dependencies — even with AI, you always want to try to do the most possible with the least amount of code. So when it comes to refactoring: if you're not clear on what features need to be part of it, and it's not clear where those pieces fit into the system through its legibility, then refactoring might be skipped altogether. And then you're basically patching on features.
+
+🎙️ If we start to feel confused about a system, we start to feel non-confident. Debugging and iteration cycles start to get slower. Improvement is risky because it could create bugs and unexpected things — because it's not clear what happens. Trust starts to collapse over time. The code starts turning into a code rot scenario because you're scared to refactor. Improvement is risky. Trust is breaking down. And eventually the system gets shut down.
+
+🎙️ **"It's basically like driving a freight train in the dark. You can feel the power. It's moving. But you don't see that the tunnel through the next mountain had collapsed. And you just keep chugging along at faster and faster speeds until everything is obliterated."**
+
+✏️ [INSERT: Real-world examples — this is where the evidence hits hardest:
+- Amazon built an AI recruiting tool, discovered it had learned opaque gender bias, and *couldn't fix it* — they scrapped the whole system[^4]
+- The Dutch government used an opaque fraud-detection algorithm that falsely accused 26,000 families — the scandal brought down the entire government[^5]
+- Netscape rewrote Navigator from scratch. It cost three years and killed the company[^6]
+- Foote & Yoder called it the Big Ball of Mud — and argued it's the *default* architecture, not the exception[^7]]
+
+🎙️ For AI systems — they're extremely powerful. There's a lot of internal decision-making. How do you make all that work visible? How can you be absolutely confident that they're taking safe actions?
+
+🎙️ Think about it: three years ago, a single developer was just writing their own code. Now we're moving into the possibility of a single developer managing a hundred or even a thousand coding agents. That completely changes the focus, the profession. The leverage is insanely obvious. But how does it land? It lands with legibility.
+
+🎙️ I'm sure we all heard of the rewrite cycle — where complexity becomes hard to manage, and the idea comes up to rewrite a system. There's many people in this software world that say this should only happen in very, very rare scenarios. Do your best not to plan to rewrite a system from the start.
+
+======
+MY VOICE DRAFT V0
+
+
+
+---
+
+## 4. The 3 Pillars
 
 <!-- OUTLINE TARGET: 700-900w across all 3 pillars. -->
 
@@ -121,21 +141,6 @@ Footnotes: Fowler — Ubiquitous Language [^14], Fowler — Strangler Fig [^15]]
 
 ---
 
-## 4. The Frontier
-
-<!-- OUTLINE TARGET: 300-500w. Key point: AI is abstracting away low-level code. The human job is shifting to visualization and comprehension tooling. The next frontier of legibility is making complex systems visually navigable — 2D and eventually 3D. -->
-<!-- STATUS: ✏️ Needs your voice — this is the forward-looking section, uniquely yours. Key beats:
-- AI handles lower-level implementation → new abstraction layer → human role shifts to *how we see systems*
-- 2D: JS architecture diagram tools, auto-generated component diagrams from vertical slice architecture
-- 3D: Blender experiments — navigating a codebase like navigating a space
-- "If a system is too complex to hold in your head, maybe you shouldn't read it — you should fly through it"
-- By end of year, something semi-solid for 3D system visualization
-- The systems that win will be the ones that invest in making themselves *seeable*, not just readable -->
-
-✏️ [Your frontier story — voice dictate this section when ready]
-
----
-
 ## 5. Legibility Checklist
 
 <!-- OUTLINE TARGET: 150-220w. 6 copy-pastable bullets. No footnotes. -->
@@ -152,7 +157,6 @@ Footnotes: Fowler — Ubiquitous Language [^14], Fowler — Strangler Fig [^15]]
 ---
 
 ## 6. Closing
-
 
 <!-- OUTLINE TARGET: 120-180w. "If a system can't explain itself, it won't survive." -->
 
@@ -187,7 +191,3 @@ Footnotes: Fowler — Ubiquitous Language [^14], Fowler — Strangler Fig [^15]]
 [^14]: Martin Fowler — Ubiquitous Language (2006). Shared vocabulary = code reads how business thinks.
 [^15]: Martin Fowler — Strangler Fig Application (2004). Industry pattern to avoid rewrites.
 [^16]: Peter Steinberger (@steipete) — 93,570 GitHub contributions in one year (2025-2026). AI-augmented solo developer.
-[^17]: Google — Gemini 1.5 Technical Report (2024). Demonstrated loading JAX codebase at 746,152 tokens in a single session. arxiv.org/abs/2403.05530
-[^18]: Open Hub — React (facebook/react). ~593,499 LOC, 88% JavaScript / 11% TypeScript. openhub.net/p/facebook-react
-[^19]: Open Hub — VS Code (microsoft/vscode). ~1,439,706 LOC, 97% TypeScript. openhub.net/p/vscode
-[^20]: Stackscale — "Linux kernel surpasses 40 million lines" (Jan 2025). Linux 6.14 rc1: 40,063,856 total lines.
