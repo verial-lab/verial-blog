@@ -7,18 +7,13 @@ export interface TitleSpec {
 }
 
 /**
- * Three-line title block anchored at the bottom of the canvas:
- *   subtitle (small, dim, letter-spaced)
- *   MAIN TITLE (larger, bold, neon glow)
- *   = subtitle (small, dim)
+ * Three-line title block — matches render-legibility-final.js exactly.
+ * Default position: top of canvas (y=58, 90, 112).
  */
-export function titleBlock(spec: TitleSpec, baseY: number = SIZE - 60): string {
-  const subStyle = `font-family="${FONT_FAMILY}" font-size="${TITLE_SUB_SIZE}" fill="${COLOR_WHITE}" opacity="${OPACITY_DIM}" letter-spacing="0.25em" text-anchor="middle"`;
-  const mainStyle = `font-family="${FONT_FAMILY}" font-size="${TITLE_MAIN_SIZE}" font-weight="700" fill="${COLOR_WHITE}" filter="url(#neon)" text-anchor="middle"`;
-
+export function titleBlock(spec: TitleSpec, baseY: number = 90): string {
   return `<g class="title-block">
-    <text x="${SIZE / 2}" y="${baseY - 32}" ${subStyle}>${spec.subtitle.toUpperCase()}</text>
-    <text x="${SIZE / 2}" y="${baseY}" ${mainStyle}>${spec.main}</text>
-    <text x="${SIZE / 2}" y="${baseY + 22}" ${subStyle}>= ${spec.sub2}</text>
+    <text x="${SIZE / 2}" y="${baseY - 32}" text-anchor="middle" style="font-size: ${TITLE_SUB_SIZE}px; letter-spacing: 0.25em; opacity: ${OPACITY_DIM}; text-transform: uppercase;">${spec.subtitle}</text>
+    <text x="${SIZE / 2}" y="${baseY}" text-anchor="middle" style="font-size: ${TITLE_MAIN_SIZE}px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;" filter="url(#neon)">${spec.main}</text>
+    <text x="${SIZE / 2}" y="${baseY + 22}" text-anchor="middle" style="font-size: ${TITLE_SUB_SIZE}px; letter-spacing: 0.15em; opacity: ${OPACITY_DIM}; text-transform: uppercase;">= ${spec.sub2}</text>
   </g>`;
 }

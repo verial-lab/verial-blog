@@ -1,8 +1,8 @@
 export const SIZE = 800;
-export const FONT_FAMILY = `'Helvetica Neue', Helvetica, Arial, sans-serif`;
+export const FONT_FAMILY = `system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif`;
 export const COLOR_WHITE = '#FFFFFF';
 export const COLOR_ACCENT = '#999999';
-export const COLOR_BG = '#060606';
+export const COLOR_BG = '#000000';
 export const OPACITY_DIM = 0.5;
 export const OPACITY_SUBTLE = 0.3;
 export const WATERMARK_FONT_SIZE = 110;

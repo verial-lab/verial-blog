@@ -8,7 +8,7 @@ import type { ModelSpec } from '../schema/model-spec.js';
 
 /**
  * Assemble a complete SVG from a ModelSpec:
- *   defs (filters + mask) → background → watermark (masked) → diagram → title → footer
+ *   defs (filters + mask) → background → watermark (masked) → title → diagram → footer
  */
 export function compose(spec: ModelSpec): string {
   const maskDef = softMask('wm-mask', spec.masks);
@@ -29,8 +29,8 @@ export function compose(spec: ModelSpec): string {
   <g mask="url(#wm-mask)">
     ${watermarkGrid()}
   </g>
+  ${titleBlock(spec.title, spec.titleY)}
   ${renderElements(spec.elements)}
-  ${titleBlock(spec.title)}
   ${footer}
 </svg>`;
 }

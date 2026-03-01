@@ -6,29 +6,30 @@
     "sub2": "comprehension is the new limit"
   },
   "elements": [
-    { "type": "box", "x": 100, "y": 180, "w": 160, "h": 60, "stroke": "#FFFFFF", "opacity": 0.6 },
-    { "type": "label", "x": 180, "y": 215, "text": "WRITING CODE", "size": 11, "weight": 700, "opacity": 0.8 },
+    { "type": "box", "x": 120, "y": 200, "w": 120, "h": 350, "rx": 4, "strokeWidth": 1.5, "neon": true },
+    { "type": "label", "x": 180, "y": 380, "text": "AI", "size": 13, "weight": 600 },
+    { "type": "label", "x": 180, "y": 398, "text": "GENERATION", "size": 13, "weight": 600 },
+    { "type": "label", "x": 180, "y": 420, "text": "SPEED", "size": 10, "opacity": 0.5 },
+    { "type": "line", "x1": 180, "y1": 300, "x2": 180, "y2": 230, "arrow": "end", "opacity": 0.6 },
+    { "type": "label", "x": 180, "y": 260, "text": "FAST", "size": 9, "opacity": 0.4 },
 
-    { "type": "box", "x": 540, "y": 180, "w": 160, "h": 60, "stroke": "#FFFFFF", "opacity": 0.6 },
-    { "type": "label", "x": 620, "y": 215, "text": "READING CODE", "size": 11, "weight": 700, "opacity": 0.8 },
+    { "type": "box", "x": 560, "y": 370, "w": 120, "h": 180, "rx": 4, "strokeWidth": 1.5, "neon": true },
+    { "type": "label", "x": 620, "y": 455, "text": "HUMAN", "size": 13, "weight": 600 },
+    { "type": "label", "x": 620, "y": 473, "text": "COMPREHENSION", "size": 13, "weight": 600 },
+    { "type": "label", "x": 620, "y": 495, "text": "SPEED", "size": 10, "opacity": 0.5 },
 
-    { "type": "line", "x1": 270, "y1": 210, "x2": 530, "y2": 210, "arrow": "end", "opacity": 0.5 },
-    { "type": "label", "x": 400, "y": 198, "text": "AI accelerates production", "size": 9, "opacity": 0.4 },
+    { "type": "line", "x1": 280, "y1": 350, "x2": 520, "y2": 350, "accent": true, "strokeWidth": 0.75, "dashArray": "6,4" },
+    { "type": "line", "x1": 280, "y1": 550, "x2": 520, "y2": 550, "accent": true, "strokeWidth": 0.75, "dashArray": "6,4" },
 
-    { "type": "box", "x": 280, "y": 320, "w": 240, "h": 80, "rx": 6, "stroke": "#999999", "neon": true },
-    { "type": "label", "x": 400, "y": 350, "text": "BOTTLENECK", "size": 16, "weight": 700, "neon": true },
-    { "type": "label", "x": 400, "y": 372, "text": "shifts from production → comprehension", "size": 9, "opacity": 0.5 },
+    { "type": "box", "x": 320, "y": 430, "w": 160, "h": 60, "rx": 4, "strokeWidth": 2, "neon": true },
+    { "type": "label", "x": 400, "y": 458, "text": "THE GAP", "size": 14, "weight": 700 },
+    { "type": "label", "x": 400, "y": 478, "text": "= COMPLEXITY DEBT", "size": 10, "opacity": 0.5 },
 
-    { "type": "line", "x1": 180, "y1": 250, "x2": 320, "y2": 320, "arrow": "end", "dashed": true, "opacity": 0.3 },
-    { "type": "line", "x1": 620, "y1": 250, "x2": 480, "y2": 320, "arrow": "end", "dashed": true, "opacity": 0.3 },
+    { "type": "line", "x1": 400, "y1": 370, "x2": 400, "y2": 430, "accent": true, "arrow": "end" },
+    { "type": "line", "x1": 400, "y1": 550, "x2": 400, "y2": 490, "accent": true, "arrow": "end" },
 
-    { "type": "box", "x": 200, "y": 460, "w": 400, "h": 50, "stroke": "#FFFFFF", "dashed": true, "opacity": 0.3 },
-    { "type": "label", "x": 400, "y": 490, "text": "legibility determines velocity", "size": 10, "opacity": 0.4 }
+    { "type": "label", "x": 400, "y": 610, "text": "THE LIMIT ISN'T HOW FAST AI CODES", "size": 11, "opacity": 0.4, "letterSpacing": "0.15em" },
+    { "type": "label", "x": 400, "y": 630, "text": "IT'S HOW FAST HUMANS UNDERSTAND", "size": 11, "opacity": 0.4, "letterSpacing": "0.15em" }
   ],
-  "masks": [
-    { "cx": 400, "cy": 340, "rx": 250, "ry": 180 }
-  ],
-  "footer": [
-    { "text": "verial.xyz", "y": 780, "opacity": 0.25 }
-  ]
+  "masks": []
 }

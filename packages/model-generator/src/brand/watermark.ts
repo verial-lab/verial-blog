@@ -8,7 +8,7 @@ const GRID = [
 
 /**
  * Generate the 3×3 VERIAL.XYZ watermark grid.
- * Each letter is centered in its cell with the deep-carve wm filter.
+ * Matches render-legibility-final.js watermarkSVG() exactly.
  */
 export function watermarkGrid(): string {
   const cellW = SIZE / 3;
@@ -18,11 +18,11 @@ export function watermarkGrid(): string {
   for (let row = 0; row < 3; row++) {
     for (let col = 0; col < 3; col++) {
       const x = col * cellW + cellW / 2;
-      const y = row * cellH + cellH / 2;
+      const y = row * cellH + cellH / 2 + 40;
       letters.push(
-        `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central"
-               font-family="${FONT_FAMILY}" font-size="${WATERMARK_FONT_SIZE}" font-weight="bold"
-               fill="#060606" filter="url(#wm)">${GRID[row][col]}</text>`
+        `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="middle"
+               style="font-family: system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif; font-size: ${WATERMARK_FONT_SIZE}px; font-weight: bold; fill: #FFFFFF; letter-spacing: 0; text-transform: none;"
+               filter="url(#wm)">${GRID[row][col]}</text>`
       );
     }
   }

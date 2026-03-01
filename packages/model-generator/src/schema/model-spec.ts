@@ -7,6 +7,7 @@ const BoxElement = z.object({
   stroke: z.string().optional(),
   strokeWidth: z.number().optional(),
   dashed: z.boolean().optional(),
+  dashArray: z.string().optional(),
   neon: z.boolean().optional(),
   opacity: z.number().optional(),
   fill: z.string().optional(),
@@ -30,6 +31,7 @@ const LineElement = z.object({
   arrow: z.enum(['start', 'end', 'both']).optional(),
   accent: z.boolean().optional(),
   dashed: z.boolean().optional(),
+  dashArray: z.string().optional(),
   opacity: z.number().optional(),
   strokeWidth: z.number().optional(),
 });
@@ -60,6 +62,7 @@ export const ModelSpecSchema = z.object({
     main: z.string(),
     sub2: z.string(),
   }),
+  titleY: z.number().optional(),
   elements: z.array(DiagramElement),
   masks: z.array(MaskEllipse),
   footer: z.array(FooterLine).optional(),
