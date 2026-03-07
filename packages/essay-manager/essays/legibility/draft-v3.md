@@ -38,7 +38,7 @@ The bottleneck has moved. For decades, knowledge work was constrained by thinkin
 
 One person running the workload of a hundred. That's not a forecast — it's already happening.
 
-Peter Steinberger — creator of OpenClaw — made more than 6,600 commits in January 2025 alone.[^16] For context: the world's most prolific solo developer in 2012 peaked at around 7,500 contributions for an entire year.[^22] Steinberger was on pace for more than ten times that. OpenClaw — built by one person with AI — is closing in on React's all-time GitHub star count,[^openclaw] a milestone Facebook's team took twelve years to reach. His own words: *"All the mundane stuff of writing code is automated away, I can move so much faster. But I have to think so much more."* The first sentence is the promise. The second is the catch.
+Peter Steinberger — creator of OpenClaw — made more than 6,600 commits in January 2025 alone.[^16] For context: the world's most prolific solo developer in 2012 peaked at around 7,500 contributions for an entire year.[^22] Steinberger was on pace for more than ten times that. OpenClaw — built by one person with AI — has surpassed React's all-time GitHub star count,[^openclaw] a milestone Facebook's team took twelve years to reach. His own words: *"All the mundane stuff of writing code is automated away, I can move so much faster. But I have to think so much more."* The first sentence is the promise. The second is the catch.
 
 The reality is that AI doesn't scale human comprehension. Our working memory holds roughly 7 ± 2 chunks of information at once — Miller's Law, and it hasn't been patched recently.[^3] You can write code ten times faster. You cannot understand ten times faster. Which means the faster you generate, the faster you outrun your own grasp of what you've built.
 
@@ -103,7 +103,7 @@ Combined, domain and temporal legibility mean the system is readable by people, 
 
 The biggest legibility benefit of modularity is simple: it reduces how much you need to hold in your head at once.[^11]
 
-Think about a car. Combustion cycles, fuel injection, battery management, temperature regulation — the driver understands almost none of it, and doesn't need to. The interface is a wheel, a pedal, a key. Clean inputs, predictable outputs. All the complexity is hidden behind that boundary. A single person can confidently operate something extraordinarily complex because they never have to see what's underneath.[^13]
+Think about a car. Combustion cycles, fuel injection, battery management, temperature regulation — the driver understands almost none of it, and doesn't need to. The interface is a wheel, a pedal, a key. Clean inputs, predictable outputs. All the complexity is hidden behind that boundary. A single person can confidently operate something extraordinarily complex because they never have to see what's underneath.
 
 That's what good modularity does for a system. Wrap thousands of lines of complexity behind a simple interface. The cognitive load of operating it drops to the size of that interface — not the size of what's inside it. You can understand and change one module without needing to hold the whole system in your head at once.
 
@@ -162,7 +162,7 @@ Here are some questions to pressure-test the legibility of anything you're build
 
 Legibility is how you stay in control of the unprecedented leverage agentic orchestration provides.
 
-A black box that controls a thousand tireless agents isn't powerful — it's dangerous. The question that ends complex systems will be: *what did it do, and why?* The Dutch government couldn't answer it.[^5] Amazon couldn't answer it.[^4] Netscape lost three years trying to undo what they couldn't explain.[^6][^15] (And that was before agentic orchestration.)
+A black box that controls a thousand tireless agents isn't powerful — it's dangerous. The question that ends complex systems will be: *what did it do, and why?* The Dutch government couldn't answer it.[^5] Amazon couldn't answer it.[^4] Netscape lost three years trying to undo what they couldn't explain.[^6] (And that was before agentic orchestration.)
 
 Confidence is the currency. Can you audit it? Can a new person work with it? Can you change it without fear? If the answer to any of those is no, you have a legibility problem — and that problem compounds at mass agentic speed.
 
@@ -174,27 +174,22 @@ Legibility isn't about slowing down. It's about making speed sustainable. In the
 
 ## Footnotes Reference
 
-[^llmflation]: Guido Appenzeller (a16z) — "Welcome to LLMflation" (2024). "For an LLM of equivalent performance, the cost is decreasing by 10x every year." a16z.com/llmflation-llm-inference-cost
-[^math]: At 10x/year cost reductions, the math on daily token generation for a solo developer converges quickly. Full breakdown in a future post.
 [^syntropic]: Syntropic137 — agent engineering framework. GitHub organization: github.com/Syntropic137. Repository not yet public.
 [^3]: George Miller — "The Magical Number Seven, Plus or Minus Two" (1956). Human working memory holds ~7 ± 2 chunks.
 [^4]: Reuters (Jeffrey Dastin) — Amazon scrapped AI recruiting tool that showed bias against women (2018).
 [^5]: Dutch childcare benefits scandal — opaque algorithmic fraud detection falsely accused ~26,000 families; government fell (2020-21).
 [^6]: Joel Spolsky — "Things You Should Never Do, Part I" (2000). Netscape's rewrite cost 3 years and killed the company.
 [^dilger]: Martin Dilger — *Understanding Event Sourcing* (2023). Accessible introduction to event sourcing concepts and patterns.
-[^vern]: Vaughn Vernon — *Implementing Domain-Driven Design* (2013). Practical application of DDD patterns at scale.
 [^8]: Eric Evans — *Domain-Driven Design* (2003). Ubiquitous language, bounded contexts.
-[^9]: Martin Fowler — Event Sourcing. Complete audit log + temporal queries.
+[^9]: Martin Fowler — Event Sourcing. martinfowler.com/eaaDev/EventSourcing.html. Complete audit log + temporal queries.
 [^10]: Greg Young — CQRS Documents (2010). Events as first-class citizens.
 [^11]: John Sweller — Cognitive Load Theory (2011). Design must respect working memory limits.
 [^12]: Skelton & Pais — *Team Topologies* (2019). Software boundaries should align with cognitive load limits. Popularized the "Inverse Conway Maneuver" — design your org to get the architecture you want.
 [^conway]: Melvin E. Conway — "How Do Committees Invent?" *Datamation*, April 1968. "Any organization that designs a system will produce a design whose structure is a copy of the organization's communication structure." melconway.com/Home/Conways_Law.html
-[^13]: Martin Fowler — Bounded Context (2014). Explicit boundaries → manageable sub-models.
 [^14]: Martin Fowler — Ubiquitous Language (2006). Shared vocabulary = code reads how business thinks.
-[^15]: Martin Fowler — Strangler Fig Application (2004). Industry pattern to avoid rewrites.
-[^16]: The Pragmatic Engineer — "The creator of Clawd: I ship code I don't read" (2025). Confirmed 6,600+ commits in January 2025 alone. newsletter.pragmaticengineer.com
+[^16]: The Pragmatic Engineer — "The creator of Clawd: I ship code I don't read" (2025). Confirmed 6,600+ commits in January 2025 alone. Note: the product was originally named ClawdBot, then Clawd — renamed to OpenClaw after Anthropic issued a cease and desist over naming conflict. newsletter.pragmaticengineer.com
 [^22]: paulmillr — GitHub worldwide contributor leaderboard (Jan 2012–Jan 2013). TJ Holowaychuk (#1 globally): 7,458 contributions/year. gist.github.com/paulmillr/2657075
-[^openclaw]: OpenClaw GitHub repository (github.com/openclaw/openclaw). Launched November 24, 2025. ~240,000 stars as of February 2026, closing in on React (~243k) as the most-starred software repository on GitHub. Peter Steinberger, creator (@steipete).
+[^openclaw]: OpenClaw GitHub repository (github.com/openclaw/openclaw). Launched November 24, 2025. 270.4k stars as of March 2026 — #12 all-time on GitHub, surpassing React (243.7k). Peter Steinberger, creator (@steipete).
 [^17]: Google — Gemini 1.5 Technical Report (2024). Demonstrated loading JAX codebase at 746,152 tokens in a single session. arxiv.org/abs/2403.05530
 [^18]: Open Hub — React (facebook/react). ~593,499 LOC, 88% JavaScript / 11% TypeScript. openhub.net/p/facebook-react
 [^19]: Open Hub — VS Code (microsoft/vscode). ~1,439,706 LOC, 97% TypeScript. openhub.net/p/vscode
