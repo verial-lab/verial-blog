@@ -1,7 +1,6 @@
 import { HeroSection } from '@/components/HeroSection';
 import { EmailSignup } from '@/components/EmailSignup';
 import { ContentPreview } from '@/components/ContentPreview';
-import Link from 'next/link';
 import { brand } from '@/lib/brand';
 
 export default function HomePage() {
@@ -44,36 +43,6 @@ export default function HomePage() {
           </div>
 
           <EmailSignup />
-
-          {/* Latest Essays */}
-          <div className="mt-14">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-2xl font-serif font-normal tracking-normal text-foreground/80">Latest Essays</h3>
-              <Link 
-                href="/essays" 
-                className="text-sm text-muted-foreground/60 hover:text-primary font-medium transition-colors uppercase tracking-wider"
-              >
-                View all →
-              </Link>
-            </div>
-            <div className="space-y-3">
-              <article className="group border border-border/30 rounded-xl p-6 hover:border-border/50 hover:bg-muted/[0.04] transition-all duration-300">
-                <Link href="/essays/containment-systems-design">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <h4 className="text-xl font-serif font-normal mb-2 group-hover:text-primary transition-colors">
-                        Containment as a Systems Design Principle
-                      </h4>
-                      <p className="text-muted-foreground text-lg leading-relaxed">
-                        Why containment is the hidden constraint behind scalable agent systems—from physics to software to governance.
-                      </p>
-                    </div>
-                    <time className="text-xs text-muted-foreground/50 whitespace-nowrap mt-1 font-mono">Feb 2026</time>
-                  </div>
-                </Link>
-              </article>
-            </div>
-          </div>
         </div>
       </section>
     </main>
