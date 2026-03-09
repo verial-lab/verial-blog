@@ -40,7 +40,7 @@ Email signup and essay distribution. Subscribers get notified when new essays wi
 ### Google Search Console
 SEO tracking — search queries, click-through rates, indexing status. Shows what search terms bring readers to the site.
 
-- **Setup:** Add TXT record to DNS (`google-site-verification=...`)
+- **Setup:** Add a TXT record in Namecheap (Advanced DNS → host `@` → value from Google)
 - **URL:** [search.google.com/search-console](https://search.google.com/search-console)
 - **Cost:** Free
 
