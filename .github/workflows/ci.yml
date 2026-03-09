@@ -45,7 +45,21 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Cache Next.js build
+        uses: actions/cache@v4
+        with:
+          path: packages/blog-site/.next/cache
+          key: nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('packages/blog-site/**/*.ts', 'packages/blog-site/**/*.tsx', 'packages/blog-site/**/*.mdx') }}
+          restore-keys: nextjs-${{ hashFiles('**/package-lock.json') }}-
       - run: npm run build
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: |
+            packages/blog-site/.next
+            !packages/blog-site/.next/cache
+          retention-days: 1
 
   test-e2e:
     name: Playwright E2E
@@ -65,9 +79,25 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+          path: packages/blog-site/.next
+      - name: Cache Playwright browsers
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ hashFiles('**/package-lock.json') }}
       - name: Install Playwright browsers
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         working-directory: packages/blog-site
         run: npx playwright install --with-deps chromium
+      - name: Install Playwright deps (cached)
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        working-directory: packages/blog-site
+        run: npx playwright install-deps chromium
       - name: Run Playwright tests
         id: playwright
         working-directory: packages/blog-site
@@ -118,8 +148,11 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Build site
-        run: npm run build
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+          path: packages/blog-site/.next
       - name: Run Lighthouse CI
         id: lhci
         working-directory: packages/blog-site
