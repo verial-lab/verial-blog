@@ -114,5 +114,13 @@ export async function generateMetadata(props: {
   const params = await props.params;
   const page = postSource.getPage(params.slug);
   if (!page) return { title: 'Posts | Verial' };
-  return { title: page.data.title, description: page.data.description };
+  const title = page.data.title;
+  const description = page.data.description || '';
+  const ogImage = `/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`;
+  return {
+    title,
+    description,
+    openGraph: { title, description, images: [{ url: ogImage, width: 1200, height: 630 }] },
+    twitter: { card: 'summary_large_image' as const, title, description, images: [ogImage] },
+  };
 }

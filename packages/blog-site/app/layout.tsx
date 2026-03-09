@@ -26,6 +26,23 @@ export const metadata: Metadata = {
     ],
     apple: '/apple-touch-icon.png',
   },
+  openGraph: {
+    type: 'website',
+    siteName: 'Verial',
+    title: 'Verial — Truth-seeking. Applied.',
+    description: 'Essays on philosophy, systems thinking, innovation, and practical wisdom for the exponential age.',
+    url: 'https://verial.xyz',
+    images: [{ url: '/og?title=Verial&description=Truth-seeking.+Applied.', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Verial — Truth-seeking. Applied.',
+    description: 'Essays on philosophy, systems thinking, innovation, and practical wisdom for the exponential age.',
+    images: ['/og?title=Verial&description=Truth-seeking.+Applied.'],
+  },
+  alternates: {
+    types: { 'application/rss+xml': '/feed.xml' },
+  },
 };
 
 export default function RootLayout({
