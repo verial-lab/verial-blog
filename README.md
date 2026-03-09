@@ -23,6 +23,38 @@
 | `model-generator` | Diagram/model generation |
 | `writing-pipeline` | Content pipeline and ideas |
 
+## SEO & Distribution
+
+Built-in, fully automatic — no manual steps needed after setup.
+
+### Sitemap (`/sitemap.xml`)
+Auto-generated from all FumaDocs content sources on every build. Google Search Console references this to discover pages.
+- **See it:** [verial.xyz/sitemap.xml](https://verial.xyz/sitemap.xml)
+- **Code:** `app/sitemap.ts`
+
+### RSS Feed (`/feed.xml`)
+Includes all essays and posts. Auto-updates on build. Use for syndication tools (dlvr.it, Feedly, etc.).
+- **See it:** [verial.xyz/feed.xml](https://verial.xyz/feed.xml)
+- **Code:** `app/feed.xml/route.ts`
+
+### robots.txt (`/robots.txt`)
+Tells search engine crawlers what to index. Points to sitemap.
+- **See it:** [verial.xyz/robots.txt](https://verial.xyz/robots.txt)
+- **Code:** `app/robots.ts`
+
+### OG Images (`/og`)
+Dynamic Open Graph image generator. Creates branded preview cards (Verial palette: dark bg, blue accent) when links are shared on Twitter, Discord, LinkedIn, iMessage, etc. Each page gets a unique image based on its title and description.
+- **Test it:** [verial.xyz/og?title=Hello&description=Test](https://verial.xyz/og?title=Hello&description=Test)
+- **Code:** `app/og/route.tsx` (edge runtime)
+
+### Twitter/X Cards
+`summary_large_image` cards configured on all pages. Uses the same OG images. No separate setup needed.
+
+### RSS Auto-Discovery
+`<link rel="alternate" type="application/rss+xml">` in `<head>` so browsers and feed readers auto-detect the feed.
+
+---
+
 ## Integrations
 
 ### Vercel Analytics
