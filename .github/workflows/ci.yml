@@ -56,9 +56,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: build-output
-          path: |
-            packages/blog-site/.next
-            !packages/blog-site/.next/cache
+          path: packages/blog-site/.next/
+          include-hidden-files: true
           retention-days: 1
 
   test-e2e:
