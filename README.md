@@ -76,6 +76,24 @@ SEO tracking — search queries, click-through rates, indexing status. Shows wha
 - **URL:** [search.google.com/search-console](https://search.google.com/search-console)
 - **Cost:** Free
 
+## Mission
+
+**Verial exists to distill lessons from the tech frontier into wisdom.** High-density, valuable insights for builders.
+
+This is a builder's blog — not a content machine. The strategy is simple:
+
+> Write things worth sharing. Let infrastructure handle distribution. Spend your time building, not promoting.
+
+### Cadence
+- **One essay every ~2 months** — deep, polished, worth reading twice
+- **Posts and systems** — as they come to mind, no schedule pressure
+- **Engagement** — 15-20 min/day max on publish weeks, near-zero otherwise
+
+### Philosophy
+- **Quality over quantity** — one great essay beats twenty mediocre posts
+- **Infrastructure over hustle** — automate distribution, don't grind for reach
+- **Builder-first** — most of your time goes to building. Writing is the byproduct of building.
+
 ## Distribution Strategy
 
 When a new essay is published (merged to `main`), distribution happens in layers:
@@ -86,9 +104,18 @@ When a new essay is published (merged to `main`), distribution happens in layers
 3. **Sitemap + RSS** — update on build, Google re-crawls automatically
 4. **OG images** — generated on-demand for link previews everywhere
 
-### Manual (per essay)
-5. **Hacker News** — submit manually, best Tue–Thu 8–10am ET. Craft the title for the HN audience.
-6. **Substack** — optional cross-post with canonical URL pointing back to verial.xyz
+### Manual (per essay, ~30 min total)
+5. **Twitter/X** — craft a hook thread with personal angle + insight + link. Not just a URL drop.
+6. **LinkedIn** — shorter professional framing of the same ideas.
+7. **Hacker News** — submit with a clean title, best Tue–Thu 8–10am ET.
+8. **Substack** — optional cross-post with canonical URL pointing back to verial.xyz.
+
+### Engagement (publish week only)
+- **Reply to comments on your post** — check 2-3 times on publish day. Highest ROI engagement.
+- **One quality HN comment/day** — find something in your domain, leave a genuinely insightful comment. People click your profile → find Verial.
+- **Quote-tweet/reply to 2-3 people on Twitter** — engage where your people are (systems thinkers, engineering leaders, builders).
+
+**What you don't do:** grind comments all day, follow/unfollow games, engagement pods, or any "content creator" hustle. If people respond to your work, don't be a ghost. That's it.
 
 ### Workflow
 ```
@@ -102,7 +129,7 @@ Write essay → Open PR → Review → Merge to main
               (email)      (Twitter/LinkedIn/   (Google index)
                             Reddit)
                                     ↓
-                            Manual: HN, Substack
+                    Manual (30 min): HN, Twitter, LinkedIn
 ```
 
 ## Analytics & Monitoring
