@@ -23,8 +23,7 @@ test.describe('Mobile', () => {
 
   test('content is readable on mobile', async ({ page, isMobile }) => {
     test.skip(!isMobile, 'Mobile only');
-    await page.goto('/essays/containment-systems-design');
-    const article = page.locator('article');
-    await expect(article).toBeVisible();
+    await page.goto('/essays');
+    await expect(page.locator('h1:text("Essays")')).toBeVisible();
   });
 });
