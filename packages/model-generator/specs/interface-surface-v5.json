@@ -1,0 +1,168 @@
+{
+  "id": "interface-surface-v5",
+  "title": {
+    "subtitle": "",
+    "main": "Interface Surface Area",
+    "sub2": "what you expose vs what you hide"
+  },
+  "elements": [
+    {
+      "type": "label",
+      "x": 200,
+      "y": 150,
+      "text": "LEAKY ABSTRACTION",
+      "size": 11,
+      "opacity": 0.5,
+      "weight": 600
+    },
+    {
+      "type": "line",
+      "x1": 80,
+      "y1": 175,
+      "x2": 320,
+      "y2": 175,
+      "strokeWidth": 3,
+      "neon": true
+    },
+    {
+      "type": "box",
+      "x": 80,
+      "y": 175,
+      "w": 240,
+      "h": 240,
+      "rx": 2,
+      "strokeWidth": 0.75,
+      "dashed": true
+    },
+    {
+      "type": "label",
+      "x": 200,
+      "y": 300,
+      "text": "FUNCTIONALITY",
+      "size": 12,
+      "opacity": 0.3
+    },
+    {
+      "type": "label",
+      "x": 200,
+      "y": 445,
+      "text": "100% EXPOSED",
+      "size": 12,
+      "opacity": 0.4
+    },
+    {
+      "type": "label",
+      "x": 580,
+      "y": 150,
+      "text": "GOOD MODULE",
+      "size": 11,
+      "opacity": 0.5,
+      "weight": 600
+    },
+    {
+      "type": "line",
+      "x1": 530,
+      "y1": 175,
+      "x2": 570,
+      "y2": 175,
+      "strokeWidth": 3,
+      "neon": true
+    },
+    {
+      "type": "line",
+      "x1": 570,
+      "y1": 175,
+      "x2": 700,
+      "y2": 175,
+      "strokeWidth": 0.5,
+      "opacity": 0.15
+    },
+    {
+      "type": "box",
+      "x": 460,
+      "y": 175,
+      "w": 240,
+      "h": 240,
+      "rx": 2,
+      "strokeWidth": 0.75,
+      "dashed": true
+    },
+    {
+      "type": "label",
+      "x": 580,
+      "y": 300,
+      "text": "FUNCTIONALITY",
+      "size": 12,
+      "opacity": 0.3
+    },
+    {
+      "type": "label",
+      "x": 580,
+      "y": 445,
+      "text": "17% EXPOSED",
+      "size": 12,
+      "opacity": 0.4,
+      "neon": true
+    },
+    {
+      "type": "label",
+      "x": 400,
+      "y": 520,
+      "text": "SAME FUNCTIONALITY",
+      "size": 12,
+      "opacity": 0.3
+    },
+    {
+      "type": "label",
+      "x": 400,
+      "y": 538,
+      "text": "DIFFERENT INTERFACE WIDTH",
+      "size": 12,
+      "opacity": 0.3
+    },
+    {
+      "type": "label",
+      "x": 200,
+      "y": 600,
+      "text": "INTERFACE",
+      "size": 11,
+      "opacity": 0.5
+    },
+    {
+      "type": "line",
+      "x1": 140,
+      "y1": 610,
+      "x2": 260,
+      "y2": 610,
+      "strokeWidth": 2,
+      "neon": true
+    },
+    {
+      "type": "label",
+      "x": 580,
+      "y": 600,
+      "text": "INTERFACE",
+      "size": 11,
+      "opacity": 0.5
+    },
+    {
+      "type": "line",
+      "x1": 560,
+      "y1": 610,
+      "x2": 600,
+      "y2": 610,
+      "strokeWidth": 2,
+      "neon": true
+    },
+    {
+      "type": "label",
+      "x": 400,
+      "y": 780,
+      "text": "VERIAL.XYZ",
+      "size": 11,
+      "opacity": 0.3
+    }
+  ],
+  "masks": [],
+  "noWatermark": true
+}
