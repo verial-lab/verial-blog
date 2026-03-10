@@ -114,7 +114,10 @@ export async function generateMetadata(props: {
   const params = await props.params;
   const slug = params.slug;
   if (!slug || slug.length === 0) {
-    return { title: 'Essays | Verial', description: 'Essays on systems design, architecture, and engineering philosophy.' };
+    const t = 'Essays';
+    const d = 'Deep explorations of engineering philosophy, building lessons, and the ideas shaping the exponential age.';
+    const og = `/og?title=${encodeURIComponent(t)}&description=${encodeURIComponent(d)}`;
+    return { title: `${t} | Verial`, description: d, openGraph: { title: t, description: d, images: [{ url: og, width: 1200, height: 630 }] }, twitter: { card: 'summary_large_image' as const, title: t, description: d, images: [og] } };
   }
   const page = essaySource.getPage(slug);
   if (!page) notFound();
