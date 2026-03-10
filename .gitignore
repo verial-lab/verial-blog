@@ -11,3 +11,8 @@ dist
 playwright-report/
 test-results/
 .lighthouseci/
+-e 
+# Generated outputs (local only)
+packages/model-generator/output/
+packages/model-generator/specs/
+packages/essay-manager/essays/*/reviews/
