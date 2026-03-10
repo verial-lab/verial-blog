@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <style>
+    * { margin: 0; padding: 0; }
+    body {
+      background: #060606;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 800px;
+      height: 800px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="ready">
+  <svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <defs>
+    
+    <filter id="neon" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur1"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur2"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur3"/>
+      <feMerge>
+        <feMergeNode in="blur3"/>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="wm" x="-10%" y="-10%" width="120%" height="120%">
+      <feFlood flood-color="#060606" result="fill"/>
+      <feComposite in="fill" in2="SourceGraphic" operator="in" result="base"/>
+      <feOffset in="SourceAlpha" dx="-1" dy="-1" result="shadowOff"/>
+      <feFlood flood-color="white" flood-opacity="0.7" result="shadowColor"/>
+      <feComposite in="shadowColor" in2="shadowOff" operator="in" result="shadow"/>
+      <feOffset in="SourceAlpha" dx="1" dy="1" result="hlOff"/>
+      <feFlood flood-color="white" flood-opacity="0.18" result="hlColor"/>
+      <feComposite in="hlColor" in2="hlOff" operator="in" result="highlight"/>
+      <feMerge>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="base"/>
+        <feMergeNode in="highlight"/>
+      </feMerge>
+    </filter>
+    <marker id="chevron" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <polyline points="1,1 9,5 1,9" fill="none" stroke="white" stroke-width="1.5"/>
+    </marker>
+    <marker id="chevron-accent" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <polyline points="1,1 9,5 1,9" fill="none" stroke="#999" stroke-width="1.5"/>
+    </marker>
+    
+    
+    <radialGradient id="wm-mask-grad-0" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="black"/>
+      <stop offset="70%" stop-color="black"/>
+      <stop offset="100%" stop-color="white"/>
+    </radialGradient>
+    <mask id="wm-mask">
+      <rect width="100%" height="100%" fill="white"/>
+      
+    <ellipse cx="400" cy="330" rx="350" ry="220" fill="url(#wm-mask-grad-0)"/>
+    </mask>
+  </defs>
+  <rect width="800" height="800" fill="#060606"/>
+  <g mask="url(#wm-mask)">
+    <g class="watermark"><text x="133.33333333333334" y="133.33333333333334" text-anchor="middle" dominant-baseline="central"
+               font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="110" font-weight="bold"
+               fill="#060606" filter="url(#wm)">V</text>
+<text x="400" y="133.33333333333334" text-anchor="middle" dominant-baseline="central"
+               font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="110" font-weight="bold"
+               fill="#060606" filter="url(#wm)">E</text>
+<text x="666.6666666666667" y="133.33333333333334" text-anchor="middle" dominant-baseline="central"
+               font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="110" font-weight="bold"
+               fill="#060606" filter="url(#wm)">R</text>
+<text x="133.33333333333334" y="400" text-anchor="middle" dominant-baseline="central"
+               font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="110" font-weight="bold"
+               fill="#060606" filter="url(#wm)">I</text>
+<text x="400" y="400" text-anchor="middle" dominant-baseline="central"
+               font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="110" font-weight="bold"
+               fill="#060606" filter="url(#wm)">A</text>
+<text x="666.6666666666667" y="400" text-anchor="middle" dominant-baseline="central"
+               font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="110" font-weight="bold"
+               fill="#060606" filter="url(#wm)">L</text>
+<text x="133.33333333333334" y="666.6666666666667" text-anchor="middle" dominant-baseline="central"
+               font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="110" font-weight="bold"
+               fill="#060606" filter="url(#wm)">.X</text>
+<text x="400" y="666.6666666666667" text-anchor="middle" dominant-baseline="central"
+               font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="110" font-weight="bold"
+               fill="#060606" filter="url(#wm)">Y</text>
+<text x="666.6666666666667" y="666.6666666666667" text-anchor="middle" dominant-baseline="central"
+               font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="110" font-weight="bold"
+               fill="#060606" filter="url(#wm)">Z</text></g>
+  </g>
+  <g class="diagram"><rect x="100" y="200" width="150" height="180" rx="4" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.5"/>
+<text x="175" y="240" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle" filter="url(#neon)">STRUCTURE</text>
+<text x="175" y="262" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="9" font-weight="400" fill="#FFFFFF" text-anchor="middle" opacity="0.4">how things</text>
+<text x="175" y="275" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="9" font-weight="400" fill="#FFFFFF" text-anchor="middle" opacity="0.4">are organized</text>
+<text x="175" y="310" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="8" font-weight="400" fill="#FFFFFF" text-anchor="middle" opacity="0.3">modules</text>
+<text x="175" y="325" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="8" font-weight="400" fill="#FFFFFF" text-anchor="middle" opacity="0.3">boundaries</text>
+<text x="175" y="340" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="8" font-weight="400" fill="#FFFFFF" text-anchor="middle" opacity="0.3">hierarchy</text>
+<rect x="325" y="200" width="150" height="180" rx="4" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.5"/>
+<text x="400" y="240" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle" filter="url(#neon)">NAMING</text>
+<text x="400" y="262" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="9" font-weight="400" fill="#FFFFFF" text-anchor="middle" opacity="0.4">what things</text>
+<text x="400" y="275" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="9" font-weight="400" fill="#FFFFFF" text-anchor="middle" opacity="0.4">are called</text>
+<text x="400" y="310" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="8" font-weight="400" fill="#FFFFFF" text-anchor="middle" opacity="0.3">semantics</text>
+<text x="400" y="325" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="8" font-weight="400" fill="#FFFFFF" text-anchor="middle" opacity="0.3">consistency</text>
+<text x="400" y="340" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="8" font-weight="400" fill="#FFFFFF" text-anchor="middle" opacity="0.3">intent</text>
+<rect x="550" y="200" width="150" height="180" rx="4" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.5"/>
+<text x="625" y="240" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle" filter="url(#neon)">FLOW</text>
+<text x="625" y="262" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="9" font-weight="400" fill="#FFFFFF" text-anchor="middle" opacity="0.4">how things</text>
+<text x="625" y="275" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="9" font-weight="400" fill="#FFFFFF" text-anchor="middle" opacity="0.4">connect</text>
+<text x="625" y="310" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="8" font-weight="400" fill="#FFFFFF" text-anchor="middle" opacity="0.3">data paths</text>
+<text x="625" y="325" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="8" font-weight="400" fill="#FFFFFF" text-anchor="middle" opacity="0.3">dependencies</text>
+<text x="625" y="340" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="8" font-weight="400" fill="#FFFFFF" text-anchor="middle" opacity="0.3">causation</text>
+<line x1="255" y1="290" x2="320" y2="290" stroke="#FFFFFF" stroke-width="1" stroke-dasharray="6,4" opacity="0.2"/>
+<line x1="480" y1="290" x2="545" y2="290" stroke="#FFFFFF" stroke-width="1" stroke-dasharray="6,4" opacity="0.2"/>
+<rect x="200" y="450" width="400" height="50" rx="6" fill="none" stroke="#999999" stroke-width="1" filter="url(#neon)"/>
+<text x="400" y="472" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle" filter="url(#neon)">LEGIBILITY</text>
+<text x="400" y="490" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="8" font-weight="400" fill="#FFFFFF" text-anchor="middle" opacity="0.4">= the ability to read a system and reason about it</text>
+<line x1="175" y1="385" x2="300" y2="450" stroke="#FFFFFF" stroke-width="1" stroke-dasharray="6,4" marker-end="url(#chevron)" opacity="0.3"/>
+<line x1="400" y1="385" x2="400" y2="450" stroke="#FFFFFF" stroke-width="1" stroke-dasharray="6,4" marker-end="url(#chevron)" opacity="0.3"/>
+<line x1="625" y1="385" x2="500" y2="450" stroke="#FFFFFF" stroke-width="1" stroke-dasharray="6,4" marker-end="url(#chevron)" opacity="0.3"/></g>
+  <g class="title-block">
+    <text x="400" y="708" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#FFFFFF" opacity="0.5" letter-spacing="0.25em" text-anchor="middle">MENTAL MODEL</text>
+    <text x="400" y="740" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#FFFFFF" filter="url(#neon)" text-anchor="middle">The Three Pillars of Legibility</text>
+    <text x="400" y="762" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="11" fill="#FFFFFF" opacity="0.5" letter-spacing="0.25em" text-anchor="middle">= structure, naming, flow</text>
+  </g>
+  <text x="400" y="780" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10" fill="#FFFFFF" opacity="0.25" text-anchor="middle">verial.xyz</text>
+</svg>
+</body>
+</html>

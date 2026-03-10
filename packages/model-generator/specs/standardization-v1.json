@@ -1,0 +1,343 @@
+{
+  "id": "standardization-v1",
+  "title": {
+    "subtitle": "",
+    "main": "Standardization",
+    "sub2": "reusable patterns compound"
+  },
+  "elements": [
+    {
+      "type": "label",
+      "x": 200,
+      "y": 155,
+      "text": "WITHOUT STANDARDS",
+      "size": 12,
+      "opacity": 0.4
+    },
+    {
+      "type": "box",
+      "x": 80,
+      "y": 175,
+      "w": 80,
+      "h": 60,
+      "rx": 2,
+      "strokeWidth": 1,
+      "neon": true
+    },
+    {
+      "type": "label",
+      "x": 120,
+      "y": 210,
+      "text": "MODULE A",
+      "size": 11,
+      "weight": 600
+    },
+    {
+      "type": "box",
+      "x": 180,
+      "y": 185,
+      "w": 60,
+      "h": 80,
+      "rx": 8,
+      "strokeWidth": 1,
+      "neon": true
+    },
+    {
+      "type": "label",
+      "x": 210,
+      "y": 230,
+      "text": "MODULE B",
+      "size": 11,
+      "weight": 600
+    },
+    {
+      "type": "box",
+      "x": 260,
+      "y": 170,
+      "w": 90,
+      "h": 50,
+      "rx": 0,
+      "strokeWidth": 1,
+      "neon": true
+    },
+    {
+      "type": "label",
+      "x": 305,
+      "y": 200,
+      "text": "MODULE C",
+      "size": 11,
+      "weight": 600
+    },
+    {
+      "type": "label",
+      "x": 200,
+      "y": 300,
+      "text": "EVERY MODULE IS UNIQUE",
+      "size": 11,
+      "opacity": 0.35
+    },
+    {
+      "type": "label",
+      "x": 200,
+      "y": 318,
+      "text": "EVERY MODULE MUST BE",
+      "size": 11,
+      "opacity": 0.35
+    },
+    {
+      "type": "label",
+      "x": 200,
+      "y": 336,
+      "text": "LEARNED FROM SCRATCH",
+      "size": 11,
+      "opacity": 0.35
+    },
+    {
+      "type": "line",
+      "x1": 400,
+      "y1": 155,
+      "x2": 400,
+      "y2": 370,
+      "strokeWidth": 0.5,
+      "opacity": 0.15
+    },
+    {
+      "type": "label",
+      "x": 600,
+      "y": 155,
+      "text": "WITH STANDARDS",
+      "size": 12,
+      "opacity": 0.4
+    },
+    {
+      "type": "box",
+      "x": 480,
+      "y": 175,
+      "w": 80,
+      "h": 60,
+      "rx": 3,
+      "strokeWidth": 1,
+      "neon": true
+    },
+    {
+      "type": "label",
+      "x": 520,
+      "y": 210,
+      "text": "MODULE A",
+      "size": 11,
+      "weight": 600
+    },
+    {
+      "type": "box",
+      "x": 580,
+      "y": 175,
+      "w": 80,
+      "h": 60,
+      "rx": 3,
+      "strokeWidth": 1,
+      "neon": true
+    },
+    {
+      "type": "label",
+      "x": 620,
+      "y": 210,
+      "text": "MODULE B",
+      "size": 11,
+      "weight": 600
+    },
+    {
+      "type": "box",
+      "x": 680,
+      "y": 175,
+      "w": 80,
+      "h": 60,
+      "rx": 3,
+      "strokeWidth": 1,
+      "neon": true
+    },
+    {
+      "type": "label",
+      "x": 720,
+      "y": 210,
+      "text": "MODULE C",
+      "size": 11,
+      "weight": 600
+    },
+    {
+      "type": "label",
+      "x": 600,
+      "y": 270,
+      "text": "LEARN ONE, KNOW ALL",
+      "size": 11,
+      "opacity": 0.35
+    },
+    {
+      "type": "label",
+      "x": 600,
+      "y": 288,
+      "text": "KNOWLEDGE COMPOUNDS",
+      "size": 11,
+      "opacity": 0.35
+    },
+    {
+      "type": "line",
+      "x1": 100,
+      "y1": 400,
+      "x2": 700,
+      "y2": 400,
+      "strokeWidth": 0.5,
+      "opacity": 0.2
+    },
+    {
+      "type": "label",
+      "x": 400,
+      "y": 435,
+      "text": "COST TO UNDERSTAND MODULE N",
+      "size": 12,
+      "opacity": 0.4
+    },
+    {
+      "type": "label",
+      "x": 150,
+      "y": 475,
+      "text": "NO STANDARDS",
+      "size": 11,
+      "opacity": 0.4
+    },
+    {
+      "type": "box",
+      "x": 80,
+      "y": 490,
+      "w": 140,
+      "h": 10,
+      "rx": 1,
+      "strokeWidth": 1.5,
+      "neon": true
+    },
+    {
+      "type": "box",
+      "x": 80,
+      "y": 510,
+      "w": 140,
+      "h": 10,
+      "rx": 1,
+      "strokeWidth": 1.5,
+      "neon": true
+    },
+    {
+      "type": "box",
+      "x": 80,
+      "y": 530,
+      "w": 140,
+      "h": 10,
+      "rx": 1,
+      "strokeWidth": 1.5,
+      "neon": true
+    },
+    {
+      "type": "box",
+      "x": 80,
+      "y": 550,
+      "w": 140,
+      "h": 10,
+      "rx": 1,
+      "strokeWidth": 1.5,
+      "neon": true
+    },
+    {
+      "type": "box",
+      "x": 80,
+      "y": 570,
+      "w": 140,
+      "h": 10,
+      "rx": 1,
+      "strokeWidth": 1.5,
+      "neon": true
+    },
+    {
+      "type": "label",
+      "x": 150,
+      "y": 605,
+      "text": "FLAT COST CURVE",
+      "size": 11,
+      "opacity": 0.3
+    },
+    {
+      "type": "label",
+      "x": 600,
+      "y": 475,
+      "text": "WITH STANDARDS",
+      "size": 11,
+      "opacity": 0.4
+    },
+    {
+      "type": "box",
+      "x": 530,
+      "y": 490,
+      "w": 140,
+      "h": 10,
+      "rx": 1,
+      "strokeWidth": 1.5,
+      "neon": true
+    },
+    {
+      "type": "box",
+      "x": 530,
+      "y": 510,
+      "w": 100,
+      "h": 10,
+      "rx": 1,
+      "strokeWidth": 1,
+      "opacity": 0.7
+    },
+    {
+      "type": "box",
+      "x": 530,
+      "y": 530,
+      "w": 60,
+      "h": 10,
+      "rx": 1,
+      "strokeWidth": 1,
+      "opacity": 0.5
+    },
+    {
+      "type": "box",
+      "x": 530,
+      "y": 550,
+      "w": 30,
+      "h": 10,
+      "rx": 1,
+      "strokeWidth": 1,
+      "opacity": 0.3
+    },
+    {
+      "type": "box",
+      "x": 530,
+      "y": 570,
+      "w": 10,
+      "h": 10,
+      "rx": 1,
+      "strokeWidth": 1,
+      "opacity": 0.2
+    },
+    {
+      "type": "label",
+      "x": 600,
+      "y": 605,
+      "text": "DIMINISHING COST",
+      "size": 11,
+      "opacity": 0.3,
+      "neon": true
+    },
+    {
+      "type": "label",
+      "x": 400,
+      "y": 780,
+      "text": "VERIAL.XYZ",
+      "size": 11,
+      "opacity": 0.3
+    }
+  ],
+  "masks": [],
+  "noWatermark": true
+}
