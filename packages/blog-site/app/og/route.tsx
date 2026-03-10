@@ -62,8 +62,14 @@ export async function GET(request: NextRequest) {
           </div>
 
           {/* Footer */}
-          <div style={{ position: 'absolute', bottom: '40px', fontSize: 14, fontWeight: 400, color: mutedDim }}>
-            {brandHostname}
+          <div style={{ position: 'absolute', bottom: '40px', display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <div style={{ fontSize: 24, fontWeight: 700, color: accent, letterSpacing: '0.06em' }}>
+              {brandName.toUpperCase()}
+            </div>
+            <div style={{ width: '1px', height: '20px', background: border }} />
+            <div style={{ fontSize: 22, fontWeight: 400, color: muted }}>
+              {brandHostname}
+            </div>
           </div>
         </div>
       ),
@@ -113,11 +119,11 @@ export async function GET(request: NextRequest) {
 
         {/* Footer */}
         <div style={{ position: 'absolute', bottom: '44px', left: '80px', display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <div style={{ fontSize: 16, fontWeight: 700, color: accent, letterSpacing: '0.06em', opacity: 0.7 }}>
+          <div style={{ fontSize: 24, fontWeight: 700, color: accent, letterSpacing: '0.06em' }}>
             {brandName.toUpperCase()}
           </div>
-          <div style={{ width: '1px', height: '14px', background: border }} />
-          <div style={{ fontSize: 14, fontWeight: 400, color: mutedDim }}>
+          <div style={{ width: '1px', height: '20px', background: border }} />
+          <div style={{ fontSize: 22, fontWeight: 400, color: muted }}>
             {brandHostname}
           </div>
         </div>
