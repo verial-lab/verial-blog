@@ -9,6 +9,21 @@ export const runtime = 'edge';
 
 const mutedDim = 'hsla(0, 0%, 96%, 0.4)'; // fg at 40%
 
+/** Shared footer — single source of truth for both homepage and content OG cards */
+function OgFooter({ left }: { left?: string }) {
+  return (
+    <div style={{ position: 'absolute', bottom: '40px', ...(left ? { left } : {}), display: 'flex', alignItems: 'center', gap: '16px' }}>
+      <div style={{ fontSize: 24, fontWeight: 700, color: accent, letterSpacing: '0.06em' }}>
+        {brandName.toUpperCase()}
+      </div>
+      <div style={{ width: '1px', height: '20px', background: border }} />
+      <div style={{ fontSize: 22, fontWeight: 400, color: muted }}>
+        {brandHostname}
+      </div>
+    </div>
+  );
+}
+
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const title = searchParams.get('title') || brandName;
@@ -61,16 +76,7 @@ export async function GET(request: NextRequest) {
             {brandSubtitle}
           </div>
 
-          {/* Footer */}
-          <div style={{ position: 'absolute', bottom: '40px', display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <div style={{ fontSize: 24, fontWeight: 700, color: accent, letterSpacing: '0.06em' }}>
-              {brandName.toUpperCase()}
-            </div>
-            <div style={{ width: '1px', height: '20px', background: border }} />
-            <div style={{ fontSize: 22, fontWeight: 400, color: muted }}>
-              {brandHostname}
-            </div>
-          </div>
+          <OgFooter />
         </div>
       ),
       { width: 1200, height: 630, fonts },
@@ -117,16 +123,7 @@ export async function GET(request: NextRequest) {
           </div>
         )}
 
-        {/* Footer */}
-        <div style={{ position: 'absolute', bottom: '44px', left: '80px', display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <div style={{ fontSize: 24, fontWeight: 700, color: accent, letterSpacing: '0.06em' }}>
-            {brandName.toUpperCase()}
-          </div>
-          <div style={{ width: '1px', height: '20px', background: border }} />
-          <div style={{ fontSize: 22, fontWeight: 400, color: muted }}>
-            {brandHostname}
-          </div>
-        </div>
+        <OgFooter left="80px" />
       </div>
     ),
     { width: 1200, height: 630, fonts },
