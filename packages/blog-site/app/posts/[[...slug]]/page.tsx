@@ -1,4 +1,5 @@
 import { postSource } from '@/lib/source';
+import { ogMeta } from '@/lib/og';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { SectionIcon } from '@/components/SectionIcon';
@@ -114,18 +115,9 @@ export async function generateMetadata(props: {
   const params = await props.params;
   const page = postSource.getPage(params.slug);
   if (!page) {
-    const t = 'Posts';
-    const d = 'Build logs, technical discoveries, and engineering reflections.';
-    const og = `/og?title=${encodeURIComponent(t)}&description=${encodeURIComponent(d)}`;
-    return { title: `${t} | Verial`, description: d, openGraph: { title: t, description: d, images: [{ url: og, width: 1200, height: 630 }] }, twitter: { card: 'summary_large_image' as const, title: t, description: d, images: [og] } };
+    return { title: 'Posts | Verial', description: 'Build logs, technical discoveries, and engineering reflections.', ...ogMeta('Posts', 'Build logs, technical discoveries, and engineering reflections.') };
   }
   const title = page.data.title;
   const description = page.data.description || '';
-  const ogImage = `/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`;
-  return {
-    title,
-    description,
-    openGraph: { title, description, images: [{ url: ogImage, width: 1200, height: 630 }] },
-    twitter: { card: 'summary_large_image' as const, title, description, images: [ogImage] },
-  };
+  return { title, description, ...ogMeta(title, description) };
 }
