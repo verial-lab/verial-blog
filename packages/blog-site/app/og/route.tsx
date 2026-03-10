@@ -1,21 +1,23 @@
 import { ImageResponse } from 'next/og';
 import type { NextRequest } from 'next/server';
+import { colors } from '@verial/design-tokens/colors';
+import { brand } from '@verial/design-tokens/brand';
 
 export const runtime = 'edge';
 
-// Design tokens — must match the actual site
-const bg = '#000000';           // background: hsl(0, 0%, 0%)
-const fg = '#f5f5f5';           // foreground: hsl(0, 0%, 96%)
-const muted = '#c7c7c7';        // muted-foreground: hsl(0, 0%, 78%)
-const mutedDim = 'rgba(245, 245, 245, 0.4)';
-const primary = '#d9d0c1';      // primary: hsl(40, 15%, 85%) — warm gold
-const border = 'rgba(255, 255, 255, 0.08)';
+// Derive OG colors from the design system — no hardcoded values
+const bg = colors.background;
+const fg = colors.foreground;
+const muted = colors['muted-foreground'];
+const mutedDim = `${fg}66`; // foreground at 40% opacity
+const accent = colors.primary;
+const borderColor = colors.border;
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const title = searchParams.get('title') || 'Verial';
-  const description = searchParams.get('description') || 'Truth-seeking. Applied.';
-  const isHomepage = title === 'Verial';
+  const title = searchParams.get('title') || brand.name;
+  const description = searchParams.get('description') || brand.tagline;
+  const isHomepage = title === brand.name;
 
   const interBold = await fetch(
     new URL('https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuFuYMZhrib2Bg-4.ttf')
@@ -45,83 +47,68 @@ export async function GET(request: NextRequest) {
             fontFamily: 'Inter, sans-serif',
           }}
         >
-          {/* Subtle warm glow */}
-          <div
-            style={{
-              position: 'absolute',
-              top: '40%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: '500px',
-              height: '300px',
-              background: 'radial-gradient(ellipse, rgba(217, 208, 193, 0.04) 0%, transparent 70%)',
-            }}
-          />
-
-          {/* Accent line — warm primary */}
+          {/* Accent line from design system primary */}
           <div
             style={{
               width: '48px',
               height: '2px',
-              background: primary,
+              background: accent,
               marginBottom: '32px',
               opacity: 0.6,
             }}
           />
 
-          {/* Brand name */}
+          {/* Brand name from design tokens */}
           <div
             style={{
-              fontSize: 64,
+              fontSize: 80,
               fontWeight: 700,
               color: fg,
               letterSpacing: '-0.02em',
-              marginBottom: '16px',
+              marginBottom: '20px',
             }}
           >
-            Verial
+            {brand.name}
           </div>
 
-          {/* Tagline */}
+          {/* Tagline from design tokens */}
           <div
             style={{
-              fontSize: 24,
+              fontSize: 32,
               fontWeight: 400,
               color: muted,
               letterSpacing: '0.04em',
-              marginBottom: '36px',
+              marginBottom: '40px',
             }}
           >
-            Truth-seeking. Applied.
+            {brand.tagline}
           </div>
 
-          {/* Subtitle */}
+          {/* Subtitle from design tokens */}
           <div
             style={{
-              fontSize: 16,
+              fontSize: 20,
               fontWeight: 400,
               color: mutedDim,
-              maxWidth: '520px',
+              maxWidth: '600px',
               textAlign: 'center',
               lineHeight: 1.6,
             }}
           >
-            Essays on philosophy, systems thinking, and practical wisdom for the exponential age.
+            {brand.subtitle}
           </div>
 
-          {/* Bottom border line + URL */}
+          {/* Footer URL */}
           <div
             style={{
               position: 'absolute',
               bottom: '40px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '12px',
+              fontSize: 14,
+              fontWeight: 400,
+              color: mutedDim,
             }}
           >
-            <div style={{ fontSize: 14, fontWeight: 400, color: mutedDim }}>
-              verial.xyz
-            </div>
+            {new URL(brand.url).hostname}
           </div>
         </div>
       ),
@@ -144,12 +131,12 @@ export async function GET(request: NextRequest) {
           fontFamily: 'Inter, sans-serif',
         }}
       >
-        {/* Top accent line */}
+        {/* Accent line */}
         <div
           style={{
             width: '48px',
             height: '2px',
-            background: primary,
+            background: accent,
             marginBottom: '36px',
             opacity: 0.6,
           }}
@@ -158,7 +145,7 @@ export async function GET(request: NextRequest) {
         {/* Title */}
         <div
           style={{
-            fontSize: title.length > 50 ? 40 : title.length > 30 ? 48 : 56,
+            fontSize: title.length > 50 ? 48 : title.length > 30 ? 56 : 64,
             fontWeight: 700,
             color: fg,
             lineHeight: 1.2,
@@ -174,11 +161,11 @@ export async function GET(request: NextRequest) {
         {description && (
           <div
             style={{
-              fontSize: 20,
+              fontSize: 24,
               fontWeight: 400,
               color: muted,
               lineHeight: 1.5,
-              maxWidth: '750px',
+              maxWidth: '800px',
             }}
           >
             {description.length > 140 ? description.slice(0, 137) + '...' : description}
@@ -200,22 +187,22 @@ export async function GET(request: NextRequest) {
             style={{
               fontSize: 16,
               fontWeight: 700,
-              color: primary,
+              color: accent,
               letterSpacing: '0.06em',
               opacity: 0.7,
             }}
           >
-            VERIAL
+            {brand.name.toUpperCase()}
           </div>
           <div
             style={{
               width: '1px',
               height: '14px',
-              background: border,
+              background: borderColor,
             }}
           />
           <div style={{ fontSize: 14, fontWeight: 400, color: mutedDim }}>
-            verial.xyz
+            {new URL(brand.url).hostname}
           </div>
         </div>
       </div>
