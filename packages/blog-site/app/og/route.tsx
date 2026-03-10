@@ -1,23 +1,19 @@
 import { ImageResponse } from 'next/og';
 import type { NextRequest } from 'next/server';
-import { colors } from '@verial/design-tokens/colors';
-import { brand } from '@verial/design-tokens/brand';
+import {
+  bg, fg, muted, accent, border,
+  brandName, brandTagline, brandSubtitle, brandHostname,
+} from '@/lib/og-theme';
 
 export const runtime = 'edge';
 
-// Derive OG colors from the design system — no hardcoded values
-const bg = colors.background;
-const fg = colors.foreground;
-const muted = colors['muted-foreground'];
-const mutedDim = `${fg}66`; // foreground at 40% opacity
-const accent = colors.primary;
-const borderColor = colors.border;
+const mutedDim = 'hsla(0, 0%, 96%, 0.4)'; // fg at 40%
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const title = searchParams.get('title') || brand.name;
-  const description = searchParams.get('description') || brand.tagline;
-  const isHomepage = title === brand.name;
+  const title = searchParams.get('title') || brandName;
+  const description = searchParams.get('description') || brandTagline;
+  const isHomepage = title === brandName;
 
   const interBold = await fetch(
     new URL('https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuFuYMZhrib2Bg-4.ttf')
@@ -47,68 +43,27 @@ export async function GET(request: NextRequest) {
             fontFamily: 'Inter, sans-serif',
           }}
         >
-          {/* Accent line from design system primary */}
-          <div
-            style={{
-              width: '48px',
-              height: '2px',
-              background: accent,
-              marginBottom: '32px',
-              opacity: 0.6,
-            }}
-          />
+          {/* Accent line */}
+          <div style={{ width: '48px', height: '2px', background: accent, marginBottom: '32px', opacity: 0.6 }} />
 
-          {/* Brand name from design tokens */}
-          <div
-            style={{
-              fontSize: 80,
-              fontWeight: 700,
-              color: fg,
-              letterSpacing: '-0.02em',
-              marginBottom: '20px',
-            }}
-          >
-            {brand.name}
+          {/* Brand name */}
+          <div style={{ fontSize: 80, fontWeight: 700, color: fg, letterSpacing: '-0.02em', marginBottom: '20px' }}>
+            {brandName}
           </div>
 
-          {/* Tagline from design tokens */}
-          <div
-            style={{
-              fontSize: 32,
-              fontWeight: 400,
-              color: muted,
-              letterSpacing: '0.04em',
-              marginBottom: '40px',
-            }}
-          >
-            {brand.tagline}
+          {/* Tagline */}
+          <div style={{ fontSize: 32, fontWeight: 400, color: muted, letterSpacing: '0.04em', marginBottom: '40px' }}>
+            {brandTagline}
           </div>
 
-          {/* Subtitle from design tokens */}
-          <div
-            style={{
-              fontSize: 20,
-              fontWeight: 400,
-              color: mutedDim,
-              maxWidth: '600px',
-              textAlign: 'center',
-              lineHeight: 1.6,
-            }}
-          >
-            {brand.subtitle}
+          {/* Subtitle */}
+          <div style={{ fontSize: 20, fontWeight: 400, color: mutedDim, maxWidth: '600px', textAlign: 'center', lineHeight: 1.6 }}>
+            {brandSubtitle}
           </div>
 
-          {/* Footer URL */}
-          <div
-            style={{
-              position: 'absolute',
-              bottom: '40px',
-              fontSize: 14,
-              fontWeight: 400,
-              color: mutedDim,
-            }}
-          >
-            {new URL(brand.url).hostname}
+          {/* Footer */}
+          <div style={{ position: 'absolute', bottom: '40px', fontSize: 14, fontWeight: 400, color: mutedDim }}>
+            {brandHostname}
           </div>
         </div>
       ),
@@ -132,15 +87,7 @@ export async function GET(request: NextRequest) {
         }}
       >
         {/* Accent line */}
-        <div
-          style={{
-            width: '48px',
-            height: '2px',
-            background: accent,
-            marginBottom: '36px',
-            opacity: 0.6,
-          }}
-        />
+        <div style={{ width: '48px', height: '2px', background: accent, marginBottom: '36px', opacity: 0.6 }} />
 
         {/* Title */}
         <div
@@ -159,50 +106,19 @@ export async function GET(request: NextRequest) {
 
         {/* Description */}
         {description && (
-          <div
-            style={{
-              fontSize: 24,
-              fontWeight: 400,
-              color: muted,
-              lineHeight: 1.5,
-              maxWidth: '800px',
-            }}
-          >
+          <div style={{ fontSize: 24, fontWeight: 400, color: muted, lineHeight: 1.5, maxWidth: '800px' }}>
             {description.length > 140 ? description.slice(0, 137) + '...' : description}
           </div>
         )}
 
         {/* Footer */}
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '44px',
-            left: '80px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '16px',
-          }}
-        >
-          <div
-            style={{
-              fontSize: 16,
-              fontWeight: 700,
-              color: accent,
-              letterSpacing: '0.06em',
-              opacity: 0.7,
-            }}
-          >
-            {brand.name.toUpperCase()}
+        <div style={{ position: 'absolute', bottom: '44px', left: '80px', display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <div style={{ fontSize: 16, fontWeight: 700, color: accent, letterSpacing: '0.06em', opacity: 0.7 }}>
+            {brandName.toUpperCase()}
           </div>
-          <div
-            style={{
-              width: '1px',
-              height: '14px',
-              background: borderColor,
-            }}
-          />
+          <div style={{ width: '1px', height: '14px', background: border }} />
           <div style={{ fontSize: 14, fontWeight: 400, color: mutedDim }}>
-            {new URL(brand.url).hostname}
+            {brandHostname}
           </div>
         </div>
       </div>
