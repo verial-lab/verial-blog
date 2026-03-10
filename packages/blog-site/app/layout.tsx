@@ -6,6 +6,7 @@ import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { SearchDialog } from '@/components/SearchDialog';
 import { FeedbackWidget } from '@/components/FeedbackWidget';
+import { ogMeta } from '@/lib/og';
 
 const sourceSerif = Source_Serif_4({ weight: ['400', '500', '600', '700'], subsets: ['latin'], variable: '--font-serif' });
 const newsreader = Newsreader({ weight: ['400', '500', '600', '700'], subsets: ['latin'], variable: '--font-display' });
@@ -26,20 +27,7 @@ export const metadata: Metadata = {
     ],
     apple: '/apple-touch-icon.png',
   },
-  openGraph: {
-    type: 'website',
-    siteName: 'Verial',
-    title: 'Verial — Truth-seeking. Applied.',
-    description: 'Essays on philosophy, systems thinking, innovation, and practical wisdom for the exponential age.',
-    url: 'https://verial.xyz',
-    images: [{ url: '/og?title=Verial&description=Truth-seeking.+Applied.', width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Verial — Truth-seeking. Applied.',
-    description: 'Essays on philosophy, systems thinking, innovation, and practical wisdom for the exponential age.',
-    images: ['/og?title=Verial&description=Truth-seeking.+Applied.'],
-  },
+  ...ogMeta('Verial', 'Essays on philosophy, systems thinking, innovation, and practical wisdom for the exponential age.'),
   alternates: {
     types: { 'application/rss+xml': '/feed.xml' },
   },
