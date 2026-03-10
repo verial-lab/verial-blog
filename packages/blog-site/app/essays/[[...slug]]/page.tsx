@@ -1,4 +1,5 @@
 import { essaySource } from '@/lib/source';
+import { ogMeta } from '@/lib/og';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { SectionIcon } from '@/components/SectionIcon';
@@ -114,9 +115,11 @@ export async function generateMetadata(props: {
   const params = await props.params;
   const slug = params.slug;
   if (!slug || slug.length === 0) {
-    return { title: 'Essays | Verial', description: 'Essays on systems design, architecture, and engineering philosophy.' };
+    return { title: 'Essays | Verial', description: 'Deep explorations of engineering philosophy, building lessons, and the ideas shaping the exponential age.', ...ogMeta('Essays', 'Deep explorations of engineering philosophy, building lessons, and the ideas shaping the exponential age.') };
   }
   const page = essaySource.getPage(slug);
   if (!page) notFound();
-  return { title: page.data.title, description: page.data.description };
+  const title = page.data.title;
+  const description = page.data.description || '';
+  return { title, description, ...ogMeta(title, description) };
 }

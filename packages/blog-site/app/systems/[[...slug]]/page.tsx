@@ -1,4 +1,5 @@
 import { systemSource } from '@/lib/source';
+import { ogMeta } from '@/lib/og';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { SectionIcon } from '@/components/SectionIcon';
@@ -114,9 +115,11 @@ export async function generateMetadata(props: {
   const params = await props.params;
   const slug = params.slug;
   if (!slug || slug.length === 0) {
-    return { title: 'Systems | Verial', description: 'Frameworks worth living by. Mental models, methodologies, and practical wisdom — tested, not theoretical.' };
+    return { title: 'Systems | Verial', description: 'Frameworks worth living by. Mental models, methodologies, and practical wisdom — tested, not theoretical.', ...ogMeta('Systems', 'Frameworks worth living by. Mental models, methodologies, and practical wisdom — tested, not theoretical.') };
   }
   const page = systemSource.getPage(slug);
   if (!page) notFound();
-  return { title: page.data.title, description: page.data.description };
+  const title = page.data.title;
+  const description = page.data.description || '';
+  return { title, description, ...ogMeta(title, description) };
 }

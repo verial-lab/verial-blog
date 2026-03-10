@@ -6,6 +6,7 @@ import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { SearchDialog } from '@/components/SearchDialog';
 import { FeedbackWidget } from '@/components/FeedbackWidget';
+import { ogMeta } from '@/lib/og';
 
 const sourceSerif = Source_Serif_4({ weight: ['400', '500', '600', '700'], subsets: ['latin'], variable: '--font-serif' });
 const newsreader = Newsreader({ weight: ['400', '500', '600', '700'], subsets: ['latin'], variable: '--font-display' });
@@ -25,6 +26,10 @@ export const metadata: Metadata = {
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
     ],
     apple: '/apple-touch-icon.png',
+  },
+  ...ogMeta('Verial', 'Essays on philosophy, systems thinking, innovation, and practical wisdom for the exponential age.'),
+  alternates: {
+    types: { 'application/rss+xml': '/feed.xml' },
   },
 };
 
