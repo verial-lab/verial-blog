@@ -105,6 +105,34 @@ Write essay → Open PR → Review → Merge to main
                             Manual: HN, Substack
 ```
 
+## Analytics & Monitoring
+
+Three tools, each answering a different question:
+
+| Tool | Question it answers | URL |
+|------|-------------------|-----|
+| **Vercel Analytics** | How fast is the site? (Web Vitals, page views, top pages) | Vercel Dashboard → Analytics |
+| **Google Search Console** | How do people *find* the site? (queries, CTR, impressions, index coverage) | [search.google.com/search-console](https://search.google.com/search-console) |
+| **Buttondown** | How does the newsletter perform? (subscribers, open rate, click rate) | [buttondown.com/emails](https://buttondown.com) |
+
+### Review Cadence
+
+| When | What to check |
+|------|--------------|
+| **After each publish** | OG image renders correctly, Buttondown email sent, page appears in sitemap |
+| **Weekly** | Vercel Analytics (top pages, vitals regressions), Search Console (new queries, crawl errors) |
+| **Monthly** | Search Console (index coverage trends, CTR by page), Buttondown (subscriber growth, open rates), Lighthouse CI scores over time |
+
+### Key Metrics to Watch
+- **Search Console:** Total impressions trending up, CTR > 3%, no index coverage errors
+- **Vercel Analytics:** LCP < 2.5s, CLS < 0.1, top pages align with distribution efforts
+- **Buttondown:** Open rate > 40%, unsubscribe rate < 1%
+
+### Future Considerations
+- **PostHog / Plausible** — if we need event tracking, funnels, or privacy-first analytics beyond Vercel's built-in
+- **Grafana / Checkly** — uptime monitoring and synthetic checks
+- **dlvr.it analytics** — track which social channels drive the most traffic back
+
 ## CI
 
 GitHub Actions runs on every PR:
