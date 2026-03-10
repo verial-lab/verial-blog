@@ -76,6 +76,35 @@ SEO tracking — search queries, click-through rates, indexing status. Shows wha
 - **URL:** [search.google.com/search-console](https://search.google.com/search-console)
 - **Cost:** Free
 
+## Distribution Strategy
+
+When a new essay is published (merged to `main`), distribution happens in layers:
+
+### Automatic (zero effort)
+1. **Buttondown** — sends email to subscribers (triggered by `email_draft: true` in frontmatter)
+2. **dlvr.it** — auto-posts to Twitter/X, LinkedIn, and Reddit from the RSS feed
+3. **Sitemap + RSS** — update on build, Google re-crawls automatically
+4. **OG images** — generated on-demand for link previews everywhere
+
+### Manual (per essay)
+5. **Hacker News** — submit manually, best Tue–Thu 8–10am ET. Craft the title for the HN audience.
+6. **Substack** — optional cross-post with canonical URL pointing back to verial.xyz
+
+### Workflow
+```
+Write essay → Open PR → Review → Merge to main
+                                    ↓
+                        Vercel builds + deploys
+                                    ↓
+                    ┌───────────────┼───────────────┐
+                    ↓               ↓               ↓
+              Buttondown        dlvr.it         Sitemap/RSS
+              (email)      (Twitter/LinkedIn/   (Google index)
+                            Reddit)
+                                    ↓
+                            Manual: HN, Substack
+```
+
 ## CI
 
 GitHub Actions runs on every PR:
