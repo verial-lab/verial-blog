@@ -1,4 +1,5 @@
 import { systemSource } from '@/lib/source';
+import { ogMeta } from '@/lib/og';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { SectionIcon } from '@/components/SectionIcon';
@@ -114,20 +115,11 @@ export async function generateMetadata(props: {
   const params = await props.params;
   const slug = params.slug;
   if (!slug || slug.length === 0) {
-    const t = 'Systems';
-    const d = 'Frameworks worth living by. Mental models, methodologies, and practical wisdom — tested, not theoretical.';
-    const og = `/og?title=${encodeURIComponent(t)}&description=${encodeURIComponent(d)}`;
-    return { title: `${t} | Verial`, description: d, openGraph: { title: t, description: d, images: [{ url: og, width: 1200, height: 630 }] }, twitter: { card: 'summary_large_image' as const, title: t, description: d, images: [og] } };
+    return { title: 'Systems | Verial', description: 'Frameworks worth living by. Mental models, methodologies, and practical wisdom — tested, not theoretical.', ...ogMeta('Systems', 'Frameworks worth living by. Mental models, methodologies, and practical wisdom — tested, not theoretical.') };
   }
   const page = systemSource.getPage(slug);
   if (!page) notFound();
   const title = page.data.title;
   const description = page.data.description || '';
-  const ogImage = `/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`;
-  return {
-    title,
-    description,
-    openGraph: { title, description, images: [{ url: ogImage, width: 1200, height: 630 }] },
-    twitter: { card: 'summary_large_image' as const, title, description, images: [ogImage] },
-  };
+  return { title, description, ...ogMeta(title, description) };
 }
