@@ -76,6 +76,19 @@ export function TableOfContents({ toc }: TableOfContentsProps) {
         <nav className="w-56 sm:w-60 bg-background/95 backdrop-blur-md border border-border/40 rounded-xl shadow-lg p-4 max-h-[60vh] overflow-y-auto">
           <p className="text-[11px] font-medium text-muted-foreground/40 uppercase tracking-widest mb-3">Contents</p>
           <ul className="space-y-0.5">
+            <li>
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  setIsPinned(false);
+                }}
+                className="block text-[13px] leading-relaxed py-0.5 pl-2 border-l-2 border-l-transparent text-muted-foreground/50 hover:text-foreground transition-all duration-150"
+              >
+                ↑ Top
+              </a>
+            </li>
             {toc.map((item, i) => {
               const id = item.url.replace('#', '');
               const isActive = activeId === id;
