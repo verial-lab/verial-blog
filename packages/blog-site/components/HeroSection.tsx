@@ -38,12 +38,12 @@ export function HeroSection() {
             <span className="w-8 h-px bg-muted-foreground/20" />
           </div>
 
-          <h1 
+          <h1
             className="text-5xl md:text-7xl font-serif font-normal leading-[1.15]"
             style={{ animation: 'fadeInUp 0.8s ease-out 0.6s both' }}
           >
             Truth-seeking.{' '}
-            <span className="text-foreground/70">
+            <span className="text-foreground/50 text-[0.9em]">
               Applied.
             </span>
           </h1>
