@@ -234,7 +234,7 @@ export function Footer() {
       {/* Animated spacetime grid */}
       <SpacetimeGrid />
 
-      <div className="relative max-w-4xl mx-auto px-6 pt-10 pb-14">
+      <div className="relative z-20 max-w-4xl mx-auto px-6 pt-10 pb-14">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand column */}
           <div className="md:col-span-1">
