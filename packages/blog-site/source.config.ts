@@ -2,6 +2,7 @@ import { defineDocs, defineConfig, frontmatterSchema } from 'fumadocs-mdx/config
 import remarkGlossary from './lib/remark-glossary.mjs';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeExternalLinks from 'rehype-external-links';
 import { z } from 'zod';
 
 const contentSchema = frontmatterSchema.extend({
@@ -27,6 +28,7 @@ export default defineConfig({
   mdxOptions: {
     remarkPlugins: [remarkGlossary],
     rehypePlugins: [
+      [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }],
       rehypeSlug,
       [rehypeAutolinkHeadings, {
         behavior: 'append',
