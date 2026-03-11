@@ -52,6 +52,15 @@ export const Newsletter = ({
             <Text style={titleStyle}>{title}</Text>
           </Section>
 
+          {/* Top CTA Button */}
+          {canonicalUrl && (
+            <Section style={ctaSection}>
+              <Link href={canonicalUrl} style={ctaButton}>
+                Read on verial.xyz →
+              </Link>
+            </Section>
+          )}
+
           {/* Body */}
           <div
             style={bodySection}
