@@ -41,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${sourceSerif.variable} ${newsreader.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${sourceSerif.variable} ${newsreader.variable} ${jetbrainsMono.variable}`}>
       <body className="min-h-screen bg-background font-sans antialiased text-[18px] leading-[1.65]">
         <RootProvider search={{ enabled: false }} theme={{ defaultTheme: 'dark', forcedTheme: 'dark' }}>
           <Navigation />
