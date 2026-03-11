@@ -1,24 +1,25 @@
-import { defineDocs, defineConfig, frontmatterSchema } from 'fumadocs-mdx/config';
+import { defineDocs, defineConfig } from 'fumadocs-mdx/config';
+import { pageSchema } from 'fumadocs-core/source/schema';
 import remarkGlossary from './lib/remark-glossary.mjs';
 import { z } from 'zod';
 
-const sharedSchema = frontmatterSchema.extend({
-  date: z.string().date().optional(),
+const docsSchema = pageSchema.extend({
+  date: z.string().optional(),
 });
 
 export const essays = defineDocs({
   dir: 'content/essays',
-  schema: sharedSchema,
+  docs: { schema: docsSchema },
 });
 
 export const posts = defineDocs({
   dir: 'content/posts',
-  schema: sharedSchema,
+  docs: { schema: docsSchema },
 });
 
 export const systems = defineDocs({
   dir: 'content/systems',
-  schema: sharedSchema,
+  docs: { schema: docsSchema },
 });
 
 export default defineConfig({
