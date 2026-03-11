@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
       ? message.trim().slice(0, 77) + '...'
       : message.trim();
 
-    const res = await fetch('https://api.github.com/repos/verial-lab/verial-blog/issues', {
+    const res = await fetch('https://api.github.com/repos/verial-lab/verial-blog_feedback/issues', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -3,7 +3,9 @@ import { ogMeta } from '@/lib/og';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { SectionIcon } from '@/components/SectionIcon';
+import { Atom } from 'lucide-react';
 import { GlossaryTerm } from '@/components/GlossaryTerm';
+import { TableOfContents } from '@/components/TableOfContents';
 
 export default async function NotePage(props: {
   params: Promise<{ slug?: string[] }>;
@@ -13,7 +15,7 @@ export default async function NotePage(props: {
 
   // Index page — list all posts
   if (!slug || slug.length === 0) {
-    const pages = postSource.getPages().filter(p => p.slugs.length > 0);
+    const pages = postSource.getPages().filter(p => p.slugs.length > 0).sort((a, b) => (b.data.date || '').localeCompare(a.data.date || ''));
     return (
       <div className="min-h-screen">
         <div className="max-w-3xl mx-auto px-6 pt-24 pb-16">
@@ -67,11 +69,12 @@ export default async function NotePage(props: {
     <div className="min-h-screen">
       <article className="max-w-3xl mx-auto px-6 pt-24 pb-16">
         <div className="mb-10">
+
           <Link
             href="/posts"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1"
+            className="text-base text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2 font-medium"
           >
-            ← Posts
+            ← <Atom className="w-4 h-4 shrink-0" strokeWidth={1.5} /> Posts
           </Link>
         </div>
 
@@ -79,12 +82,17 @@ export default async function NotePage(props: {
           <h1 className="font-serif text-3xl md:text-4xl font-normal leading-snug tracking-normal mb-4">
             {page.data.title}
           </h1>
+          {page.data.date && (
+            <p className="text-sm text-muted-foreground/60 mb-4">{new Date(page.data.date + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+          )}
           {page.data.description && (
             <p className="text-lg text-muted-foreground leading-relaxed">
               {page.data.description}
             </p>
           )}
         </header>
+
+        <TableOfContents toc={page.data.toc as any} />
 
         <div className="prose">
           <MDX components={{ GlossaryTerm }} />
@@ -93,11 +101,12 @@ export default async function NotePage(props: {
 
       <footer className="border-t border-border/30 px-6 py-8">
         <div className="max-w-3xl mx-auto text-center">
+
           <Link
             href="/posts"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            className="text-base text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2 font-medium"
           >
-            ← Back to Posts
+            ← <Atom className="w-4 h-4 shrink-0" strokeWidth={1.5} /> Back to Posts
           </Link>
         </div>
       </footer>

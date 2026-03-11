@@ -1,11 +1,13 @@
 import './globals.css';
 import { RootProvider } from 'fumadocs-ui/provider';
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { Source_Serif_4, Newsreader, JetBrains_Mono } from 'next/font/google';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { SearchDialog } from '@/components/SearchDialog';
 import { FeedbackWidget } from '@/components/FeedbackWidget';
+import { SubscriptionBanner } from '@/components/SubscriptionBanner';
 import { ogMeta } from '@/lib/og';
 
 const sourceSerif = Source_Serif_4({ weight: ['400', '500', '600', '700'], subsets: ['latin'], variable: '--font-serif' });
@@ -17,7 +19,7 @@ export const metadata: Metadata = {
     template: '%s | Verial',
     default: 'Verial — Truth-seeking. Applied.',
   },
-  description: 'Essays on philosophy, systems thinking, innovation, and practical wisdom for the exponential age.',
+  description: 'High-density writing on engineering, systems thinking, and applied wisdom for the exponential age.',
   metadataBase: new URL('https://verial.xyz'),
   icons: {
     icon: [
@@ -27,7 +29,7 @@ export const metadata: Metadata = {
     ],
     apple: '/apple-touch-icon.png',
   },
-  ...ogMeta('Verial', 'Essays on philosophy, systems thinking, innovation, and practical wisdom for the exponential age.'),
+  ...ogMeta('Verial', 'High-density writing on engineering, systems thinking, and applied wisdom for the exponential age.'),
   alternates: {
     types: { 'application/rss+xml': '/feed.xml' },
   },
@@ -44,6 +46,7 @@ export default function RootLayout({
         <RootProvider search={{ enabled: false }}>
           <Navigation />
           <SearchDialog />
+          <Suspense><SubscriptionBanner /></Suspense>
           {children}
           <Footer />
           <FeedbackWidget />

@@ -1,6 +1,7 @@
 import { HeroSection } from '@/components/HeroSection';
 import { EmailSignup } from '@/components/EmailSignup';
 import { ContentPreview } from '@/components/ContentPreview';
+import { LatestContent } from '@/components/LatestContent';
 import { brand } from '@/lib/brand';
 
 export default function HomePage() {
@@ -19,6 +20,9 @@ export default function HomePage() {
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
                dangerouslySetInnerHTML={{ __html: brand.philosophy.html }} />
           </div>
+
+          {/* Latest Content */}
+          <LatestContent />
 
           <div className="grid md:grid-cols-3 gap-5 mb-14">
             <ContentPreview

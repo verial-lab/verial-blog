@@ -20,6 +20,12 @@ const navSections = [
       { href: '#feedback', label: 'Feedback' },
     ],
   },
+  {
+    title: 'Reference',
+    links: [
+      { href: '/glossary', label: 'Glossary' },
+    ],
+  },
 ];
 
 /**
@@ -36,7 +42,7 @@ function SpacetimeGrid() {
     if (!ctx) return;
 
     const GRID_LINES = 20;
-    const BASE_OPACITY = 0.05;
+    const BASE_OPACITY = 0.13;
     const GLOW = { r: 218, g: 175, b: 65 }; // metallic gold
     const MAX_PULSES = 4;
     const PULSE_SPEED = 0.004; // progress per frame (0→1)
@@ -221,11 +227,15 @@ export function Footer() {
       {/* Bottom-up gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-transparent via-muted/[0.08] to-muted/[0.15] pointer-events-none" />
 
+      {/* Side edge fade gradients */}
+      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent pointer-events-none z-10" />
+      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent pointer-events-none z-10" />
+
       {/* Animated spacetime grid */}
       <SpacetimeGrid />
 
-      <div className="relative max-w-4xl mx-auto px-6 pt-10 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      <div className="relative max-w-4xl mx-auto px-6 pt-10 pb-14">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Brand column */}
           <div className="md:col-span-1">
             <Link href="/" className="inline-block mb-4">
@@ -241,7 +251,7 @@ export function Footer() {
           {/* Nav columns */}
           {navSections.map((section) => (
             <div key={section.title}>
-              <h4 className="text-sm font-medium uppercase tracking-[0.15em] text-muted-foreground/50 mb-4">
+              <h4 className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground/70 mb-4">
                 {section.title}
               </h4>
               <ul className="space-y-3">
@@ -250,14 +260,14 @@ export function Footer() {
                     {link.href === '#feedback' ? (
                       <button
                         onClick={() => window.dispatchEvent(new CustomEvent('open-feedback'))}
-                        className="text-base font-display font-semibold text-muted-foreground hover:text-foreground transition-colors"
+                        className="text-base font-display font-semibold text-foreground/70 hover:text-foreground transition-colors"
                       >
                         {link.label}
                       </button>
                     ) : (
                       <Link
                         href={link.href}
-                        className="text-base font-display font-semibold text-muted-foreground hover:text-foreground transition-colors"
+                        className="text-base font-display font-semibold text-foreground/70 hover:text-foreground transition-colors"
                       >
                         {link.label}
                       </Link>

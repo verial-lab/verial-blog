@@ -5,9 +5,9 @@
 
 export const brand = {
   name: 'Verial',
-  tagline: 'Inquiry · Engineering · Transformation',
+  tagline: 'Engineering · Systems · Wisdom',
   subtitle:
-    'High-density writing on building, technology, and the systems that shape our exponential future.',
+    'High-density writing on engineering, systems thinking, and applied wisdom for the exponential age.',
   philosophy: {
     /** Full philosophy statement (JSX-safe plain text version) */
     text: 'Verial — from veritas (truth) and aerial (limitless sky). The belief that when we seek truth and build with intention, the cosmic microwave background is the limit.',
