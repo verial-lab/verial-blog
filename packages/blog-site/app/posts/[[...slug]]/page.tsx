@@ -97,7 +97,7 @@ export default async function NotePage(props: {
           )}
         </header>
 
-        <TableOfContents toc={page.data.toc} />
+        <TableOfContents toc={page.data.toc as any} />
 
         <div className="prose">
           <MDX components={{ GlossaryTerm }} />
