@@ -13,7 +13,7 @@ export default async function EssayPage(props: {
 
   // Index page — list all essays
   if (!slug || slug.length === 0) {
-    const pages = essaySource.getPages().filter(p => p.slugs.length > 0).sort((a, b) => (b.data.date || '').localeCompare(a.data.date || ''));
+    const pages = essaySource.getPages().filter(p => p.slugs.length > 0).sort((a, b) => ((b.data as any).date || '').localeCompare((a.data as any).date || ''));
     return (
       <div className="min-h-screen">
         <div className="max-w-3xl mx-auto px-6 pt-24 pb-16">
@@ -41,8 +41,8 @@ export default async function EssayPage(props: {
                 <h2 className="font-serif text-xl font-normal mb-2 group-hover:text-primary transition-colors">
                   {page.data.title}
                 </h2>
-                {page.data.date && (
-                  <p className="text-sm text-muted-foreground/60 mb-2">{new Date(page.data.date + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                {(page.data as any).date && (
+                  <p className="text-sm text-muted-foreground/60 mb-2">{new Date((page.data as any).date + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                 )}
                 {page.data.description && (
                   <p className="text-base text-muted-foreground leading-relaxed">
@@ -82,8 +82,8 @@ export default async function EssayPage(props: {
           <h1 className="font-serif text-4xl md:text-5xl font-normal leading-[1.25] tracking-normal mb-6">
             {page.data.title}
           </h1>
-          {page.data.date && (
-            <p className="text-sm text-muted-foreground/60 mb-4">{new Date(page.data.date + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+          {(page.data as any).date && (
+            <p className="text-sm text-muted-foreground/60 mb-4">{new Date((page.data as any).date + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
           )}
           {page.data.description && (
             <p className="text-xl text-muted-foreground leading-relaxed">
