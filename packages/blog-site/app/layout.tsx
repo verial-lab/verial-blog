@@ -40,8 +40,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // suppressHydrationWarning: next-themes injects the `dark` class server-side but applies it via script on the client,
+  // causing a className mismatch. This suppresses that expected discrepancy on <html> only.
   return (
-    {/* suppressHydrationWarning: next-themes injects the `dark` class server-side but applies it via script on the client, causing a className mismatch. This suppresses that expected discrepancy on <html> only. */}
     <html lang="en" suppressHydrationWarning className={`${sourceSerif.variable} ${newsreader.variable} ${jetbrainsMono.variable}`}>
       <body className="min-h-screen bg-background font-sans antialiased text-[18px] leading-[1.65]">
         <RootProvider search={{ enabled: false }} theme={{ defaultTheme: 'dark', forcedTheme: 'dark' }}>
