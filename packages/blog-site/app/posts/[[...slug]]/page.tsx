@@ -3,6 +3,7 @@ import { ogMeta } from '@/lib/og';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { SectionIcon } from '@/components/SectionIcon';
+import { Atom } from 'lucide-react';
 import { GlossaryTerm } from '@/components/GlossaryTerm';
 import { TableOfContents } from '@/components/TableOfContents';
 
@@ -73,13 +74,7 @@ export default async function NotePage(props: {
             href="/posts"
             className="text-base text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2 font-medium"
           >
-            <SectionIcon
-              src="/icons/posts-atom.webm"
-              fallbackSrc="/icons/posts-atom.mp4"
-              size={28}
-              className="shrink-0"
-            />
-            ← Posts
+            ← <Atom className="w-4 h-4 shrink-0" strokeWidth={1.5} /> Posts
           </Link>
         </div>
 
@@ -111,13 +106,7 @@ export default async function NotePage(props: {
             href="/posts"
             className="text-base text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2 font-medium"
           >
-            <SectionIcon
-              src="/icons/posts-atom.webm"
-              fallbackSrc="/icons/posts-atom.mp4"
-              size={28}
-              className="shrink-0"
-            />
-            ← Back to Posts
+            ← <Atom className="w-4 h-4 shrink-0" strokeWidth={1.5} /> Back to Posts
           </Link>
         </div>
       </footer>
