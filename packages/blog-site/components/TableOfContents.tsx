@@ -87,7 +87,7 @@ export function TableOfContents({ toc, title }: TableOfContentsProps) {
                 }}
                 className="block text-[13px] leading-relaxed py-0.5 pl-2 border-l-2 border-l-transparent text-muted-foreground/50 hover:text-foreground transition-all duration-150"
               >
-                ↑ {title || 'Top'}
+                {title || 'Top'}
               </a>
             </li>
             {toc.map((item, i) => {
