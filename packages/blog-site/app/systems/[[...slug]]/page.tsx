@@ -13,7 +13,7 @@ export default async function SystemsPage(props: {
 
   // Index page — list all systems pages
   if (!slug || slug.length === 0) {
-    const pages = systemSource.getPages().filter(p => p.slugs.length > 0);
+    const pages = systemSource.getPages().filter(p => p.slugs.length > 0).sort((a, b) => (b.data.date || '').localeCompare(a.data.date || ''));
     return (
       <div className="min-h-screen">
         <div className="max-w-3xl mx-auto px-6 pt-24 pb-16">
@@ -41,6 +41,9 @@ export default async function SystemsPage(props: {
                 <h2 className="font-serif text-lg font-normal mb-2 group-hover:text-primary transition-colors">
                   {page.data.title}
                 </h2>
+                {page.data.date && (
+                  <p className="text-sm text-muted-foreground/60 mb-2">{new Date(page.data.date + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                )}
                 {page.data.description && (
                   <p className="text-base text-muted-foreground leading-relaxed">
                     {page.data.description}

@@ -13,7 +13,7 @@ export default async function NotePage(props: {
 
   // Index page — list all posts
   if (!slug || slug.length === 0) {
-    const pages = postSource.getPages().filter(p => p.slugs.length > 0);
+    const pages = postSource.getPages().filter(p => p.slugs.length > 0).sort((a, b) => (b.data.date || '').localeCompare(a.data.date || ''));
     return (
       <div className="min-h-screen">
         <div className="max-w-3xl mx-auto px-6 pt-24 pb-16">
@@ -79,6 +79,9 @@ export default async function NotePage(props: {
           <h1 className="font-serif text-3xl md:text-4xl font-normal leading-snug tracking-normal mb-4">
             {page.data.title}
           </h1>
+          {page.data.date && (
+            <p className="text-sm text-muted-foreground/60 mb-4">{new Date(page.data.date + 'T00:00:00').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+          )}
           {page.data.description && (
             <p className="text-lg text-muted-foreground leading-relaxed">
               {page.data.description}
