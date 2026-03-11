@@ -1,13 +1,22 @@
 'use client';
-import type React from 'react';
-
-import { useState, useEffect, useRef } from 'react';
-import { List } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { List, X } from 'lucide-react';
 
 interface TocItem {
   title: React.ReactNode;
   url: string;
   depth: number;
+}
+
+function getTextContent(node: React.ReactNode): string {
+  if (typeof node === 'string' || typeof node === 'number') return String(node);
+  if (Array.isArray(node)) return node.map(getTextContent).join('');
+  if (React.isValidElement(node)) {
+    const el = node as React.ReactElement<{ className?: string; children?: React.ReactNode }>;
+    if (el.props.className?.includes('anchor-link')) return '';
+    return getTextContent(el.props.children);
+  }
+  return '';
 }
 
 interface TableOfContentsProps {
@@ -53,16 +62,20 @@ export function TableOfContents({ toc, title }: TableOfContentsProps) {
     return () => observers.forEach(obs => obs.disconnect());
   }, [toc]);
 
-  // Close pin on outside click
+  // Close pin on outside click/touch
   useEffect(() => {
     if (!isPinned) return;
-    const handler = (e: MouseEvent) => {
+    const handler = (e: MouseEvent | TouchEvent) => {
       if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
         setIsPinned(false);
       }
     };
     document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
+    document.addEventListener('touchend', handler);
+    return () => {
+      document.removeEventListener('mousedown', handler);
+      document.removeEventListener('touchend', handler);
+    };
   }, [isPinned]);
 
   if (!toc || toc.length === 0) return null;
@@ -85,7 +98,18 @@ export function TableOfContents({ toc, title }: TableOfContentsProps) {
         }`}
       >
         <nav className="w-56 sm:w-60 bg-background/95 backdrop-blur-md border border-border/40 rounded-xl shadow-lg p-4 max-h-[60vh] overflow-y-auto">
-          <p className="text-[11px] font-medium text-muted-foreground/40 uppercase tracking-widest mb-3">Contents</p>
+          <div className="flex items-center justify-between mb-3">
+            <p className="text-[11px] font-medium text-muted-foreground/40 uppercase tracking-widest">Contents</p>
+            {isMobile && (
+              <button
+                onClick={() => setIsPinned(false)}
+                aria-label="Close table of contents"
+                className="text-muted-foreground/40 hover:text-foreground transition-colors"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            )}
+          </div>
           <ul className="space-y-0.5">
             <li>
               <a
@@ -114,7 +138,7 @@ export function TableOfContents({ toc, title }: TableOfContentsProps) {
                         : 'text-muted-foreground/50 hover:text-foreground border-l-transparent'
                     }`}
                   >
-                    <span className="[&_.anchor-icon]:hidden">{item.title}</span>
+                    {getTextContent(item.title)}
                   </a>
                 </li>
               );

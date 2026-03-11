@@ -73,7 +73,8 @@ export function buildBacklinks(entries: GlossaryEntry[]): Map<string, GlossaryBa
         const regex = new RegExp(`\\b${entry.term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
         if (regex.test(content)) {
           if (!backlinks.has(termLower)) backlinks.set(termLower, []);
-          backlinks.get(termLower)!.push({ title, url });
+          const anchor = `glossary-ref-${termLower.replace(/\s+/g, '-')}`;
+          backlinks.get(termLower)!.push({ title, url: `${url}#${anchor}` });
         }
       }
     }
