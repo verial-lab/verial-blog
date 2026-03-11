@@ -185,15 +185,13 @@ code { @apply font-mono text-sm; }
 .prose .footnotes li a[data-footnote-backref]:hover::after {
   @apply text-foreground border-border/60 bg-muted/20;
 }
-/* Second backref (cited twice) — compact arrow only */
-.prose .footnotes li a[data-footnote-backref] + a[data-footnote-backref]::after {
-  content: '↑';
-  padding: 1px 5px;
+/* When cited twice, number both back refs: ↑ back 1, ↑ back 2 */
+.prose .footnotes li:has(a[data-footnote-backref] + a[data-footnote-backref]) {
+  counter-reset: backref-counter;
 }
-/* First backref when it has a sibling — also compact */
-.prose .footnotes li a[data-footnote-backref]:has(+ a[data-footnote-backref])::after {
-  content: '↑';
-  padding: 1px 5px;
+.prose .footnotes li:has(a[data-footnote-backref] + a[data-footnote-backref]) a[data-footnote-backref]::after {
+  counter-increment: backref-counter;
+  content: '↑ back ' counter(backref-counter);
 }
 
 /* Footnote superscript links */
