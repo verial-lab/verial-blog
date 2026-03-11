@@ -55,7 +55,54 @@ code { @apply font-mono text-sm; }
 .prose strong { @apply font-bold text-foreground; }
 .prose em { @apply italic; }
 .prose hr { @apply border-border/30 my-12; }
-.prose a { @apply text-primary hover:text-primary/80 transition-colors underline underline-offset-2; }
+.prose a:not(.anchor-link) { @apply text-primary hover:text-primary/80 transition-colors underline underline-offset-2; }
+
+/* Header anchor links */
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  position: relative;
+}
+.prose .anchor-link {
+  @apply text-muted-foreground/0 hover:text-muted-foreground/60 transition-colors no-underline;
+  margin-left: 0.4em;
+  font-weight: 400;
+}
+.prose h2:hover .anchor-link,
+.prose h3:hover .anchor-link,
+.prose h4:hover .anchor-link,
+.prose h5:hover .anchor-link,
+.prose h6:hover .anchor-link {
+  @apply text-muted-foreground/40;
+}
+.prose .anchor-link:hover {
+  @apply text-muted-foreground/60;
+}
+.prose .anchor-icon {
+  font-size: 0.75em;
+}
+
+/* Fix double line break / excessive spacing above footnotes
+ * remark-gfm inserts an <hr> before .footnotes — collapse the double margin */
+.prose > hr + section.footnotes,
+.prose > hr + .footnotes {
+  margin-top: 0;
+}
+.prose > section.footnotes,
+.prose > .footnotes {
+  @apply mt-16 pt-8 border-t border-border/30;
+}
+/* Hide the auto-generated hr before footnotes since we style the border on .footnotes itself */
+.prose > hr:has(+ section.footnotes),
+.prose > hr:has(+ .footnotes) {
+  display: none;
+}
+/* Fallback for browsers without :has() — collapse consecutive hrs */
+.prose hr + hr {
+  display: none;
+}
 
 /* Footnotes — remark-gfm [^1] syntax */
 .prose .footnotes {
