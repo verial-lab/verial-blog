@@ -3,6 +3,7 @@ import { ogMeta } from '@/lib/og';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { SectionIcon } from '@/components/SectionIcon';
+import { Triangle } from 'lucide-react';
 import { GlossaryTerm } from '@/components/GlossaryTerm';
 import { TableOfContents } from '@/components/TableOfContents';
 
@@ -76,13 +77,7 @@ export default async function EssayPage(props: {
             href="/essays"
             className="text-base text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2 font-medium"
           >
-            <SectionIcon
-              src="/icons/essays-pyramid.webm"
-              fallbackSrc="/icons/essays-pyramid.mp4"
-              size={28}
-              className="shrink-0"
-            />
-            ← Essays
+            ← <Triangle className="w-5 h-5 shrink-0" strokeWidth={1.5} /> Essays
           </Link>
         </div>
 
@@ -114,13 +109,7 @@ export default async function EssayPage(props: {
             href="/essays"
             className="text-base text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2 font-medium"
           >
-            <SectionIcon
-              src="/icons/essays-pyramid.webm"
-              fallbackSrc="/icons/essays-pyramid.mp4"
-              size={28}
-              className="shrink-0"
-            />
-            ← Back to Essays
+            ← <Triangle className="w-5 h-5 shrink-0" strokeWidth={1.5} /> Back to Essays
           </Link>
         </div>
       </footer>
