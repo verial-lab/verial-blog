@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     template: '%s | Verial',
     default: 'Verial — Truth-seeking. Applied.',
   },
-  description: 'Essays on philosophy, systems thinking, innovation, and practical wisdom for the exponential age.',
+  description: 'High-density writing on engineering, systems thinking, and applied wisdom for the exponential age.',
   metadataBase: new URL('https://verial.xyz'),
   icons: {
     icon: [
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     ],
     apple: '/apple-touch-icon.png',
   },
-  ...ogMeta('Verial', 'Essays on philosophy, systems thinking, innovation, and practical wisdom for the exponential age.'),
+  ...ogMeta('Verial', 'High-density writing on engineering, systems thinking, and applied wisdom for the exponential age.'),
   alternates: {
     types: { 'application/rss+xml': '/feed.xml' },
   },
