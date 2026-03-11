@@ -1,5 +1,35 @@
 - term: Legibility
-  definition: "The quality of a system that makes its internal state observable and understandable to external actors."
+  definition: "The degree to which you — or anyone working with you — can actually see and understand a complex system well enough to trust it, improve it, and change it without fear."
 
 - term: Systems Thinking
-  definition: "A holistic approach to analysis that focuses on how components interrelate and behave as a whole over time."
+  definition: "A holistic approach to analysis that focuses on how components interrelate and work together over time within larger systems."
+
+- term: Agentic
+  definition: "Software systems where AI agents autonomously execute tasks, generate code, and make decisions at scale — with humans providing direction rather than doing the work directly."
+
+- term: Domain Legibility
+  definition: "The degree to which a system's structure and naming reflect the real-world domain it models, making it readable by anyone who understands the business — not just engineers."
+
+- term: Event Sourcing
+  definition: "A data architecture pattern where every change is stored as an immutable event in sequence, rather than overwriting current state — enabling full auditability and time-travel through system history."
+
+- term: Cognitive Load
+  definition: "The total amount of mental effort required to understand or operate a system. Lower cognitive load means easier comprehension and fewer errors."
+
+- term: Context Window
+  definition: "The maximum amount of text (measured in tokens) that a large language model can process in a single session — effectively the AI's working memory limit."
+
+- term: Ubiquitous Language
+  definition: "A shared vocabulary used consistently between code and business stakeholders, so that terms in the system mean the same thing to everyone — from engineers to product managers."
+
+- term: Domain-Driven Design
+  definition: "A software design approach where the system's structure and language are modeled around the real-world business domain it serves, rather than technical abstractions."
+
+- term: Vertical Slice Architecture
+  definition: "A software structure where each feature is organized as a self-contained slice through all layers of the stack (UI to data), rather than grouping code by technical layer."
+
+- term: Black Box
+  definition: "A system whose internal workings are hidden or incomprehensible to its operators — you can see inputs and outputs, but not how or why decisions are made inside."
+
+- term: Temporal Legibility
+  definition: "The ability to understand not just a system's current state, but how and why it reached that state — through auditable history of events and decisions over time."
