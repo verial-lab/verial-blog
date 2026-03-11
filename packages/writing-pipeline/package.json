@@ -1,9 +1,0 @@
-{
-  "name": "@verial/writing-pipeline",
-  "version": "0.0.1",
-  "private": true,
-  "description": "AI-assisted writing workflow scripts and idea backlog",
-  "scripts": {
-    "build": "echo 'placeholder — no build yet'"
-  }
-}
