@@ -65,12 +65,14 @@ function buildTermRegex(entries) {
  * Create an mdxJsxTextElement for <GlossaryTerm>.
  */
 function makeGlossaryNode(term, definition, matchedText) {
+  const id = `glossary-ref-${term.toLowerCase().replace(/\s+/g, '-')}`;
   return {
     type: 'mdxJsxTextElement',
     name: 'GlossaryTerm',
     attributes: [
       { type: 'mdxJsxAttribute', name: 'term', value: term },
       { type: 'mdxJsxAttribute', name: 'definition', value: definition },
+      { type: 'mdxJsxAttribute', name: 'id', value: id },
     ],
     children: [{ type: 'text', value: matchedText }],
   };

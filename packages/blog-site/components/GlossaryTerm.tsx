@@ -9,10 +9,12 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 export function GlossaryTerm({
   term,
   definition,
+  id,
   children,
 }: {
   term: string;
   definition: string;
+  id?: string;
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
@@ -87,6 +89,7 @@ export function GlossaryTerm({
   return (
     <span
       ref={wrapperRef}
+      id={id}
       className="glossary-term-wrapper"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
