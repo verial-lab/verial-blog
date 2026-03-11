@@ -1,9 +1,10 @@
 'use client';
+import type React from 'react';
 
 import { useState } from 'react';
 
 interface TocItem {
-  title: string;
+  title: React.ReactNode;
   url: string;
   depth: number;
 }
