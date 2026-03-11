@@ -19,6 +19,7 @@ export function GlossaryTerm({
   const wrapperRef = useRef<HTMLSpanElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const popoverRef = useRef<HTMLSpanElement>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const position = useCallback(() => {
     if (!triggerRef.current || !popoverRef.current) return;
@@ -74,13 +75,27 @@ export function GlossaryTerm({
     };
   }, [open, position]);
 
+  const handleMouseEnter = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    closeTimer.current = setTimeout(() => setOpen(false), 200);
+  };
+
   return (
-    <span ref={wrapperRef} className="glossary-term-wrapper">
+    <span
+      ref={wrapperRef}
+      className="glossary-term-wrapper"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <button
         ref={triggerRef}
         type="button"
         className="glossary-term-trigger"
-        onClick={() => setOpen(!open)}
+        onClick={() => setOpen(prev => !prev)}
         aria-expanded={open}
         aria-label={`Definition: ${term}`}
       >

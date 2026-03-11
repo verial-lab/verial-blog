@@ -1,0 +1,117 @@
+'use client';
+import type React from 'react';
+
+import { useState, useEffect, useRef } from 'react';
+import { List } from 'lucide-react';
+
+interface TocItem {
+  title: React.ReactNode;
+  url: string;
+  depth: number;
+}
+
+interface TableOfContentsProps {
+  toc: TocItem[];
+}
+
+export function TableOfContents({ toc }: TableOfContentsProps) {
+  const [isVisible, setIsVisible] = useState(true);
+  const [isPinned, setIsPinned] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [activeId, setActiveId] = useState('');
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const showPanel = isPinned || isHovered;
+
+
+  // Track active section
+  useEffect(() => {
+    if (!toc || toc.length === 0) return;
+    const observers: IntersectionObserver[] = [];
+    toc.forEach(item => {
+      const id = item.url.replace('#', '');
+      const el = document.getElementById(id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveId(id); },
+        { rootMargin: '-20% 0% -70% 0%', threshold: 0 }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach(obs => obs.disconnect());
+  }, [toc]);
+
+  // Close pin on outside click
+  useEffect(() => {
+    if (!isPinned) return;
+    const handler = (e: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setIsPinned(false);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [isPinned]);
+
+  if (!toc || toc.length === 0) return null;
+
+  return (
+    <div
+      ref={containerRef}
+      className={`fixed right-4 sm:right-6 bottom-6 z-40 flex flex-col items-end transition-all duration-300 ${
+        isVisible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+      }`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Panel */}
+      <div
+        className={`mb-2 transition-all duration-200 origin-bottom-right ${
+          showPanel
+            ? 'opacity-100 scale-100 translate-y-0'
+            : 'opacity-0 scale-95 translate-y-1 pointer-events-none'
+        }`}
+      >
+        <nav className="w-56 sm:w-60 bg-background/95 backdrop-blur-md border border-border/40 rounded-xl shadow-lg p-4 max-h-[60vh] overflow-y-auto">
+          <p className="text-[11px] font-medium text-muted-foreground/40 uppercase tracking-widest mb-3">Contents</p>
+          <ul className="space-y-0.5">
+            {toc.map((item, i) => {
+              const id = item.url.replace('#', '');
+              const isActive = activeId === id;
+              return (
+                <li key={i} style={{ paddingLeft: `${(item.depth - 2) * 12}px` }}>
+                  <a
+                    href={item.url}
+                    onClick={() => setIsPinned(false)}
+                    className={`block text-[13px] leading-relaxed py-0.5 pl-2 border-l-2 transition-all duration-150 ${
+                      isActive
+                        ? 'text-foreground font-semibold border-l-foreground'
+                        : 'text-muted-foreground/50 hover:text-foreground border-l-transparent'
+                    }`}
+                  >
+                    <span className="[&_.anchor-icon]:hidden">{item.title}</span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </div>
+
+      {/* Trigger button */}
+      <button
+        onClick={() => setIsPinned(prev => !prev)}
+        aria-label="Toggle table of contents"
+        className={`flex items-center gap-2 pl-3 pr-3.5 py-2 rounded-xl border text-sm font-medium shadow-sm transition-all duration-200 ${
+          isPinned
+            ? 'bg-background border-border/50 text-foreground shadow-md'
+            : 'bg-background/80 backdrop-blur-sm border-border/30 text-muted-foreground hover:text-foreground hover:border-border/50 hover:bg-background/95'
+        }`}
+      >
+        <List className="w-4 h-4 shrink-0" strokeWidth={1.5} />
+        <span className="hidden sm:inline">Contents</span>
+      </button>
+    </div>
+  );
+}

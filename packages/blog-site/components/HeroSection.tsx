@@ -34,16 +34,16 @@ export function HeroSection() {
             className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-muted-foreground/70 font-medium"
           >
             <span className="w-8 h-px bg-muted-foreground/20" />
-            Inquiry &middot; Engineering &middot; Transformation
+            Engineering &middot; Systems &middot; Wisdom
             <span className="w-8 h-px bg-muted-foreground/20" />
           </div>
 
-          <h1 
+          <h1
             className="text-5xl md:text-7xl font-serif font-normal leading-[1.15]"
             style={{ animation: 'fadeInUp 0.8s ease-out 0.6s both' }}
           >
             Truth-seeking.{' '}
-            <span className="text-foreground/70">
+            <span className="text-foreground/50 text-[0.9em]">
               Applied.
             </span>
           </h1>
@@ -52,8 +52,8 @@ export function HeroSection() {
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
             style={{ animation: 'fadeInUp 0.8s ease-out 0.8s both' }}
           >
-            High-density writing on building, technology, and the systems behind 
-            a life well-engineered. For those paying attention to what comes next.
+            High-density writing on engineering, systems thinking, and applied wisdom
+            for the exponential age.
           </p>
           
           <div 
