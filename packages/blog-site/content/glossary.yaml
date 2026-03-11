@@ -1,6 +1,3 @@
-- term: Containment
-  definition: "The structural boundary that limits what a system can affect. In systems design, containment must scale with the capability it contains."
-
 - term: Legibility
   definition: "The quality of a system that makes its internal state observable and understandable to external actors."
 
