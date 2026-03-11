@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { SectionIcon } from '@/components/SectionIcon';
 import { GlossaryTerm } from '@/components/GlossaryTerm';
+import { TableOfContents } from '@/components/TableOfContents';
 
 export default async function EssayPage(props: {
   params: Promise<{ slug?: string[] }>;
@@ -70,10 +71,17 @@ export default async function EssayPage(props: {
     <div className="min-h-screen">
       <article className="max-w-3xl mx-auto px-6 pt-24 pb-16">
         <div className="mb-12">
+
           <Link
             href="/essays"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1"
+            className="text-base text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2 font-medium"
           >
+            <SectionIcon
+              src="/icons/essays-pyramid.webm"
+              fallbackSrc="/icons/essays-pyramid.mp4"
+              size={28}
+              className="shrink-0"
+            />
             ← Essays
           </Link>
         </div>
@@ -92,6 +100,8 @@ export default async function EssayPage(props: {
           )}
         </header>
 
+        <TableOfContents toc={page.data.toc} />
+
         <div className="prose">
           <MDX components={{ GlossaryTerm }} />
         </div>
@@ -99,10 +109,17 @@ export default async function EssayPage(props: {
 
       <footer className="border-t border-border/30 px-6 py-8">
         <div className="max-w-3xl mx-auto text-center">
+
           <Link
             href="/essays"
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            className="text-base text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2 font-medium"
           >
+            <SectionIcon
+              src="/icons/essays-pyramid.webm"
+              fallbackSrc="/icons/essays-pyramid.mp4"
+              size={28}
+              className="shrink-0"
+            />
             ← Back to Essays
           </Link>
         </div>
