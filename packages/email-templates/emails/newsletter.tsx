@@ -52,23 +52,34 @@ export const Newsletter = ({
             <Text style={titleStyle}>{title}</Text>
           </Section>
 
+          {/* Top CTA Button */}
+          {canonicalUrl && (
+            <Section style={ctaSection}>
+              <Link href={canonicalUrl} style={ctaButton}>
+                Read on verial.xyz →
+              </Link>
+            </Section>
+          )}
+
           {/* Body */}
           <div
             style={bodySection}
             dangerouslySetInnerHTML={{ __html: bodyHtml }}
           />
 
+          {/* CTA Button */}
+          {canonicalUrl && (
+            <Section style={ctaSection}>
+              <Link href={canonicalUrl} style={ctaButton}>
+                Read on verial.xyz →
+              </Link>
+            </Section>
+          )}
+
           <Hr style={divider} />
 
           {/* Footer */}
           <Section style={footer}>
-            {canonicalUrl && (
-              <Text style={footerText}>
-                <Link href={canonicalUrl} style={footerLink}>
-                  Read on verial.xyz →
-                </Link>
-              </Text>
-            )}
             <Text style={footerText}>
               You received this because you subscribed to {brand.name}.
             </Text>
@@ -165,4 +176,22 @@ const footerText: React.CSSProperties = {
 const footerLink: React.CSSProperties = {
   color: emailColors.mutedForeground,
   textDecoration: 'underline',
+};
+
+const ctaSection: React.CSSProperties = {
+  padding: '8px 24px 24px',
+  textAlign: 'center' as const,
+};
+
+const ctaButton: React.CSSProperties = {
+  display: 'inline-block',
+  backgroundColor: emailColors.foreground,
+  color: emailColors.background,
+  padding: '14px 32px',
+  fontSize: '15px',
+  fontWeight: 600,
+  fontFamily: "'Georgia', serif",
+  textDecoration: 'none',
+  borderRadius: '4px',
+  letterSpacing: '0.02em',
 };
