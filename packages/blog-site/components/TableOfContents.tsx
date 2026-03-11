@@ -12,9 +12,10 @@ interface TocItem {
 
 interface TableOfContentsProps {
   toc: TocItem[];
+  title?: string;
 }
 
-export function TableOfContents({ toc }: TableOfContentsProps) {
+export function TableOfContents({ toc, title }: TableOfContentsProps) {
   const [isVisible, setIsVisible] = useState(true);
   const [isPinned, setIsPinned] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -86,7 +87,7 @@ export function TableOfContents({ toc }: TableOfContentsProps) {
                 }}
                 className="block text-[13px] leading-relaxed py-0.5 pl-2 border-l-2 border-l-transparent text-muted-foreground/50 hover:text-foreground transition-all duration-150"
               >
-                ↑ Top
+                ↑ {title || 'Top'}
               </a>
             </li>
             {toc.map((item, i) => {

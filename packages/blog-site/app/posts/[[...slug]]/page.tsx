@@ -92,7 +92,7 @@ export default async function NotePage(props: {
           )}
         </header>
 
-        <TableOfContents toc={page.data.toc as any} />
+        <TableOfContents toc={page.data.toc as any} title={page.data.title as string} />
 
         <div className="prose">
           <MDX components={{ GlossaryTerm }} />
