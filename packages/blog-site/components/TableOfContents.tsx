@@ -19,10 +19,20 @@ export function TableOfContents({ toc, title }: TableOfContentsProps) {
   const [isVisible, setIsVisible] = useState(true);
   const [isPinned, setIsPinned] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [activeId, setActiveId] = useState('');
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const showPanel = isPinned || isHovered;
+  const showPanel = isPinned || (!isMobile && isHovered);
+
+  // Detect mobile (no hover capability)
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: none)');
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
 
 
   // Track active section
