@@ -19,7 +19,7 @@ export const border = 'hsla(0, 0%, 100%, 0.08)'; // colors.border
 
 // From brand.ts
 export const brandName = 'Verial';
-export const brandTagline = 'Inquiry · Engineering · Transformation';
-export const brandSubtitle = 'High-density writing on building, technology, and the systems that shape our exponential future.';
+export const brandTagline = 'Engineering · Systems · Wisdom';
+export const brandSubtitle = 'High-density writing on engineering, systems thinking, and applied wisdom for the exponential age.';
 export const brandUrl = 'https://verial.xyz';
 export const brandHostname = 'verial.xyz';

@@ -34,7 +34,7 @@ export function HeroSection() {
             className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-muted-foreground/70 font-medium"
           >
             <span className="w-8 h-px bg-muted-foreground/20" />
-            Inquiry &middot; Engineering &middot; Transformation
+            Engineering &middot; Systems &middot; Wisdom
             <span className="w-8 h-px bg-muted-foreground/20" />
           </div>
 
@@ -52,8 +52,8 @@ export function HeroSection() {
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
             style={{ animation: 'fadeInUp 0.8s ease-out 0.8s both' }}
           >
-            High-density writing on building, technology, and the systems behind 
-            a life well-engineered. For those paying attention to what comes next.
+            High-density writing on engineering, systems thinking, and applied wisdom
+            for the exponential age.
           </p>
           
           <div 

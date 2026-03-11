@@ -5,7 +5,7 @@
 
 export const brand = {
   name: 'Verial',
-  tagline: 'Inquiry · Engineering · Transformation',
+  tagline: 'Engineering · Systems · Wisdom',
   subtitle:
     'High-density writing on engineering, systems thinking, and applied wisdom for the exponential age.',
   philosophy: {

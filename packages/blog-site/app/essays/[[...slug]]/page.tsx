@@ -28,7 +28,7 @@ export default async function EssayPage(props: {
             <div className="text-center md:text-left">
               <h1 className="font-serif text-4xl font-normal mb-4 tracking-normal">Essays</h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Polished, high-density writing on building, technology, and the principles that survive contact with reality. New essays are sent by email.
+                Polished, high-density writing on engineering, systems thinking, and applied wisdom for the exponential age. New essays are sent by email.
               </p>
             </div>
           </header>
