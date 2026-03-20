@@ -42,7 +42,9 @@ export const Newsletter = ({
             <Link href={brand.url} style={headerLink}>
               <Text style={headerText}>{brand.name}</Text>
             </Link>
-            <Text style={tagline}>{contentType === 'systems' ? 'Systems Log' : 'Essays'}</Text>
+            <Text style={tagline}>
+              {contentType === 'systems' ? 'Systems Log' : contentType === 'posts' ? 'Posts' : 'Essays'}
+            </Text>
           </Section>
 
           <Hr style={divider} />
