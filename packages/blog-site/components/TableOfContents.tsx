@@ -25,7 +25,6 @@ interface TableOfContentsProps {
 }
 
 export function TableOfContents({ toc, title }: TableOfContentsProps) {
-  const [isVisible, setIsVisible] = useState(true);
   const [isPinned, setIsPinned] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -95,9 +94,7 @@ export function TableOfContents({ toc, title }: TableOfContentsProps) {
   return (
     <div
       ref={containerRef}
-      className={`fixed right-4 sm:right-6 bottom-6 z-40 flex flex-col items-end pointer-events-none transition-all duration-300 ${
-        isVisible ? 'opacity-100' : 'opacity-0'
-      }`}
+      className="fixed right-4 sm:right-6 bottom-6 z-40 flex flex-col items-end pointer-events-none"
     >
       {/* Panel */}
       <div
