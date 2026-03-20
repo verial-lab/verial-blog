@@ -115,8 +115,7 @@ Keep conference names and paper metadata out of the body text. Reference natural
 - **Syntropic137** was born out of Agent Paradise, not APSS.
 
 ### Terminology
-- Use **agent engineering** instead of "AI-assisted development." It is a defined glossary term.
-- Use **<GlossaryTerm>** for any term defined in `glossary.yaml`.
+- Use **agentic engineering** instead of "AI-assisted development." It is defined in `glossary.yaml` and will be auto-linked by the remark plugin — just write the plain term, no `<GlossaryTerm>` needed.
 
 ---
 
