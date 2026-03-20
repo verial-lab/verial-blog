@@ -16,3 +16,6 @@ test-results/
 packages/model-generator/output/
 packages/model-generator/specs/
 packages/essay-manager/essays/*/reviews/
+
+# QA screenshots
+screenshots/

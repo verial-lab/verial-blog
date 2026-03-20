@@ -4,9 +4,6 @@
 - term: Systems Thinking
   definition: "A holistic approach to analysis that focuses on how components interrelate and work together over time within larger systems."
 
-- term: Agentic
-  definition: "Software systems where AI agents autonomously execute tasks, generate code, and make decisions at scale — with humans providing direction rather than doing the work directly."
-
 - term: Domain Legibility
   definition: "The degree to which a system's structure and naming reflect the real-world domain it models, making it readable by anyone who understands the business — not just engineers."
 
@@ -33,3 +30,9 @@
 
 - term: Temporal Legibility
   definition: "The ability to understand not just a system's current state, but how and why it reached that state — through auditable history of events and decisions over time."
+
+- term: Agentic Engineering
+  definition: "A higher-order software engineering discipline where AI agents do the implementation and the engineer owns architecture, correctness, and the reliability of the agent loop itself — designing the systems, standards, and verification layers that govern what software agents build and whether humans can understand and own the result."
+
+- term: Cyclomatic Complexity
+  definition: "A measure of the number of independent paths through a piece of code. Higher values mean more branches, more test cases required, and more cognitive effort to understand. A proxy for how hard a function is to test and safely change."

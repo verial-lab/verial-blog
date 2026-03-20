@@ -1,0 +1,107 @@
+---
+title: "CodeCity: Turning a Codebase into a Skyline"
+description: "A polyglot CodeCity visualizer built in Rust, rendering codebases as interactive 3D cities."
+date: "2026-03-18"
+author: "Verial"
+email_draft: true
+---
+
+In [a recent essay](/essays/legibility) on legibility, I wrote about what happens when codebases outgrow human comprehension, and why that problem is getting worse at an accelerated rate. CodeCity is one answer: make the architecture *visible*.
+
+<img src="/images/codecity_syntropic137.png" alt="CodeCity visualization of Syntropic137" style={{ width: "100%", borderRadius: "8px" }} />
+
+## The Lineage
+
+The city metaphor isn't mine. Wettel & Lanza had the original idea[^wettel2007]: render modules as buildings, height as complexity, footprint as size. They ran a controlled experiment and found participants completed architecture tasks 20% faster with the visualization than without.[^wettel2011] Bruls et al. gave us the squarified treemap[^bruls], the layout algorithm that keeps proportions readable as the map scales. MaibornWolff's CodeCharta brought all of it into modern open-source tooling.[^codecharta]
+
+What none of these do is treat analysis as a committed artifact. You run them, you get a visualization, it's gone. There's no diff. No history. No way to see how architecture changed between last quarter and now. I wanted analysis that lives alongside the code: deterministic, version-controlled, and decoupled from any particular view.
+
+So we built it. The `.topology/` directory is the output. Same code, same output, every time. Commit it, diff it, generate whatever visualization you want from it. CodeCity is one of the possible renderings.
+
+APSS is built in Rust. tree-sitter has first-class Rust bindings. It ships as a single static binary. And analysis that sits in a dev workflow needs to be fast, or it doesn't get used.
+
+## How It Works
+
+The visualizer is one piece of what we're building at [Agent Paradise](https://github.com/AgentParadise), an agentic engineering lab I started to figure out how to build and scale software in a world where agents do most of the implementation. [Syntropic137](https://github.com/Syntropic137) came out of it. So did this. Specifically, the topology standard is APS-V1-0001 in our [standards system](https://github.com/AgentParadise/agent-paradise-standards-system).[^apss] More on all of that in a future post.
+
+Pipeline:
+
+1. **Parse:** [tree-sitter](https://tree-sitter.github.io/tree-sitter/) extracts ASTs across languages (Rust, TypeScript, Python, C++)
+2. **Measure:** cyclomatic complexity[^mccabe], cognitive complexity[^sonar], Halstead metrics[^halstead], LOC per function
+3. **Couple:** Martin's coupling metrics: afferent, efferent, instability, abstractness[^martin]
+4. **Render:** generates a self-contained HTML file with Three.js. No server, no build step. One file.
+
+<video autoPlay loop muted playsInline controls style={{ width: "100%", borderRadius: "8px" }}>
+  <source src="/videos/codecity_flythrough.mp4" type="video/mp4" />
+</video>
+
+### Reading the City
+
+- **Height** → Cyclomatic complexity (log-scaled). Tall = hard to test.
+- **Footprint** → Lines of code via squarified treemap. Wide = large module.
+- **Color** → Health score, green-to-red gradient. Composite of five metrics: avg complexity per function (&lt;5), cognitive complexity (&lt;15), lines per function (&lt;50), coupling (Ca + Ce), and module size (2–30 functions sweet spot).
+- **Districts** → Top-level packages. Each gets its own ground plane and label.
+
+Size and health are independent. A large module can be clean. A small one can be a mess. The city shows you both at once, in a way a text file never will.
+
+### What Jumps Out
+
+Point this at a real codebase and patterns surface immediately:
+
+- **Tall red towers.** Complexity hotspots. The files that resist refactoring and breed bugs.
+- **Large green blocks.** Big but well-structured. Monitor, don't panic.
+- **Dense red districts.** Bounded contexts that need decomposition.
+- **Scattered tiny buildings.** Possible over-decomposition.
+
+Hoverable tooltips give full metric breakdowns. A minimap tracks your camera position. An "About" panel explains the methodology so anyone can read the output without context.
+
+## Try It
+
+> **Note:** The CLI will be published as a Rust crate. For now, build from source.
+
+**Requirements:** Rust 1.85+ ([install via rustup](https://rustup.rs))
+
+```bash
+# Clone and install the CLI
+git clone https://github.com/AgentParadise/agent-paradise-standards-system.git
+cd agent-paradise-standards-system
+cargo install --path crates/aps-cli
+
+# Analyze your codebase
+aps run topology analyze /path/to/your/project --output /path/to/your/project/.topology
+
+# Generate the city
+aps run topology viz /path/to/your/project/.topology --type codecity --output codecity.html
+```
+
+Open `codecity.html` in any browser. No server needed.
+
+**Supported languages:** Rust, TypeScript, TSX, Python. (C++ and more to come.)
+
+## Why It Matters
+
+The `.topology/` artifacts are deterministic: same code, same output. Diff two snapshots and you can see how architecture changed between commits. This also enables version-controlled architectural history.
+
+We're building Agent Paradise around a question we keep coming back to: how do you scale agentic engineering without losing the ability to see what you've built? CodeCity is one answer. More on the broader work ahead.
+
+The first time I watched a codebase render as a city, I just sat there. I'd been living inside that system for months. I'd never actually *seen* it before. In the agentic era, we aren't always in the code the way we used to be. Agents are writing it. Reviews are async. Context switches are constant. Spatial understanding of your codebase isn't a nice-to-have, it's one of the few ways to stay oriented when generation is no longer the bottleneck.
+
+CodeCity is one tool to make comprehension possible at scale.
+
+[^wettel2007]: Richard Wettel & Michele Lanza — ["CodeCity: 3D Visualization of Large-Scale Software"](https://wettel.github.io/codecity.html) (VISSOFT 2007). Original proposal of the city metaphor: modules as buildings, height as complexity, footprint as size.
+
+[^wettel2011]: Richard Wettel, Michele Lanza & Romain Robbes — "Software Systems as Cities: A Controlled Experiment" (ICSE 2011). Controlled study showing ~20% faster task completion when using city-based visualization vs. flat views.
+
+[^bruls]: Mark Bruls, Kees Huizing & Jarke J. van Wijk — ["Squarified Treemaps"](https://www.win.tue.nl/~vanwijk/stm.pdf) (2000). Layout algorithm that produces readable aspect ratios in treemap cells, the foundation of the footprint encoding.
+
+[^codecharta]: MaibornWolff — [CodeCharta](https://maibornwolff.github.io/codecharta/). Open-source implementation of CodeCity-style visualization for modern codebases. The closest prior art to what we built on.
+
+[^apss]: Agent Paradise Standards System — [GitHub](https://github.com/AgentParadise/agent-paradise-standards-system). APS-V1-0001 (Code Topology) is the first promoted standard. Part of the broader Agent Paradise work.
+
+[^mccabe]: Thomas J. McCabe — ["A Complexity Measure"](https://ieeexplore.ieee.org/document/1702388) (1976). Defined cyclomatic complexity as the number of linearly independent paths through a program, the standard proxy for testability.
+
+[^halstead]: Maurice H. Halstead — *Elements of Software Science* (1977). Derived metrics from raw token counts: vocabulary, volume, difficulty, effort, and estimated bug density.
+
+[^sonar]: SonarSource — [Cognitive Complexity: A New Way of Measuring Understandability](https://www.sonarsource.com/docs/CognitiveComplexity.pdf) (2017). Nesting-weighted alternative to cyclomatic complexity, designed to better reflect how hard code is to read rather than just to test.
+
+[^martin]: Robert C. Martin — *Agile Software Development: Principles, Patterns, and Practices* (2003). Defined the coupling metrics used throughout APS-V1-0001: afferent coupling (Ca), efferent coupling (Ce), instability (I = Ce / Ca + Ce), abstractness (A), and distance from the main sequence (D = |A + I - 1|).
