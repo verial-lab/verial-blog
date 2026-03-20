@@ -93,11 +93,11 @@ export function TableOfContents({ toc, title }: TableOfContentsProps) {
       <div
         className={`mb-2 transition-all duration-200 origin-bottom-right ${
           showPanel
-            ? 'opacity-100 scale-100 translate-y-0'
-            : 'opacity-0 scale-95 translate-y-1 pointer-events-none'
+            ? 'opacity-100 scale-100 translate-y-0 visible'
+            : 'opacity-0 scale-95 translate-y-1 pointer-events-none invisible'
         }`}
       >
-        <nav className="w-56 sm:w-60 bg-background/95 backdrop-blur-md border border-border/40 rounded-xl shadow-lg p-4 max-h-[60vh] overflow-y-auto">
+        <nav aria-label="Table of contents" className="w-56 sm:w-60 bg-background/95 backdrop-blur-md border border-border/40 rounded-xl shadow-lg p-4 max-h-[60vh] overflow-y-auto">
           <div className="flex items-center justify-between mb-3">
             <p className="text-[11px] font-medium text-muted-foreground/40 uppercase tracking-widest">Contents</p>
             {isMobile && (
@@ -118,6 +118,7 @@ export function TableOfContents({ toc, title }: TableOfContentsProps) {
                   e.preventDefault();
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                   setIsPinned(false);
+                  setIsHovered(false);
                 }}
                 className="block text-[13px] leading-relaxed py-0.5 pl-2 border-l-2 border-l-transparent text-muted-foreground/50 hover:text-foreground transition-all duration-150"
               >
@@ -131,7 +132,7 @@ export function TableOfContents({ toc, title }: TableOfContentsProps) {
                 <li key={i} style={{ paddingLeft: `${(item.depth - 2) * 12}px` }}>
                   <a
                     href={item.url}
-                    onClick={() => setIsPinned(false)}
+                    onClick={() => { setIsPinned(false); setIsHovered(false); }}
                     className={`block text-[13px] leading-relaxed py-0.5 pl-2 border-l-2 transition-all duration-150 ${
                       isActive
                         ? 'text-foreground font-semibold border-l-foreground'
