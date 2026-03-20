@@ -94,15 +94,16 @@ export function TableOfContents({ toc, title }: TableOfContentsProps) {
   return (
     <div
       ref={containerRef}
-      className="fixed right-4 sm:right-6 bottom-6 z-40 flex flex-col items-end pointer-events-none"
+      onMouseLeave={onHoverLeave}
+      className={`fixed right-4 sm:right-6 bottom-6 z-40 flex flex-col items-end ${
+        showPanel ? 'pointer-events-auto' : 'pointer-events-none'
+      }`}
     >
       {/* Panel */}
       <div
-        onMouseEnter={onHoverEnter}
-        onMouseLeave={onHoverLeave}
         className={`mb-2 transition-all duration-200 origin-bottom-right ${
           showPanel
-            ? 'opacity-100 scale-100 translate-y-0 visible pointer-events-auto'
+            ? 'opacity-100 scale-100 translate-y-0 visible'
             : 'opacity-0 scale-95 translate-y-1 pointer-events-none invisible'
         }`}
       >
@@ -162,7 +163,6 @@ export function TableOfContents({ toc, title }: TableOfContentsProps) {
         onClick={() => setIsPinned(prev => !prev)}
         aria-label="Toggle table of contents"
         onMouseEnter={onHoverEnter}
-        onMouseLeave={onHoverLeave}
         className={`pointer-events-auto flex items-center gap-2 pl-3 pr-3.5 py-2 rounded-xl border text-sm font-medium shadow-sm transition-all duration-200 ${
           isPinned
             ? 'bg-background border-border/50 text-foreground shadow-md'
