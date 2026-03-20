@@ -97,10 +97,22 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit == 'true'
         working-directory: packages/blog-site
         run: npx playwright install-deps chromium
+      - name: Start Next.js server
+        working-directory: packages/blog-site
+        run: npm start &
+      - name: Wait for server
+        run: |
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:3000 > /dev/null && echo "Server ready" && break
+            echo "Waiting for server... ($i)"
+            sleep 2
+          done
       - name: Run Playwright tests
         id: playwright
         working-directory: packages/blog-site
         continue-on-error: true
+        env:
+          PLAYWRIGHT_BASE_URL: http://localhost:3000
         run: npx playwright test --reporter=json 2>&1 | tee playwright-results.json
       - name: Parse Playwright results
         id: results
