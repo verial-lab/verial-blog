@@ -97,7 +97,7 @@ export function TableOfContents({ toc, title }: TableOfContentsProps) {
             : 'opacity-0 scale-95 translate-y-1 pointer-events-none'
         }`}
       >
-        <nav className="w-56 sm:w-60 bg-background/95 backdrop-blur-md border border-border/40 rounded-xl shadow-lg p-4 max-h-[60vh] overflow-y-auto">
+        <nav aria-label="Table of contents" className="w-56 sm:w-60 bg-background/95 backdrop-blur-md border border-border/40 rounded-xl shadow-lg p-4 max-h-[60vh] overflow-y-auto">
           <div className="flex items-center justify-between mb-3">
             <p className="text-[11px] font-medium text-muted-foreground/40 uppercase tracking-widest">Contents</p>
             {isMobile && (
