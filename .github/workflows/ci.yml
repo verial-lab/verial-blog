@@ -99,14 +99,30 @@ jobs:
         run: npx playwright install-deps chromium
       - name: Start Next.js server
         working-directory: packages/blog-site
-        run: npm start &
+        run: |
+          npm start &
+          SERVER_PID=$!
+          echo "SERVER_PID=${SERVER_PID}" >> "$GITHUB_ENV"
       - name: Wait for server
         run: |
-          for i in $(seq 1 30); do
-            curl -sf http://localhost:3000 > /dev/null && echo "Server ready" && break
+          SERVER_READY=false
+          for i in $(seq 1 60); do
+            if curl -sf http://localhost:3000 > /dev/null; then
+              echo "Server ready"
+              SERVER_READY=true
+              break
+            fi
             echo "Waiting for server... ($i)"
             sleep 2
           done
+          if [ "$SERVER_READY" = false ]; then
+            echo "::error::Server did not become ready within 120s"
+            exit 1
+          fi
+          if ! kill -0 "$SERVER_PID" 2>/dev/null; then
+            echo "::error::Server process (PID: $SERVER_PID) exited unexpectedly"
+            exit 1
+          fi
       - name: Run Playwright tests
         id: playwright
         working-directory: packages/blog-site
