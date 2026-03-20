@@ -24,28 +24,22 @@ interface TableOfContentsProps {
   title?: string;
 }
 
+// How close to the right edge (px) the mouse must be to open the panel.
+const OPEN_ZONE = 300;
+// How far from the right edge before the panel closes (hysteresis prevents flicker).
+const CLOSE_ZONE = 400;
+
 export function TableOfContents({ toc, title }: TableOfContentsProps) {
   const [isPinned, setIsPinned] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [activeId, setActiveId] = useState('');
   const containerRef = useRef<HTMLDivElement>(null);
-  const hoverLeaveTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-
-  // Debounced hover handlers shared by both button and panel.
-  // A short delay prevents the panel from closing during mouse transit
-  // between the button and the panel (they are separate pointer-events elements).
-  const onHoverEnter = () => { clearTimeout(hoverLeaveTimeout.current); setIsHovered(true); };
-  const onHoverLeave = () => { hoverLeaveTimeout.current = setTimeout(() => setIsHovered(false), 100); };
-
-  useEffect(() => () => clearTimeout(hoverLeaveTimeout.current), []);
+  const closeTimeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const showPanel = isPinned || (!isMobile && isHovered);
 
   // Detect touch/click-only devices.
-  // Use (hover: hover) and (pointer: fine) — the only combination that reliably
-  // identifies a real mouse/trackpad. Samsung devices misreport (hover: hover)
-  // since 2015 but correctly report (pointer: coarse), so this query catches them.
   useEffect(() => {
     const mq = window.matchMedia('(hover: hover) and (pointer: fine)');
     setIsMobile(!mq.matches);
@@ -54,6 +48,25 @@ export function TableOfContents({ toc, title }: TableOfContentsProps) {
     return () => mq.removeEventListener('change', handler);
   }, []);
 
+  // Desktop: open when mouse approaches right edge, close when it retreats.
+  useEffect(() => {
+    if (isMobile) return;
+    const handleMouseMove = (e: MouseEvent) => {
+      const fromRight = window.innerWidth - e.clientX;
+      if (fromRight <= OPEN_ZONE) {
+        clearTimeout(closeTimeout.current);
+        setIsHovered(true);
+      } else if (fromRight > CLOSE_ZONE) {
+        clearTimeout(closeTimeout.current);
+        closeTimeout.current = setTimeout(() => setIsHovered(false), 150);
+      }
+    };
+    document.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      clearTimeout(closeTimeout.current);
+    };
+  }, [isMobile]);
 
   // Track active section
   useEffect(() => {
@@ -94,16 +107,13 @@ export function TableOfContents({ toc, title }: TableOfContentsProps) {
   return (
     <div
       ref={containerRef}
-      onMouseLeave={onHoverLeave}
-      className={`fixed right-4 sm:right-6 bottom-6 z-40 flex flex-col items-end ${
-        showPanel ? 'pointer-events-auto' : 'pointer-events-none'
-      }`}
+      className="fixed right-4 sm:right-6 bottom-6 z-40 flex flex-col items-end pointer-events-none"
     >
       {/* Panel */}
       <div
         className={`mb-2 transition-all duration-200 origin-bottom-right ${
           showPanel
-            ? 'opacity-100 scale-100 translate-y-0 visible'
+            ? 'opacity-100 scale-100 translate-y-0 visible pointer-events-auto'
             : 'opacity-0 scale-95 translate-y-1 pointer-events-none invisible'
         }`}
       >
@@ -162,7 +172,6 @@ export function TableOfContents({ toc, title }: TableOfContentsProps) {
       <button
         onClick={() => setIsPinned(prev => !prev)}
         aria-label="Toggle table of contents"
-        onMouseEnter={onHoverEnter}
         className={`pointer-events-auto flex items-center gap-2 pl-3 pr-3.5 py-2 rounded-xl border text-sm font-medium shadow-sm transition-all duration-200 ${
           isPinned
             ? 'bg-background border-border/50 text-foreground shadow-md'
