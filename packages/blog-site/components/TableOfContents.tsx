@@ -31,6 +31,15 @@ export function TableOfContents({ toc, title }: TableOfContentsProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [activeId, setActiveId] = useState('');
   const containerRef = useRef<HTMLDivElement>(null);
+  const hoverLeaveTimeout = useRef<ReturnType<typeof setTimeout>>();
+
+  // Debounced hover handlers shared by both button and panel.
+  // A short delay prevents the panel from closing during mouse transit
+  // between the button and the panel (they are separate pointer-events elements).
+  const onHoverEnter = () => { clearTimeout(hoverLeaveTimeout.current); setIsHovered(true); };
+  const onHoverLeave = () => { hoverLeaveTimeout.current = setTimeout(() => setIsHovered(false), 100); };
+
+  useEffect(() => () => clearTimeout(hoverLeaveTimeout.current), []);
 
   const showPanel = isPinned || (!isMobile && isHovered);
 
@@ -86,17 +95,17 @@ export function TableOfContents({ toc, title }: TableOfContentsProps) {
   return (
     <div
       ref={containerRef}
-      className={`fixed right-4 sm:right-6 bottom-6 z-40 flex flex-col items-end transition-all duration-300 ${
-        isVisible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+      className={`fixed right-4 sm:right-6 bottom-6 z-40 flex flex-col items-end pointer-events-none transition-all duration-300 ${
+        isVisible ? 'opacity-100' : 'opacity-0'
       }`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       {/* Panel */}
       <div
+        onMouseEnter={onHoverEnter}
+        onMouseLeave={onHoverLeave}
         className={`mb-2 transition-all duration-200 origin-bottom-right ${
           showPanel
-            ? 'opacity-100 scale-100 translate-y-0 visible'
+            ? 'opacity-100 scale-100 translate-y-0 visible pointer-events-auto'
             : 'opacity-0 scale-95 translate-y-1 pointer-events-none invisible'
         }`}
       >
@@ -155,7 +164,9 @@ export function TableOfContents({ toc, title }: TableOfContentsProps) {
       <button
         onClick={() => setIsPinned(prev => !prev)}
         aria-label="Toggle table of contents"
-        className={`flex items-center gap-2 pl-3 pr-3.5 py-2 rounded-xl border text-sm font-medium shadow-sm transition-all duration-200 ${
+        onMouseEnter={onHoverEnter}
+        onMouseLeave={onHoverLeave}
+        className={`pointer-events-auto flex items-center gap-2 pl-3 pr-3.5 py-2 rounded-xl border text-sm font-medium shadow-sm transition-all duration-200 ${
           isPinned
             ? 'bg-background border-border/50 text-foreground shadow-md'
             : 'bg-background/80 backdrop-blur-sm border-border/30 text-muted-foreground hover:text-foreground hover:border-border/50 hover:bg-background/95'
