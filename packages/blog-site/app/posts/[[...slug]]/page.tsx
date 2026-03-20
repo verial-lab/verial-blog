@@ -6,6 +6,7 @@ import { SectionIcon } from '@/components/SectionIcon';
 import { Atom } from 'lucide-react';
 import { GlossaryTerm } from '@/components/GlossaryTerm';
 import { TableOfContents } from '@/components/TableOfContents';
+import { withFootnotesEntry } from '@/lib/toc-utils';
 
 export default async function NotePage(props: {
   params: Promise<{ slug?: string[] }>;
@@ -92,7 +93,7 @@ export default async function NotePage(props: {
           )}
         </header>
 
-        <TableOfContents toc={page.data.toc as any} title={page.data.title as string} />
+        <TableOfContents toc={withFootnotesEntry(page.data.toc as any, page.file)} title={page.data.title as string} />
 
         <div className="prose">
           <MDX components={{ GlossaryTerm }} />

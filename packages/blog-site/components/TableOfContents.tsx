@@ -34,11 +34,14 @@ export function TableOfContents({ toc, title }: TableOfContentsProps) {
 
   const showPanel = isPinned || (!isMobile && isHovered);
 
-  // Detect mobile (no hover capability)
+  // Detect touch/click-only devices.
+  // Use (hover: hover) and (pointer: fine) — the only combination that reliably
+  // identifies a real mouse/trackpad. Samsung devices misreport (hover: hover)
+  // since 2015 but correctly report (pointer: coarse), so this query catches them.
   useEffect(() => {
-    const mq = window.matchMedia('(hover: none)');
-    setIsMobile(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    const mq = window.matchMedia('(hover: hover) and (pointer: fine)');
+    setIsMobile(!mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(!e.matches);
     mq.addEventListener('change', handler);
     return () => mq.removeEventListener('change', handler);
   }, []);
