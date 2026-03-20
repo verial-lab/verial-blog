@@ -75,10 +75,9 @@ function makeGlossaryNode(term, definition, matchedText) {
 }
 
 export default function remarkGlossary() {
-  const entries = loadGlossary();
-  const regex = buildTermRegex(entries);
-
   return (tree, file) => {
+    const entries = loadGlossary();
+    const regex = buildTermRegex(entries);
     if (!regex || entries.length === 0) return;
 
     // Track which terms we've already linked on this page (first occurrence only)
