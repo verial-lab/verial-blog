@@ -31,7 +31,7 @@ export function TableOfContents({ toc, title }: TableOfContentsProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [activeId, setActiveId] = useState('');
   const containerRef = useRef<HTMLDivElement>(null);
-  const hoverLeaveTimeout = useRef<ReturnType<typeof setTimeout>>();
+  const hoverLeaveTimeout = useRef<number | undefined>(undefined);
 
   // Debounced hover handlers shared by both button and panel.
   // A short delay prevents the panel from closing during mouse transit
