@@ -11,9 +11,6 @@
 import { visit } from 'unist-util-visit';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-/** @type {Array<{term: string, definition: string}>} */
-let glossaryEntries = null;
-
 /** @type {Map<string, Set<string>>} backlinks: term → set of page paths */
 const backlinks = new Map();
 
@@ -25,10 +22,10 @@ const SKIP_TYPES = new Set([
 
 /**
  * Simple YAML parser for our flat glossary structure.
- * Avoids js-yaml dependency.
+ * Avoids js-yaml dependency. Re-reads on every call so glossary.yaml
+ * changes are picked up immediately in dev without clearing cache.
  */
 function loadGlossary() {
-  if (glossaryEntries) return glossaryEntries;
   try {
     const filePath = join(process.cwd(), 'content/glossary.yaml');
     const raw = readFileSync(filePath, 'utf8');
@@ -41,13 +38,12 @@ function loadGlossary() {
         entries.push({ term: termMatch[1].trim(), definition: defMatch[1].trim() });
       }
     }
-    glossaryEntries = entries;
     // Sort by term length descending (longest match first)
-    glossaryEntries.sort((a, b) => b.term.length - a.term.length);
+    entries.sort((a, b) => b.term.length - a.term.length);
+    return entries;
   } catch {
-    glossaryEntries = [];
+    return [];
   }
-  return glossaryEntries;
 }
 
 /**
