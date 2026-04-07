@@ -76,7 +76,7 @@ if (totalHits === 0) {
 } else {
   console.log(`${totalHits} em dash${totalHits === 1 ? '' : 'es'} found in ${affectedFiles} file${affectedFiles === 1 ? '' : 's'}.`);
   if (CI_MODE) {
-    console.log('Em dashes are not allowed in body prose (AGENTS.md). Fix before merging.');
+    console.log(`Em dashes are not allowed in public-facing content (${SCAN_TARGETS.join(', ')}). Fix before merging.`);
     process.exit(1);
   }
 }

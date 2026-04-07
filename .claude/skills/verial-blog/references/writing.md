@@ -14,13 +14,13 @@
 ---
 title: "Your Title Here"           # required
 description: "One-line summary."   # required, used in cards + SEO
-send_email: true                   # optional, triggers email pipeline on merge
+email_draft: true                  # optional, triggers email pipeline on merge
 ---
 ```
 
 ## Em Dashes
 
-**Never use em dashes (—) anywhere** — body prose, footnotes, frontmatter, or anywhere else. The CI linter (`npm run lint:writing`) will catch them.
+**Never use em dashes (—) in public-facing content.** The CI linter (`npm run lint:writing`) enforces this on `packages/blog-site/content` and `README.md`.
 
 Use instead:
 - Comma for parenthetical asides
@@ -44,7 +44,7 @@ This claim needs sourcing[^key].
 - **Paper/article:** `LastName, FirstName (Year). ["Title"](url). *Venue/Publication*. Description.`
 - **Book:** `LastName, FirstName (Year). *Title*. Description.`
 - **Website:** `["Title"](url). *Site name*. Description.`
-- Multiple authors: separated by semicolons — `LastName, First; LastName, First`
+- Multiple authors: separated by semicolons, e.g. `LastName, First; LastName, First`
 
 Examples:
 ```mdx

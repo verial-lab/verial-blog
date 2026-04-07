@@ -33,7 +33,7 @@ scripts/
 Content types (essays/posts/systems), frontmatter spec, em dash rule, footnote syntax with Wikipedia citation format, glossary system, writing voice.
 
 Key rules at a glance:
-- No em dashes anywhere — CI enforced
+- No em dashes in public-facing content (`packages/blog-site/content`, `README.md`); CI enforced
 - Footnotes: `LastName, FirstName (Year). ["Title"](url). *Publication*.`
 - Glossary terms auto-linked by remark plugin — never add `<GlossaryTerm>` manually
 
