@@ -102,12 +102,15 @@ Match the tone of the Legibility essay (`content/essays/legibility.mdx`) — fir
 - Start with a personal moment or observation, not a summary.
 
 ### Em Dashes
-**Never use em dashes (—) in body prose.** Use commas, colons, or restructure the sentence instead. Em dashes are fine in footnote definitions and citations.
+**Never use em dashes (—) anywhere.** Use commas, colons, or restructure the sentence instead. In footnote citations, use a colon to separate author from work: `Author: [*Title*](url) (Year).`
 
 ### Academic references
-Keep conference names and paper metadata out of the body text. Reference naturally:
+Use Wikipedia citation style. Keep conference names and paper metadata out of the body text.
 - Body: "Wettel & Lanza had the original idea[^wettel2007]"
-- Footnote: "Richard Wettel & Michele Lanza — ["CodeCity"](link) (VISSOFT 2007). Description."
+- Footnote (paper): `Wettel, Richard; Lanza, Michele (2007). ["CodeCity"](link). *VISSOFT 2007*. Description.`
+- Footnote (web): `["Title"](link). *Publication*. Description.`
+
+Format: `LastName, FirstName (Year). "Title". *Publication*. Description.` For books, italicise the title instead of quoting it.
 
 ### Agent Paradise context
 - **Agent Paradise** (https://github.com/AgentParadise) is an agentic engineering lab that Verial is building.

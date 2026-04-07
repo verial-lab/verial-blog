@@ -8,6 +8,7 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
+    "lint:writing": "node scripts/lint-writing.js",
     "email:draft": "cd packages/email-templates && npx tsx scripts/create-draft.ts",
     "email:preview": "cd packages/email-templates && npx react-email dev --port 3001"
   },

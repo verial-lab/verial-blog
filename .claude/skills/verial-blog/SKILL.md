@@ -5,76 +5,89 @@ description: Build, write, and maintain the Verial blog (verial.xyz). Use when c
 
 # Verial Blog — Skill Reference
 
-Verial is a Turborepo monorepo (`verial-lab/verial-blog`) deployed to Vercel via FumaDocs.
+Turborepo monorepo deployed to Vercel via FumaDocs + Next.js 15.
 
-## Architecture
+## Repo Layout
 
 ```
 packages/
-├── blog-site/          # FumaDocs Next.js site (deployed)
-│   ├── app/            # Next.js app router
-│   ├── content/        # MDX content (essays/, posts/, systems/)
-│   ├── components/     # React components
-│   └── lib/            # Utilities, brand constants, sources
-├── design/             # Interactive components (future)
-├── design-tokens/      # Shared colors, brand, spacing
-├── email-templates/    # react-email templates + send scripts
-└── writing-pipeline/   # AI writing tools (future)
+  blog-site/          # FumaDocs Next.js site (deployed to verial.xyz)
+    app/              # Next.js app router
+    content/          # MDX content: essays/, posts/, systems/
+    components/       # React components
+    lib/              # Utilities, brand constants
+  design-tokens/      # Shared colors, brand, spacing (lib/brand.ts)
+  email-templates/    # react-email templates + Buttondown send scripts
+scripts/
+  lint-writing.js     # Em dash linter — run: npm run lint:writing
+.github/workflows/
+  lint-content.yml    # CI: runs lint-writing on push/PR to main
 ```
 
-## Content & Writing
+---
 
-See [references/writing.md](references/writing.md) for:
-- Content types, directories, tone
-- Frontmatter spec
-- Footnotes syntax and guidelines
-- Glossary system (planned)
-- Writing voice and brand
+## References (go here for details)
 
-## Content Distribution Pipeline
+### Writing & Content
+**[references/writing.md](references/writing.md)**
+Content types (essays/posts/systems), frontmatter spec, em dash rule, footnote syntax with Wikipedia citation format, glossary system, writing voice.
 
-See [references/distribution.md](references/distribution.md) for:
-- Typefully API integration (Twitter, LinkedIn, Threads, Bluesky)
-- Platform-specific voice templates
-- Blog-publish → auto-draft pipeline
-- Email subscriber tag routing (essays/systems/everything)
-- Full implementation checklist
+Key rules at a glance:
+- No em dashes anywhere — CI enforced
+- Footnotes: `LastName, FirstName (Year). ["Title"](url). *Publication*.`
+- Glossary terms auto-linked by remark plugin — never add `<GlossaryTerm>` manually
 
-## Email System (Buttondown)
+### Email (Buttondown)
+**[references/email.md](references/email.md)**
+Architecture (MDX → react-email → Buttondown draft), sending domain (`mail.verial.xyz`), tag routing (essays/posts/systems), subscription flow, key files.
 
-See [references/email.md](references/email.md) for:
-- Buttondown integration architecture
-- Sending domain setup (`mail.verial.xyz`)
-- Tag routing (essays/posts/systems)
-- Email pipeline: MDX → react-email → Buttondown draft
-- GitHub Action workflow
+Key files: `app/api/subscribe/route.ts`, `packages/email-templates/`, `lib/brand.ts`
 
-## 3D Hero Animations (Blender)
+### Content Distribution
+**[references/distribution.md](references/distribution.md)**
+Blog-first distribution via Typefully (Twitter, LinkedIn, Threads, Bluesky) + Buttondown email. API integration, platform voice templates, publish-to-draft automation pipeline.
 
-See [references/3d-hero.md](references/3d-hero.md) for:
-- Blender rendering approach and lessons learned
-- Glass/crystal material recipes
-- Animation loop techniques
-- Asset pipeline (Blender → MP4/WebM → site)
-- Design direction and anti-patterns
+### 3D Hero Animations
+**[references/3d-hero.md](references/3d-hero.md)**
+Blender headless rendering, glass/crystal material recipes, animation loop patterns, asset pipeline (Blender → MP4/WebM → `public/icons/`), `SectionIcon` component.
+
+---
 
 ## Design System
 
-- **Background:** pure `#000`
-- **Primary:** warm off-white `hsl(40, 15%, 85%)` / `#d9d0c1`
-- **Body font:** Source Serif 4, 19px, 1.8 line-height, weight 500
-- **Display font:** Newsreader, semibold
-- **Code font:** JetBrains Mono
-- **Footer:** Spacetime-curved SVG grid with gold Tron-style pulses
-- **Inspiration:** Resend.com — pure black, sophisticated, minimal
-- **Brand constants:** `lib/brand.ts` (single source of truth)
+| Token | Value |
+|-------|-------|
+| Background | `#000` pure black |
+| Primary | `hsl(40, 15%, 85%)` / `#d9d0c1` warm off-white |
+| Body font | Source Serif 4, 19px, 1.8 line-height, weight 500 |
+| Display font | Newsreader, semibold |
+| Code font | JetBrains Mono |
+
+Brand constants live in `packages/blog-site/lib/brand.ts` — single source of truth for name, tagline, email copy, tint color.
+
+---
 
 ## Tech Stack
 
-- **Framework:** Next.js 15 + FumaDocs (MDX content pipeline)
-- **Styling:** Tailwind CSS 3 + custom prose styles in `globals.css`
-- **Animation:** Framer Motion
-- **Search:** Orama full-text search (custom ⌘K dialog)
-- **Email:** Buttondown API + react-email templates
-- **3D:** Blender headless rendering → MP4/WebM assets
-- **Deploy:** Vercel (auto-deploys from `main`)
+| Layer | Tech |
+|-------|------|
+| Framework | Next.js 15 + FumaDocs (MDX pipeline) |
+| Styling | Tailwind CSS 3 + custom prose in `globals.css` |
+| Animation | Framer Motion |
+| Search | Orama full-text (custom cmd-K dialog) |
+| Email | Buttondown API + react-email |
+| 3D | Blender headless → MP4/WebM assets |
+| Deploy | Vercel (auto-deploys from `main`) |
+
+---
+
+## Dev Workflow
+
+```bash
+npm run dev           # start dev server at localhost:3000
+npm run lint:writing  # check for em dashes in content
+npm run build         # production build via Turbo
+```
+
+Branch naming for content: `post/<slug>` or `essay/<slug>`.
+After merging, update monorepo submodule pointer in `verial-blog_monorepo`.

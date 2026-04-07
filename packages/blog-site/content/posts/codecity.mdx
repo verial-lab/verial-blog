@@ -88,20 +88,20 @@ The first time I watched a codebase render as a city, I just sat there. I'd been
 
 CodeCity is one tool to make comprehension possible at scale.
 
-[^wettel2007]: Richard Wettel & Michele Lanza — ["CodeCity: 3D Visualization of Large-Scale Software"](https://wettel.github.io/codecity.html) (VISSOFT 2007). Original proposal of the city metaphor: modules as buildings, height as complexity, footprint as size.
+[^wettel2007]: Wettel, Richard; Lanza, Michele (2007). ["CodeCity: 3D Visualization of Large-Scale Software"](https://wettel.github.io/codecity.html). *VISSOFT 2007*. Original proposal of the city metaphor: modules as buildings, height as complexity, footprint as size.
 
-[^wettel2011]: Richard Wettel, Michele Lanza & Romain Robbes — "Software Systems as Cities: A Controlled Experiment" (ICSE 2011). Controlled study showing ~20% faster task completion when using city-based visualization vs. flat views.
+[^wettel2011]: Wettel, Richard; Lanza, Michele; Robbes, Romain (2011). "Software Systems as Cities: A Controlled Experiment". *ICSE 2011*. Controlled study showing ~20% faster task completion when using city-based visualization vs. flat views.
 
-[^bruls]: Mark Bruls, Kees Huizing & Jarke J. van Wijk — ["Squarified Treemaps"](https://www.win.tue.nl/~vanwijk/stm.pdf) (2000). Layout algorithm that produces readable aspect ratios in treemap cells, the foundation of the footprint encoding.
+[^bruls]: Bruls, Mark; Huizing, Kees; van Wijk, Jarke J. (2000). ["Squarified Treemaps"](https://www.win.tue.nl/~vanwijk/stm.pdf). Layout algorithm that produces readable aspect ratios in treemap cells, the foundation of the footprint encoding.
 
-[^codecharta]: MaibornWolff — [CodeCharta](https://maibornwolff.github.io/codecharta/). Open-source implementation of CodeCity-style visualization for modern codebases. The closest prior art to what we built on.
+[^codecharta]: ["CodeCharta"](https://maibornwolff.github.io/codecharta/). *MaibornWolff*. Open-source implementation of CodeCity-style visualization for modern codebases. The closest prior art to what we built on.
 
-[^apss]: Agent Paradise Standards System — [GitHub](https://github.com/AgentParadise/agent-paradise-standards-system). APS-V1-0001 (Code Topology) is the first promoted standard. Part of the broader Agent Paradise work.
+[^apss]: ["Agent Paradise Standards System"](https://github.com/AgentParadise/agent-paradise-standards-system). *GitHub*. APS-V1-0001 (Code Topology) is the first promoted standard. Part of the broader Agent Paradise work.
 
-[^mccabe]: Thomas J. McCabe — ["A Complexity Measure"](https://ieeexplore.ieee.org/document/1702388) (1976). Defined cyclomatic complexity as the number of linearly independent paths through a program, the standard proxy for testability.
+[^mccabe]: McCabe, Thomas J. (1976). ["A Complexity Measure"](https://ieeexplore.ieee.org/document/1702388). *IEEE Transactions on Software Engineering*. Defined cyclomatic complexity as the number of linearly independent paths through a program, the standard proxy for testability.
 
-[^halstead]: Maurice H. Halstead — *Elements of Software Science* (1977). Derived metrics from raw token counts: vocabulary, volume, difficulty, effort, and estimated bug density.
+[^halstead]: Halstead, Maurice H. (1977). *Elements of Software Science*. Derived metrics from raw token counts: vocabulary, volume, difficulty, effort, and estimated bug density.
 
-[^sonar]: SonarSource — [Cognitive Complexity: A New Way of Measuring Understandability](https://www.sonarsource.com/docs/CognitiveComplexity.pdf) (2017). Nesting-weighted alternative to cyclomatic complexity, designed to better reflect how hard code is to read rather than just to test.
+[^sonar]: SonarSource (2017). ["Cognitive Complexity: A New Way of Measuring Understandability"](https://www.sonarsource.com/docs/CognitiveComplexity.pdf). Nesting-weighted alternative to cyclomatic complexity, designed to better reflect how hard code is to read rather than just to test.
 
-[^martin]: Robert C. Martin — *Agile Software Development: Principles, Patterns, and Practices* (2003). Defined the coupling metrics used throughout APS-V1-0001: afferent coupling (Ca), efferent coupling (Ce), instability (I = Ce / Ca + Ce), abstractness (A), and distance from the main sequence (D = |A + I - 1|).
+[^martin]: Martin, Robert C. (2003). *Agile Software Development: Principles, Patterns, and Practices*. Defined the coupling metrics used throughout APS-V1-0001: afferent coupling (Ca), efferent coupling (Ce), instability (I = Ce / Ca + Ce), abstractness (A), and distance from the main sequence (D = |A + I - 1|).

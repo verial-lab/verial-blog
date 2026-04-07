@@ -8,7 +8,7 @@ High-density writing on engineering, systems thinking, and applied wisdom for th
 
 ## What is this?
 
-Verial is a builder's blog. Deep essays, systems logs, and short-form posts — written for engineers, architects, and anyone building at the frontier.
+Verial is a builder's blog. Deep essays, systems logs, and short-form posts, written for engineers, architects, and anyone building at the frontier.
 
 ## Stack
 
