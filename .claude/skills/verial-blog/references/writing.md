@@ -13,10 +13,19 @@
 ```yaml
 ---
 title: "Your Title Here"           # required
-description: "One-line summary."   # required — used in cards + SEO
-send_email: true                   # optional — triggers email pipeline on merge
+description: "One-line summary."   # required, used in cards + SEO
+email_draft: true                  # optional, triggers email pipeline on merge
 ---
 ```
+
+## Em Dashes
+
+**Never use em dashes (—) in public-facing content.** The CI linter (`npm run lint:writing`) enforces this on `packages/blog-site/content` and `README.md`.
+
+Use instead:
+- Comma for parenthetical asides
+- Colon for elaboration or lists
+- Restructure the sentence if neither fits
 
 ## Footnotes
 
@@ -25,32 +34,44 @@ Standard markdown syntax via remark-gfm v4 (built into FumaDocs). Zero custom co
 ### Syntax
 
 ```mdx
-This claim needs sourcing[^1]. Another point[^2].
+This claim needs sourcing[^key].
 
-[^1]: Source: *Book Title*, Author, Year.
-[^2]: See also: relevant link or context.
+[^key]: LastName, FirstName (Year). ["Title"](url). *Publication*. Description.
+```
+
+### Citation format (Wikipedia style)
+
+- **Paper/article:** `LastName, FirstName (Year). ["Title"](url). *Venue/Publication*. Description.`
+- **Book:** `LastName, FirstName (Year). *Title*. Description.`
+- **Website:** `["Title"](url). *Site name*. Description.`
+- Multiple authors: separated by semicolons, e.g. `LastName, First; LastName, First`
+
+Examples:
+```mdx
+[^miller]: Miller, George A. (1956). ["The Magical Number Seven, Plus or Minus Two"](url). *Psychological Review*.
+[^evans]: Evans, Eric (2003). *Domain-Driven Design*. Ubiquitous language, bounded contexts.
+[^mdn]: ["Array.prototype.map()"](url). *MDN Web Docs*.
 ```
 
 ### Behavior
-- `[^1]` → superscript pill badge (clickable)
-- Footnote definitions → styled endnotes section at article bottom
-- Click superscript → smooth scroll to note
-- Click ↩ → returns to exact inline position
+- `[^key]` renders as a superscript pill badge (clickable)
+- Footnote definitions render as a styled endnotes section at article bottom
+- Click superscript: smooth scroll to note
+- Click arrow: returns to exact inline position
 - Auto-numbered in reading order
-- `scroll-padding-top: 80px` offsets fixed navbar
 
 ### Guidelines
-- Place definitions at the very end of the file
+- Place all definitions at the very end of the file
 - Use for: sources, citations, tangential context, "see also"
 - 3-8 per essay typical, fewer for posts
 - Keep footnote text concise (1-2 sentences)
 
-## Glossary (planned — GitHub #22)
+## Glossary
 
-- Terms defined in `content/glossary/` (one MDX per term)
-- Auto-linked at build time — no manual tagging in essays
-- Inline: click term → popover with definition (no navigation away)
-- `/glossary` page: alphabetical listing with backlinks to content that uses each term
+- Terms defined in `content/glossary.yaml`
+- Auto-linked at build time via remark plugin, no manual tagging in essays
+- Inline: click term opens a popover with the definition
+- `/glossary` page: alphabetical listing
 
 ## Writing Voice
 
@@ -60,4 +81,4 @@ This claim needs sourcing[^1]. Another point[^2].
 - Concrete examples > abstract claims
 - Every paragraph justifies its existence
 - Strong positions, loosely held
-- Not academic, not clickbait — dense and honest
+- Not academic, not clickbait: dense and honest

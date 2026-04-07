@@ -102,16 +102,20 @@ Match the tone of the Legibility essay (`content/essays/legibility.mdx`) — fir
 - Start with a personal moment or observation, not a summary.
 
 ### Em Dashes
-**Never use em dashes (—) in body prose.** Use commas, colons, or restructure the sentence instead. Em dashes are fine in footnote definitions and citations.
+**Never use em dashes (—) in public-facing content** (essays, posts, systems, README). Use commas, colons, or restructure the sentence instead. The CI linter enforces this on `packages/blog-site/content` and `README.md`.
 
 ### Academic references
-Keep conference names and paper metadata out of the body text. Reference naturally:
+Use Wikipedia citation style. Keep conference names and paper metadata out of the body text.
 - Body: "Wettel & Lanza had the original idea[^wettel2007]"
-- Footnote: "Richard Wettel & Michele Lanza — ["CodeCity"](link) (VISSOFT 2007). Description."
+- Footnote (paper): `Wettel, Richard; Lanza, Michele (2007). ["CodeCity"](link). *VISSOFT 2007*. Description.`
+- Footnote (web): `["Title"](link). *Publication*. Description.`
+- Footnote (book): `LastName, FirstName (Year). *Title*. Description.`
+
+Format: `LastName, FirstName (Year). ["Title"](url). *Publication*. Description.`
 
 ### Agent Paradise context
 - **Agent Paradise** (https://github.com/AgentParadise) is an agentic engineering lab that Verial is building.
-- **APSS** (Agent Paradise Standards System) is one system within Agent Paradise — not the other way around.
+- **APSS** (Agent Paradise Standards System) is one system within Agent Paradise, not the other way around.
 - **Syntropic137** was born out of Agent Paradise, not APSS.
 
 ### Terminology
