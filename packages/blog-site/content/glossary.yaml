@@ -36,3 +36,6 @@
 
 - term: Cyclomatic Complexity
   definition: "A measure of the number of independent paths through a piece of code. Higher values mean more branches, more test cases required, and more cognitive effort to understand. A proxy for how hard a function is to test and safely change."
+
+- term: Serendipity
+  definition: "The occurrence of valuable or fortunate discoveries by accident rather than through intent. Often called active luck — finding something beneficial while not looking for it, and having the wisdom to recognize its value."
