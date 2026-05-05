@@ -32,6 +32,8 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      - name: Check package publish age (supply chain guard)
+        run: node scripts/check-package-age.js
       - run: npm ci
       - run: npm audit --audit-level=high
 

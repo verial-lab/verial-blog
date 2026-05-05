@@ -5,6 +5,7 @@
  * Uses fixed positioning to avoid mobile overflow.
  */
 import { useState, useRef, useEffect, useCallback } from 'react';
+import Link from 'next/link';
 
 export function GlossaryTerm({
   term,
@@ -18,8 +19,9 @@ export function GlossaryTerm({
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
+  const glossaryHref = `/glossary#${term.toLowerCase().replace(/\s+/g, '-')}`;
   const wrapperRef = useRef<HTMLSpanElement>(null);
-  const triggerRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLAnchorElement>(null);
   const popoverRef = useRef<HTMLSpanElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -77,12 +79,14 @@ export function GlossaryTerm({
     };
   }, [open, position]);
 
-  const handleMouseEnter = () => {
+  const popoverId = `glossary-popover-${term.toLowerCase().replace(/\s+/g, '-')}`;
+
+  const openPopover = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     setOpen(true);
   };
 
-  const handleMouseLeave = () => {
+  const closePopover = () => {
     closeTimer.current = setTimeout(() => setOpen(false), 200);
   };
 
@@ -91,28 +95,23 @@ export function GlossaryTerm({
       ref={wrapperRef}
       id={id}
       className="glossary-term-wrapper"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseEnter={openPopover}
+      onMouseLeave={closePopover}
     >
-      <button
+      <Link
         ref={triggerRef}
-        type="button"
+        href={glossaryHref}
         className="glossary-term-trigger"
-        onClick={() => setOpen(prev => !prev)}
-        aria-expanded={open}
         aria-label={`Definition: ${term}`}
+        aria-describedby={open ? popoverId : undefined}
+        onFocus={openPopover}
+        onBlur={closePopover}
       >
         {children}
-      </button>
+      </Link>
       {open && (
-        <span ref={popoverRef} className="glossary-popover" role="tooltip">
-          <a
-            href={`/glossary#${term.toLowerCase().replace(/\s+/g, '-')}`}
-            className="glossary-popover-title"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {term}
-          </a>
+        <span ref={popoverRef} id={popoverId} className="glossary-popover" role="tooltip">
+          <span className="glossary-popover-title">{term}</span>
           <span className="glossary-popover-def">{definition}</span>
         </span>
       )}
