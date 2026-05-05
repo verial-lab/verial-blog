@@ -87,7 +87,7 @@ The concept was proposed by Wettel & Lanza[^wettel2007].
 **Rules:**
 - Footnotes are for citations, references, and source material — not definitions (use glossary for those).
 - Conference acronyms (ICSE, VISSOFT, NeurIPS, etc.) belong in footnote definitions, not in body text.
-- Em dashes (—) are fine in footnote definitions.
+- Em dashes (—) are **not** allowed anywhere, including footnote definitions. The CI linter scans the full file.
 - Do not include a `---` horizontal rule before the footnote block — the footnotes section already has its own border.
 
 ---
