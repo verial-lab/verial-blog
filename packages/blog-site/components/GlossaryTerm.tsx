@@ -79,12 +79,14 @@ export function GlossaryTerm({
     };
   }, [open, position]);
 
-  const handleMouseEnter = () => {
+  const popoverId = `glossary-popover-${term.toLowerCase().replace(/\s+/g, '-')}`;
+
+  const openPopover = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     setOpen(true);
   };
 
-  const handleMouseLeave = () => {
+  const closePopover = () => {
     closeTimer.current = setTimeout(() => setOpen(false), 200);
   };
 
@@ -93,19 +95,22 @@ export function GlossaryTerm({
       ref={wrapperRef}
       id={id}
       className="glossary-term-wrapper"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseEnter={openPopover}
+      onMouseLeave={closePopover}
     >
       <Link
         ref={triggerRef}
         href={glossaryHref}
         className="glossary-term-trigger"
         aria-label={`Definition: ${term}`}
+        aria-describedby={open ? popoverId : undefined}
+        onFocus={openPopover}
+        onBlur={closePopover}
       >
         {children}
       </Link>
       {open && (
-        <span ref={popoverRef} className="glossary-popover" role="tooltip">
+        <span ref={popoverRef} id={popoverId} className="glossary-popover" role="tooltip">
           <span className="glossary-popover-title">{term}</span>
           <span className="glossary-popover-def">{definition}</span>
         </span>
